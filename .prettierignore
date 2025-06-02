@@ -1,0 +1,11 @@
+build
+node_modules
+.idea
+internals
+public
+.next
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+migrations
+.yarn

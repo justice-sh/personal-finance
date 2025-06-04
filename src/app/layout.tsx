@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Public_Sans } from "next/font/google"
 import { ScrollArea } from "@/shared/components/ui/scroll-area"
-// import { SidebarProvider } from "@/shared/components/ui/sidebar"
-// import { AppSidebar } from "@/widgets/app-sidebar"
+import { SidebarProvider } from "@/shared/components/ui/sidebar"
+import { AppSidebar } from "@/widgets/app-sidebar"
 import { cn } from "@/shared/lib/utils"
 import "./globals.css"
 
@@ -46,20 +46,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // const styles = {
-  //   container: "md-7:grid-cols-[300px_1fr] grid min-h-screen",
-  //   aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
-  //   scrollArea: "flex page-height *:*:*:min-page-height",
-  // }
+  const styles = {
+    container: "md-7:grid-cols-[300px_1fr] grid min-h-screen",
+    aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
+    scrollArea: "flex page-height *:*:*:min-page-height",
+  }
 
   return (
     <html lang="en">
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
-        {/* <SidebarProvider className={styles.container}>
+        <SidebarProvider className={styles.container}>
           <AppSidebar className={styles.aside} />
           <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
-        </SidebarProvider> */}
-        {children}
+        </SidebarProvider>
       </body>
     </html>
   )

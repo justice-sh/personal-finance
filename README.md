@@ -22,4 +22,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Project Guide
 
-1. File name case is kabal-case, example `jar-fill.tsx`
+### File naming convention
+
+- File name case is kabal-case, example `jar-fill.tsx`
+
+### Making changes
+
+- Create a branch for your changes, then push and create a PR. DO NOT PUSH TO MAIN BRANCH DIRECTLY!

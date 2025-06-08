@@ -1,9 +1,6 @@
+import { cn } from "@/shared/lib/utils"
 import type { Metadata } from "next"
 import { Public_Sans } from "next/font/google"
-import { ScrollArea } from "@/shared/components/ui/scroll-area"
-import { SidebarProvider } from "@/shared/components/ui/sidebar"
-import { AppSidebar } from "@/widgets/app-sidebar"
-import { cn } from "@/shared/lib/utils"
 import "./globals.css"
 
 const publicSans = Public_Sans({
@@ -13,32 +10,50 @@ const publicSans = Public_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Personal Finance App: Take Control of Your Money Today!",
+  title: {
+    default: "Personal Finance | Manage Your Money with Ease",
+    template: "%s | Personal Finance",
+  },
   description:
-    "Manage your money effortlessly with our intuitive personal finance app. Track expenses, create budgets, set financial goals, and invest smarter. Gain real-time insights into your spending habits and watch your savings grow. Secure, user-friendly, and packed with powerful tools to help you achieve financial freedom. Sign-up now and start building a brighter financial future!",
-  keywords: [
-    "money management",
-    "budget tracker",
-    "expense tracker",
-    "financial planning",
-    "savings app",
-    "investment tracker",
-    "financial goals",
-    "money organizer",
-    "financial freedom",
-    "budgeting app",
-    "wealth management",
-    "financial insights",
-    "finance",
-    "personal finance",
-    "budgeting",
-    "expenses",
-    "income",
-  ],
-  authors: [
-    { name: "Justice N.", url: "https://portfolio.jutech.dev/" },
-    { name: "Frontend Mentors", url: "https://www.frontendmentor.io/" },
-  ],
+    "Take control of your financial future with our comprehensive personal finance management solution. Track expenses, set budgets, and achieve your financial goals.",
+  keywords: ["personal finance", "money management", "budgeting", "expense tracking", "financial goals", "savings", "investment"],
+  authors: [{ name: "Personal Finance Team" }],
+  creator: "Personal Finance",
+  publisher: "Personal Finance",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://personal-finance.app"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://personal-finance.app",
+    title: "Personal Finance | Manage Your Money with Ease",
+    description: "Take control of your financial future with our comprehensive personal finance management solution.",
+    siteName: "Personal Finance",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Personal Finance | Manage Your Money with Ease",
+    description: "Take control of your financial future with our comprehensive personal finance management solution.",
+    creator: "@personalfinance",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "google-site-verification-code",
+  },
 }
 
 export default function RootLayout({
@@ -46,20 +61,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const styles = {
-    container: "md-7:grid-cols-[300px_1fr] grid min-h-screen",
-    aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
-    scrollArea: "flex page-height *:*:*:min-page-height",
-  }
-
   return (
     <html lang="en">
-      <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
-        <SidebarProvider className={styles.container}>
-          <AppSidebar className={styles.aside} />
-          <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
-        </SidebarProvider>
-      </body>
+      <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>{children}</body>
     </html>
   )
 }

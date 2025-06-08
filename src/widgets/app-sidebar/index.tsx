@@ -13,12 +13,12 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/shared/components/ui/sidebar"
-import ArrowUpDownIcon from "@/shared/icons/arrow-up-down"
-import ArrowBackIcon from "@/shared/icons/arrow-back"
-import DollarBillIcon from "@/shared/icons/dollar-bill"
-import HomeIcon from "@/shared/icons/home-icon"
-import PaperBillIcon from "@/shared/icons/paper-bill"
-import PieChartIcon from "@/shared/icons/pie-chart"
+import ArrowsDownUpIcon from "@/shared/icons/arrows-down-up"
+import ArrowFatLinesLeftIcon from "@/shared/icons/arrow-fat-lines-left"
+import JarFillIcon from "@/shared/icons/jar-fill"
+import HouseIcon from "@/shared/icons/house-icon"
+import ReceiptIcon from "@/shared/icons/receipt"
+import ChartDonutIcon from "@/shared/icons/chart-donut"
 import Logo from "@/shared/components/logo"
 import Link from "next/link"
 import { cn } from "@/shared/lib/utils"
@@ -32,27 +32,27 @@ export function AppSidebar({ className }: { className?: string }) {
     {
       title: "Overview",
       url: "/",
-      Icon: HomeIcon,
+      Icon: HouseIcon,
     },
     {
       title: "Transactions",
       url: "/transactions",
-      Icon: ArrowUpDownIcon,
+      Icon: ArrowsDownUpIcon,
     },
     {
       title: "Budgets",
       url: "/budgets",
-      Icon: PieChartIcon,
+      Icon: ChartDonutIcon,
     },
     {
       title: "Pots",
       url: "/pots",
-      Icon: DollarBillIcon,
+      Icon: JarFillIcon,
     },
     {
       title: "Recurring Bills",
       url: "/bills",
-      Icon: PaperBillIcon,
+      Icon: ReceiptIcon,
     },
   ]
 
@@ -85,7 +85,7 @@ export function AppSidebar({ className }: { className?: string }) {
         <SidebarTrigger className="w-full">
           <SidebarMenuButton asChild>
             <div className="text-preset-3 group/item flex h-auto w-auto cursor-pointer justify-start">
-              <ArrowBackIcon
+              <ArrowFatLinesLeftIcon
                 data-rotate={isCollapsed}
                 className="group-hover/item:fill-secondary-green! transition-transform duration-500 data-[rotate=true]:rotate-180"
               />

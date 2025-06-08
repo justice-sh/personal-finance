@@ -24,7 +24,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ### File naming convention
 
-- File name case is kabal-case, example `jar-fill.tsx`
+- File name case is kebab-case, example `jar-fill.tsx`
 
 ### Making changes
 

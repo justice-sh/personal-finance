@@ -87,6 +87,10 @@ const loginUser = fromPromise(async ({ input }: { input: AuthMachineEvent }) => 
 
 export const authMachine = createMachine({
   id: "auth",
+  types: {
+    events: {} as AuthMachineEvent,
+    context: {} as AuthContext,
+  },
   initial: AuthState.IDLE,
   context: {
     error: undefined,

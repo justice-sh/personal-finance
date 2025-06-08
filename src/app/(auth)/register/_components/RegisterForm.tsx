@@ -2,6 +2,7 @@
 
 import { AuthFormData, AuthFormFields, authSchema } from "@/shared/components/auth/AuthFormFields"
 import { AUTH_MESSAGES, AuthField, AuthMode } from "@/shared/constants/auth"
+import { Routes } from "@/shared/constants/routes"
 import { AuthEvent, AuthState } from "@/shared/constants/stateMachine"
 import { authMachine } from "@/shared/machines/authMachine"
 import { useMachine } from "@xstate/react"
@@ -19,7 +20,7 @@ export function RegisterForm() {
 
   useEffect(() => {
     if (state.matches(AuthState.AUTHENTICATED)) {
-      router.replace("/home")
+      router.replace(Routes.HOME)
     }
   }, [state, router])
 
@@ -86,7 +87,7 @@ export function RegisterForm() {
       />
       <p className="text-center text-sm text-gray-500">
         Already have an account?{" "}
-        <Link href="/login" className="text-primary hover:underline">
+        <Link href={Routes.LOGIN} className="text-primary hover:underline">
           Login
         </Link>
       </p>

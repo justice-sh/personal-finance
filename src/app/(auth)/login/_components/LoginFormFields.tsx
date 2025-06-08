@@ -1,7 +1,8 @@
 "use client"
 
 import { AuthFormData, AuthFormFields, authSchema } from "@/shared/components/auth/AuthFormFields"
-import { AUTH_MESSAGES, AuthField, AuthMode } from "@/shared/constants/auth"
+import { AuthField, AuthMode } from "@/shared/constants/auth"
+import { Routes } from "@/shared/constants/routes"
 import { AuthEvent, AuthState } from "@/shared/constants/stateMachine"
 import { authMachine } from "@/shared/machines/authMachine"
 import { useMachine } from "@xstate/react"
@@ -18,7 +19,7 @@ export function LoginFormFields() {
 
   useEffect(() => {
     if (state.matches(AuthState.AUTHENTICATED)) {
-      router.replace("/home")
+      router.replace(Routes.HOME)
     }
   }, [state, router])
 

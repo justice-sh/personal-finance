@@ -1,6 +1,7 @@
 "use client"
 
 import { AUTH_MESSAGES } from "@/shared/constants/auth"
+import { Routes } from "@/shared/constants/routes"
 import Link from "next/link"
 import { LoginFormFields } from "./LoginFormFields"
 
@@ -14,7 +15,7 @@ export function LoginForm() {
       <LoginFormFields />
       <p className="text-center text-sm text-gray-500">
         Don't have an account?{" "}
-        <Link href="/register" className="text-primary hover:underline">
+        <Link href={Routes.REGISTER} className="text-primary hover:underline">
           Register
         </Link>
       </p>

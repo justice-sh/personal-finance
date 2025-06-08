@@ -54,7 +54,7 @@ export default async function RootLayout({
   const styles = {
     container: "flex max-md:flex-col",
     aside: "bg-sidebar",
-    scrollArea: "flex page-height *:*:*:min-page-height flex-1 p-4",
+    scrollArea: "flex flex-1 p-4",
     mobileNav: "min-h-[74px] md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
   }
 

@@ -97,6 +97,7 @@ export const authMachine = createMachine({
     credentials: undefined,
     user: undefined,
   } as AuthContext,
+
   states: {
     [AuthState.IDLE]: {
       on: {

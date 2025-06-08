@@ -6,7 +6,6 @@ import MobileNavigation from "@/widgets/mobile-navigation"
 import AppSidebar from "@/widgets/sidebar"
 import { cn } from "@/shared/lib/utils"
 import { cookies } from "next/headers"
-import { CSSProperties } from "react"
 import "./globals.css"
 
 const publicSans = Public_Sans({

@@ -5,6 +5,7 @@ import { SidebarProvider } from "@/shared/components/ui/sidebar"
 import { AppSidebar } from "@/widgets/app-sidebar"
 import { cn } from "@/shared/lib/utils"
 import "./globals.css"
+import { cookies } from "next/headers"
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
@@ -41,21 +42,33 @@ export const metadata: Metadata = {
   ],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = await cookies()
+  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+
   const styles = {
-    container: "md-7:grid-cols-[300px_1fr] grid min-h-screen",
+    container: "flex min-h-screen",
     aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
-    scrollArea: "flex page-height *:*:*:min-page-height",
+    scrollArea: "flex page-height *:*:*:min-page-height flex-1",
   }
 
   return (
     <html lang="en">
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
-        <SidebarProvider className={styles.container}>
+        <SidebarProvider
+          defaultOpen={defaultOpen}
+          className={styles.container}
+          style={
+            {
+              "--sidebar-width": "18.75rem",
+              "--sidebar-width-mobile": "5.5rem",
+            } as any
+          }
+        >
           <AppSidebar className={styles.aside} />
           <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
         </SidebarProvider>

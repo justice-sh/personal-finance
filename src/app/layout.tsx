@@ -2,10 +2,11 @@ import type { Metadata } from "next"
 import { Public_Sans } from "next/font/google"
 import { ScrollArea } from "@/shared/components/ui/scroll-area"
 import { SidebarProvider } from "@/shared/components/ui/sidebar"
-import { AppSidebar } from "@/widgets/app-sidebar"
+import MobileNavigation from "@/widgets/mobile-navigation"
+import AppSidebar from "@/widgets/sidebar"
 import { cn } from "@/shared/lib/utils"
-import "./globals.css"
 import { cookies } from "next/headers"
+import "./globals.css"
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
@@ -51,26 +52,19 @@ export default async function RootLayout({
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
 
   const styles = {
-    container: "flex min-h-screen",
-    aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
-    scrollArea: "flex page-height *:*:*:min-page-height flex-1",
+    container: "flex max-md:flex-col",
+    aside: "bg-sidebar",
+    scrollArea: "flex flex-1 p-4",
+    mobileNav: "min-h-[74px] md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
   }
 
   return (
     <html lang="en">
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
-        <SidebarProvider
-          defaultOpen={defaultOpen}
-          className={styles.container}
-          style={
-            {
-              "--sidebar-width": "18.75rem",
-              "--sidebar-width-mobile": "5.5rem",
-            } as any
-          }
-        >
+        <SidebarProvider defaultOpen={defaultOpen} className={styles.container}>
           <AppSidebar className={styles.aside} />
           <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
+          <MobileNavigation className={styles.mobileNav} />
         </SidebarProvider>
       </body>
     </html>

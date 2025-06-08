@@ -9,7 +9,7 @@ type Props = {
 
 const Logo = ({ className, state = "expanded" }: Props) => {
   const styles = {
-    reveal: "opacity-0 transition-all data-[reveal=true]:opacity-100 absolute data-[reveal=true]:duration-1000 duration-[900ms] ",
+    reveal: "opacity-0 transition-all data-[reveal=true]:opacity-100 absolute duration-500 ",
   }
 
   return (

@@ -2,7 +2,7 @@ import { AUTH_ERROR_MESSAGES, AuthEvent, AuthState } from "@/shared/constants/st
 import { assign, createMachine, fromPromise } from "xstate"
 
 type AuthContext = {
-  error: string | undefined
+  error?: string
   credentials?: {
     email: string
     password: string
@@ -94,6 +94,8 @@ export const authMachine = createMachine({
   initial: AuthState.IDLE,
   context: {
     error: undefined,
+    credentials: undefined,
+    user: undefined,
   } as AuthContext,
   states: {
     [AuthState.IDLE]: {

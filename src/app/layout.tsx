@@ -5,6 +5,7 @@ import { SidebarProvider } from "@/shared/components/ui/sidebar"
 import { AppSidebar } from "@/widgets/app-sidebar"
 import { cn } from "@/shared/lib/utils"
 import "./globals.css"
+import { cookies } from "next/headers"
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
@@ -41,11 +42,14 @@ export const metadata: Metadata = {
   ],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = await cookies()
+  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+
   const styles = {
     container: "flex min-h-screen",
     aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
@@ -56,6 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
         <SidebarProvider
+          defaultOpen={defaultOpen}
           className={styles.container}
           style={
             {

@@ -47,15 +47,23 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const styles = {
-    container: "md-7:grid-cols-[300px_1fr] grid min-h-screen",
+    container: "flex min-h-screen",
     aside: "max-md-7:hidden row-span-2 h-screen border-r bg-gray-900",
-    scrollArea: "flex page-height *:*:*:min-page-height",
+    scrollArea: "flex page-height *:*:*:min-page-height flex-1",
   }
 
   return (
     <html lang="en">
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
-        <SidebarProvider className={styles.container}>
+        <SidebarProvider
+          className={styles.container}
+          style={
+            {
+              "--sidebar-width": "18.75rem",
+              "--sidebar-width-mobile": "5.5rem",
+            } as any
+          }
+        >
           <AppSidebar className={styles.aside} />
           <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
         </SidebarProvider>

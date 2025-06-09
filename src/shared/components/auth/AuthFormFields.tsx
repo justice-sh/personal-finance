@@ -3,6 +3,8 @@
 import { Input } from "@/shared/components/ui/input"
 import { Label } from "@/shared/components/ui/label"
 import { AUTH_MESSAGES, AuthField, AuthMode } from "@/shared/constants/auth"
+import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { useState } from "react"
 import { z } from "zod"
 
 export const authSchema = z.object({
@@ -22,6 +24,8 @@ interface AuthFormFieldsProps {
 }
 
 export function AuthFormFields({ mode, validationErrors, onSubmit, isLoading, error }: AuthFormFieldsProps) {
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -63,13 +67,23 @@ export function AuthFormFields({ mode, validationErrors, onSubmit, isLoading, er
       </div>
       <div className="grid gap-2">
         <Label htmlFor={AuthField.PASSWORD}>Password</Label>
-        <Input
-          id={AuthField.PASSWORD}
-          name={AuthField.PASSWORD}
-          type="password"
-          required
-          aria-invalid={!!validationErrors[AuthField.PASSWORD]}
-        />
+        <div className="relative">
+          <Input
+            id={AuthField.PASSWORD}
+            name={AuthField.PASSWORD}
+            type={showPassword ? "text" : "password"}
+            required
+            aria-invalid={!!validationErrors[AuthField.PASSWORD]}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="text-muted-foreground hover:text-foreground absolute top-1/2 right-3 -translate-y-1/2"
+          >
+            {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
+            <span className="sr-only">{showPassword ? "Hide password" : "Show password"}</span>
+          </button>
+        </div>
         {validationErrors[AuthField.PASSWORD] && <p className="text-sm text-red-500">{validationErrors[AuthField.PASSWORD]}</p>}
       </div>
       {error && <p className="text-sm text-red-500">{error}</p>}

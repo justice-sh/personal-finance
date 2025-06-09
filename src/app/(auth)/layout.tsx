@@ -1,3 +1,4 @@
+import { TextLogo } from "@/assets/components/text_logo"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -18,27 +19,18 @@ export const metadata: Metadata = {
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-background relative grid min-h-screen max-w-none grid-cols-1 lg:grid-cols-2 lg:px-0">
-      <div className="bg-muted relative hidden max-h-[100vh] flex-col p-10 text-white lg:flex dark:border-r">
-        <div className="absolute inset-0 bg-zinc-900" />
-        <div className="relative z-20 flex items-center text-lg font-medium">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-6 w-6"
-          >
-            <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-          </svg>
-          Personal Finance
+    <div className="bg-color-beige-100 relative grid min-h-screen max-w-none grid-cols-1 lg:grid-cols-2 lg:px-0">
+      <div className="relative hidden h-full max-w-[670px] flex-col bg-black bg-[url('/login_signup_side_image.png')] bg-cover bg-center bg-no-repeat p-10 text-white lg:flex dark:border-r">
+        <div className="relative z-20 flex items-center">
+          <TextLogo className="h-10 w-[120px] object-contain" />
         </div>
+
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
-            <p className="text-lg">"Take control of your financial future with our comprehensive personal finance management solution."</p>
+            <p className="text-lg font-bold">Keep track of your money and save for your future</p>
+            <p className="text-sm text-gray-400">
+              Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.
+            </p>
           </blockquote>
         </div>
       </div>

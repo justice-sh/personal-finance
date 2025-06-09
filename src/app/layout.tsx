@@ -55,7 +55,7 @@ export default async function RootLayout({
     container: "flex max-md:flex-col",
     aside: "bg-sidebar",
     scrollArea: "flex flex-1 p-4",
-    mobileNav: "min-h-[74px] md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
+    mobileNav: "md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
   }
 
   return (

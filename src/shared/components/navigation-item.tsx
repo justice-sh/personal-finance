@@ -56,7 +56,7 @@ export default function NavigationItem({ item, className, ...props }: { item: Na
       <div
         id={elementIds.text.replace("#", "")}
         data-active={isActive}
-        className="text-preset-5-bold md:text-preset-3 data-[active=true]:text-sidebar-accent-foreground max-sm:hidden"
+        className="text-preset-5-bold md:text-preset-3 data-[active=true]:text-sidebar-accent-foreground max-sm-8:hidden"
       >
         {item.title}
       </div>

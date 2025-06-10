@@ -10,26 +10,18 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/shared/components/ui/sidebar"
-import ArrowFatLinesLeftIcon from "@/shared/icons/arrow-fat-lines-left"
 import Logo from "@/shared/components/logo"
 import { cn } from "@/shared/lib/utils"
-import { usePathname } from "next/navigation"
 import { navigationItems } from "@/shared/constants/navigation"
 import NavigationItem from "@/shared/components/navigation-item"
+import { AppSidebarTrigger } from "./trigger"
 
 export default function AppSidebar({ className }: { className?: string }) {
-  const { state } = useSidebar()
-
-  const pathname = usePathname()
-
-  const isCollapsed = state === "collapsed"
-
   return (
     <Sidebar className={cn(className, "bg-sidebar py-4")} collapsible="icon">
       <SidebarHeader>
-        <Logo state={state} />
+        <Logo />
       </SidebarHeader>
 
       <SidebarContent className="mt-10 px-0">
@@ -39,7 +31,7 @@ export default function AppSidebar({ className }: { className?: string }) {
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title} className="">
                   <SidebarMenuButton asChild>
-                    <NavigationItem key={item.url} item={item} pathname={pathname} />
+                    <NavigationItem key={item.url} item={item} />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -49,33 +41,8 @@ export default function AppSidebar({ className }: { className?: string }) {
       </SidebarContent>
 
       <SidebarFooter className="pr-3 pl-0">
-        <AppSidebarTrigger isCollapsed={isCollapsed} />
+        <AppSidebarTrigger />
       </SidebarFooter>
     </Sidebar>
-  )
-}
-
-const AppSidebarTrigger = ({ isCollapsed }: { isCollapsed: boolean }) => {
-  const { toggleSidebar } = useSidebar()
-
-  return (
-    <div className="cursor-pointer" onClick={toggleSidebar}>
-      <SidebarMenuButton asChild>
-        <NavigationItem
-          pathname=""
-          item={{
-            title: "Minimize menu",
-            Icon: (props) => (
-              <ArrowFatLinesLeftIcon
-                {...props}
-                data-rotate={isCollapsed}
-                className={cn(props.className, "transition-transform duration-500 data-[rotate=true]:rotate-180")}
-              />
-            ),
-          }}
-        />
-      </SidebarMenuButton>
-      <span className="sr-only">Toggle Sidebar</span>
-    </div>
   )
 }

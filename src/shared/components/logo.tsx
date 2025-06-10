@@ -1,13 +1,18 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "../lib/utils"
+import { useSidebar } from "./ui/sidebar"
 
 type Props = {
   className?: string
   state?: "collapsed" | "expanded"
 }
 
-const Logo = ({ className, state = "expanded" }: Props) => {
+const Logo = ({ className }: Props) => {
+  const { state } = useSidebar()
+
   const styles = {
     reveal: "opacity-0 transition-all data-[reveal=true]:opacity-100 absolute duration-500 ",
   }

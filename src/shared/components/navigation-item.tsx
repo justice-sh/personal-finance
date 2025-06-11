@@ -139,7 +139,7 @@ function useAnimation({
       const mm = gsap.matchMedia()
 
       mm.add("(min-width: 768px)", desktopAnimation)
-      mm.add("(max-width: 767px)", mobileAnimation)
+      mm.add("(max-width: 767.5px)", mobileAnimation)
 
       return () => {
         mm.revert()

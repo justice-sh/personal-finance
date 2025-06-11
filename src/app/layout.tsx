@@ -63,7 +63,9 @@ export default async function RootLayout({
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
         <SidebarProvider defaultOpen={defaultOpen} className={styles.container}>
           <AppSidebar className={styles.aside} />
-          <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
+          <ScrollArea className={styles.scrollArea}>
+            <div className="flex min-h-[95vh] flex-col p-2">{children}</div>
+          </ScrollArea>
           <MobileNavigation className={styles.mobileNav} />
         </SidebarProvider>
       </body>

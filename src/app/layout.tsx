@@ -1,6 +1,12 @@
 import { cn } from "@/shared/lib/utils"
 import type { Metadata } from "next"
 import { Public_Sans } from "next/font/google"
+import { ScrollArea } from "@/shared/components/ui/scroll-area"
+import { SidebarProvider } from "@/shared/components/ui/sidebar"
+import MobileNavigation from "@/widgets/mobile-navigation"
+import AppSidebar from "@/widgets/sidebar"
+import { cn } from "@/shared/lib/utils"
+import { cookies } from "next/headers"
 import "./globals.css"
 
 const publicSans = Public_Sans({
@@ -56,14 +62,32 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = await cookies()
+  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+
+  const styles = {
+    container: "flex max-md:flex-col",
+    aside: "bg-sidebar",
+    scrollArea: "flex flex-1 p-4",
+    mobileNav: "md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
+  }
+
   return (
     <html lang="en">
-      <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>{children}</body>
+      <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
+        <SidebarProvider defaultOpen={defaultOpen} className={styles.container}>
+          <AppSidebar className={styles.aside} />
+          <ScrollArea className={styles.scrollArea}>
+            <div className="flex min-h-[95vh] flex-col p-2">{children}</div>
+          </ScrollArea>
+          <MobileNavigation className={styles.mobileNav} />
+        </SidebarProvider>
+      </body>
     </html>
   )
 }

@@ -106,7 +106,7 @@ function useAnimation({
 
     timeline.current = gsap
       .timeline({ defaults: { duration }, paused: true })
-      .fromTo(elementIds.overlay, { xPercent: -100 }, { xPercent: 0 })
+      .fromTo(elementIds.overlay, { xPercent: -100 }, { xPercent: 0, duration: 0.35 })
       .fromTo(elementIds.icon, { fill: "var(--sidebar-foreground)" }, { fill: "var(--secondary-green)", duration: 0.001 }, 0.01)
       .fromTo(elementIds.bar, { xPercent: -100 }, { xPercent: 0, ease: "back.inOut" }, 0.02)
       .fromTo(
@@ -115,7 +115,7 @@ function useAnimation({
         {
           color: "var(--sidebar-accent-foreground)",
           stagger: 0.01,
-          duration: getSplitTextDuration(split.chars.length, duration),
+          duration: getSplitTextDuration(split.chars.length, 0.35),
         },
         0.01,
       )

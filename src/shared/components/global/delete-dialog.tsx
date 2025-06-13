@@ -39,7 +39,7 @@ const DeleteDialog = ({ description, title, name }: DeleteDialogProps) => {
 
         <AlertDialogFooter className="">
           <div className="flex h-min w-full flex-col gap-y-5">
-            <AlertDialogAction className="text-preset-4-bold h-[3.32rem] w-full">Yes, Confirm Delete</AlertDialogAction>
+            <AlertDialogAction className="text-preset-4-bold h-[3.32rem] w-full text-white">Yes, Confirm Delete</AlertDialogAction>
             <AlertDialogCancel className="text-preset-4 h-[1.32rem] w-full border-none shadow-none">No, Go Back</AlertDialogCancel>
           </div>
         </AlertDialogFooter>

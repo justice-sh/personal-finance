@@ -1,6 +1,5 @@
 import { Button } from "@/shared/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu"
-import { Slider } from "@/shared/components/ui/slider"
 import clsx from "clsx"
 import { Menu } from "lucide-react"
 import Image from "next/image"
@@ -10,10 +9,11 @@ import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/global/delete-dialog"
 import AddPots from "./add-edit-pots"
 import Dialog from "./withdraw-add-dialog"
+import Slider from "@/shared/components/global/slider"
 
-type Props = { classname?: string; title: string; price: number; sliderValue: number; target: number }
+type Props = { classname?: string; title: string; price: number; sliderValue: number; target: number; color: string }
 
-const PotsCards = ({ classname, price, sliderValue, target, title }: Props) => {
+const PotsCards = ({ classname, price, sliderValue, target, title, color }: Props) => {
   return (
     <div
       className={clsx(
@@ -23,7 +23,7 @@ const PotsCards = ({ classname, price, sliderValue, target, title }: Props) => {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-4">
-          <div className="size-4 rounded-full bg-amber-400"></div>
+          <div className={clsx("size-4 rounded-full bg-amber-400", color)}></div>
           <p className="text-preset-2">{title}</p>
         </div>
         <DropdownMenu>
@@ -62,7 +62,7 @@ const PotsCards = ({ classname, price, sliderValue, target, title }: Props) => {
           <p className="text-preset-4 text-gray-500">Total Saved</p>
           <h2 className="text-preset-1 font-bold">${price}.00</h2>
         </div>
-        <Slider value={[sliderValue]} />
+        <Slider sliderPipeClass={color} value={sliderValue} />
         <div className="mt-3 flex w-full items-center justify-between">
           <p className="text-preset-5-bold text-gray-500">{sliderValue}%</p>
           <p className="text-preset-5 text-gray-500">target of ${target}</p>

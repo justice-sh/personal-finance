@@ -12,7 +12,7 @@ const template = ({ children }: Props) => {
   const pathname = slicedPath.charAt(0).toUpperCase() + slicedPath.slice(1)
 
   return (
-    <main className="grid h-full w-full min-w-max grid-cols-2 grid-rows-[3.5rem_1fr] gap-y-8 px-4 py-6 sm:px-10 sm:py-9">
+    <main className="grid h-full w-full min-w-max grid-cols-2 grid-rows-[3.5rem_1fr] gap-y-8">
       <section className="col-span-2 row-span-1 flex h-14 w-full items-center justify-between py-1">
         <h1 className="text-preset-1 capitalize">{pathname}</h1>
 

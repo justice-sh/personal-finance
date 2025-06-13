@@ -20,7 +20,7 @@ const Spending = ({ options }: SpendingProps) => {
               </div>
               <div className="flex items-center gap-x-2">
                 <p className="text-preset-3 text-gray-900">${value.priceOf}</p>
-                <p className="text-preset-5 text-gray-500">of ${value.priceOut}</p>
+                <p className="text-preset-5 text-nowrap text-gray-500">of ${value.priceOut}</p>
               </div>
             </div>
             <div className={cn("h-0.5 w-full bg-black/50", { hidden: index === options.length - 1 })} />

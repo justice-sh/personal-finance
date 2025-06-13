@@ -85,7 +85,7 @@ const AddBudgets = ({ title, description, state, mode = "add" }: AddBudgetsProps
         </AlertDialogHeader>
 
         <AlertDialogFooter className="h-[3.32rem]">
-          <AlertDialogAction className="text-preset-4-bold h-[3.32rem] w-full">{state}</AlertDialogAction>
+          <AlertDialogAction className="text-preset-4-bold h-[3.32rem] w-full text-white">{state}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

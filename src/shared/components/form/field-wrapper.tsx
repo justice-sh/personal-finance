@@ -1,4 +1,4 @@
-import { FormFieldStyles } from "@/shared/lib/types/form"
+import { FormFieldStyles } from "@/shared/types/form"
 import { AnyFieldApi } from "@tanstack/react-form"
 import { FieldInfo } from "./field-info"
 import { cn } from "@/shared/lib/utils"

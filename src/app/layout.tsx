@@ -1,26 +1,17 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Public_Sans } from "next/font/google"
-import "./globals.css"
+import { Public_Sans } from "next/font/google"
 import { ScrollArea } from "@/shared/components/ui/scroll-area"
 import { SidebarProvider } from "@/shared/components/ui/sidebar"
-import MobileNavigation from "@/shared/components/global/mobile-navigation"
-import AppSidebar from "@/shared/components/sidebar"
+import MobileNavigation from "@/widgets/mobile-navigation"
+import AppSidebar from "@/widgets/sidebar"
+import { cn } from "@/shared/lib/utils"
 import { cookies } from "next/headers"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
+import "./globals.css"
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",
   subsets: ["latin"],
   weight: ["500", "700"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 })
 
 export const metadata: Metadata = {
@@ -48,16 +39,8 @@ export const metadata: Metadata = {
   ],
   authors: [
     { name: "Justice N.", url: "https://portfolio.jutech.dev/" },
-    { name: "Najmudeen A.", url: "https://github.com/Jumi525" },
     { name: "Frontend Mentors", url: "https://www.frontendmentor.io/" },
   ],
-}
-
-const styles = {
-  container: "flex max-md:flex-col",
-  aside: "bg-sidebar bg-blue-300",
-  scrollArea: "flex flex-1 p-4",
-  mobileNav: "md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
 }
 
 export default async function RootLayout({
@@ -67,19 +50,23 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies()
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+
+  const styles = {
+    container: "flex max-md:flex-col",
+    aside: "bg-sidebar",
+    scrollArea: "flex flex-1 px-4 py-6 sm:px-10 sm:py-9",
+    mobileNav: "md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
+  }
+
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-beige-100 antialiased`}>
-        <SidebarProvider defaultOpen={true} className={styles.container}>
+      <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
+        <SidebarProvider defaultOpen={defaultOpen} className={styles.container}>
           <AppSidebar className={styles.aside} />
-          <ScrollArea className={styles.scrollArea}>
-            <section className="col-span-2 row-span-1 h-full w-full">{children}</section>
-          </ScrollArea>
+          <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
           <MobileNavigation className={styles.mobileNav} />
         </SidebarProvider>
       </body>
     </html>
   )
 }
-
-// className={cn(publicSans.variable, "bg-beige-100 antialiased")}

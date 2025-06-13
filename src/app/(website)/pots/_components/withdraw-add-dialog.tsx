@@ -1,3 +1,4 @@
+import Slider from "@/shared/components/global/slider"
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -10,8 +11,8 @@ import {
   AlertDialogTitle,
 } from "@/shared/components/ui/alert-dialog"
 import { Input } from "@/shared/components/ui/input"
-import { Slider } from "@/shared/components/ui/slider"
-import { PlusSquare, X } from "lucide-react"
+import clsx from "clsx"
+import { PlusIcon, PlusSquare, X } from "lucide-react"
 import { title } from "process"
 import React from "react"
 
@@ -23,10 +24,10 @@ type DialogProps = {
 const Dialog = ({ state, purpose }: DialogProps) => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="flex h-full w-full items-center justify-center rounded-md bg-black p-4 text-white">
+      <AlertDialogTrigger className="bg-beige-100 flex h-full w-full items-center justify-center rounded-md p-4 text-black">
         {purpose.split(" ")[0] === "Add" ? (
-          <div className="flex items-center gap-x-4">
-            <PlusSquare />
+          <div className="flex items-center gap-x-1">
+            <PlusIcon className="size-3" />
             <p className="text-preset-4-bold">{purpose.split(" ")[0]}</p>
           </div>
         ) : (
@@ -52,7 +53,7 @@ const Dialog = ({ state, purpose }: DialogProps) => {
                   <p className="text-preset-4 text-gray-500">New amount</p>
                   <h2 className="text-preset-1 font-bold">${100}.00</h2>
                 </div>
-                <Slider value={[20]} />
+                <Slider sliderPipeClass="bg-green-200" />
                 <div className="mt-3 flex w-full items-center justify-between">
                   <p className="text-preset-5-bold text-green-400">{20}%</p>
                   <p className="text-preset-5 text-gray-500">target of ${2000}</p>
@@ -68,7 +69,7 @@ const Dialog = ({ state, purpose }: DialogProps) => {
         </AlertDialogHeader>
 
         <AlertDialogFooter className="h-[3.32rem]">
-          <AlertDialogAction className="text-preset-4-bold h-[3.32rem] w-full">{state}</AlertDialogAction>
+          <AlertDialogAction className="text-preset-4-bold h-[3.32rem] w-full text-white">{state}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

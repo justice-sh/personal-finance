@@ -106,7 +106,7 @@ function useAnimation({
 
     timeline.current = gsap
       .timeline({ defaults: { duration }, paused: true })
-      .fromTo(elementIds.overlay, { xPercent: -100 }, { xPercent: 0, duration: 0.35 })
+      .fromTo(elementIds.overlay, { xPercent: -100 }, { xPercent: 0 })
       .fromTo(elementIds.icon, { fill: "var(--sidebar-foreground)" }, { fill: "var(--secondary-green)", duration: 0.001 }, 0.01)
       .fromTo(elementIds.bar, { xPercent: -100 }, { xPercent: 0, ease: "back.inOut" }, 0.02)
       .fromTo(
@@ -115,7 +115,7 @@ function useAnimation({
         {
           color: "var(--sidebar-accent-foreground)",
           stagger: 0.01,
-          duration: getSplitTextDuration(split.chars.length, 0.35),
+          duration: getSplitTextDuration(split.chars.length, duration),
         },
         0.01,
       )
@@ -139,7 +139,7 @@ function useAnimation({
       const mm = gsap.matchMedia()
 
       mm.add("(min-width: 768px)", desktopAnimation)
-      mm.add("(max-width: 767.5px)", mobileAnimation)
+      mm.add("(max-width: 767px)", mobileAnimation)
 
       return () => {
         mm.revert()

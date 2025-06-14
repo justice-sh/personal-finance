@@ -58,7 +58,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
   |     |-form/             # Shared form components
   |   |-data/               # Shared data resources, e.g.:
         |-user.data.ts      # Specific data resource, containing useUserQuery, etc.
-  |   |-apis/               # Shared APIs
+  |   |-api/                # Shared APIs
   |     |-user.api.ts       # User APIs, containing an export userAPI object.
   |   |-constants/          # Shared constants
   |   |-icons/              # Shared icons

@@ -1,7 +1,7 @@
 "use client"
 
-import NavigationItem from "@/shared/components/navigation-item"
-import { navigationItems } from "@/shared/constants/navigation"
+import NavigationItem from "@/shared/components/global/navigation-item"
+import { navigationItems } from "@/shared/lib/constants/navigation"
 import { cn } from "@/shared/lib/utils"
 
 export default function MobileNavigation({ className }: { className?: string }) {

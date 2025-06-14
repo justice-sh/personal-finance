@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { cn } from "../lib/utils"
-import { NavigationItemProps } from "../types/navigation"
+import { cn } from "../../lib/utils"
+import { NavigationItemProps } from "../../lib/types/navigation"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
 import { ExpoScaleEase } from "gsap/EasePack"
@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation"
 import React, { useRef } from "react"
 import { SplitText } from "gsap/SplitText"
 import { GSDevTools } from "gsap/GSDevTools"
-import { useSidebar } from "./ui/sidebar"
+import { useSidebar } from "@/shared/components/ui/sidebar"
 
 gsap.registerPlugin(useGSAP, ExpoScaleEase, SplitText, GSDevTools)
 

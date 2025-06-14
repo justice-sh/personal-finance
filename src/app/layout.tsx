@@ -54,7 +54,7 @@ export default async function RootLayout({
   const styles = {
     container: "flex max-md:flex-col",
     aside: "bg-sidebar",
-    scrollArea: "flex flex-1 p-4",
+    scrollArea: "flex flex-1 px-4 py-6 sm:px-10 sm:py-9",
     mobileNav: "md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
   }
 
@@ -63,9 +63,7 @@ export default async function RootLayout({
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
         <SidebarProvider defaultOpen={defaultOpen} className={styles.container}>
           <AppSidebar className={styles.aside} />
-          <ScrollArea className={styles.scrollArea}>
-            <div className="flex min-h-[95vh] flex-col p-2">{children}</div>
-          </ScrollArea>
+          <ScrollArea className={styles.scrollArea}>{children}</ScrollArea>
           <MobileNavigation className={styles.mobileNav} />
         </SidebarProvider>
       </body>

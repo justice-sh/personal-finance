@@ -1,6 +1,5 @@
 import { cn } from "@/shared/lib/utils"
 import { SectionHeader } from "./section-header"
-import { StringNumericLiteral } from "@/shared/types/number"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
@@ -32,10 +31,10 @@ export function Transactions({ className }: { className?: string }) {
   ]
 
   return (
-    <section className={cn("space-y-4", className, "pb-3")}>
+    <section className={cn(className, "pb-3")}>
       <SectionHeader title="Transactions" cta={{ href: "/transactions", label: "View All" }} />
 
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y divide-gray-100 [&>*]:first-of-type:pt-0">
         {list.map((item) => (
           <TransactionItem key={item.name} {...item} />
         ))}
@@ -47,7 +46,7 @@ export function Transactions({ className }: { className?: string }) {
 interface TransactionItemProps {
   name: string
   image: string
-  amount: StringNumericLiteral
+  amount: number
   date: string
   type: TransactionType
 }

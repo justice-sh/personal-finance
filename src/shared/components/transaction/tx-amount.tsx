@@ -1,6 +1,5 @@
 import { cn } from "../../lib/utils"
 import { Currency } from "../../types/currency"
-import { StringNumericLiteral } from "../../types/number"
 import { formatAmount } from "../../utils/formatAmount"
 
 export function TransactionAmount({
@@ -9,14 +8,14 @@ export function TransactionAmount({
   className,
   type,
 }: {
-  amount: StringNumericLiteral
+  amount: number
   currency?: Currency
   className?: string
   type: "income" | "expense"
 }) {
-  const sign = type === "expense" ? "-" : "+"
+  if (type === "expense") amount = -1 * amount
 
-  const formattedAmount = sign + formatAmount(amount, currency)
+  const formattedAmount = formatAmount(amount, currency, { signDisplay: "always" })
 
   const color = type === "expense" ? "text-gray-900" : "text-secondary-green"
 

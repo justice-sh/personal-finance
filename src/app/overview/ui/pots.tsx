@@ -14,10 +14,10 @@ export function Pots({ className }: { className?: string }) {
   const totalSavedAmount = pots.reduce((acc, pot) => acc + pot.amount, 0)
 
   return (
-    <section className={cn("@container space-y-5", className)}>
+    <section className={cn("@container", className)}>
       <SectionHeader title="Pots" cta={{ href: "/pots" }} />
 
-      <div className="@min-sm-7:grid-cols-[247px_1fr] grid gap-5">
+      <div className="@min-sm-6:grid-cols-[247px_1fr] @min-sm-6:gap-10 grid gap-5">
         <TotalSaved amount={totalSavedAmount} />
 
         <div className="grid grid-cols-2 gap-4">

@@ -2,6 +2,7 @@ import { RecurringBills } from "./ui/recurring-bills"
 import { Transactions } from "./ui/transactions"
 import { BalanceCard } from "./ui/balance-card"
 import { cn } from "@/shared/lib/utils"
+import { Budgets } from "./ui/budgets"
 import { Pots } from "./ui/pots"
 
 export default function OverviewPage() {
@@ -22,12 +23,12 @@ export default function OverviewPage() {
       <section className="@min-md-3:grid-cols-[1fr_428px] grid gap-6">
         <section className="@container flex flex-col gap-6">
           <Pots className={cn("w-full", styles.section)} />
-          <Transactions className={cn("", styles.section)} />
+          <Transactions className={cn("flex-1", styles.section)} />
         </section>
 
         <section className="flex flex-col gap-6">
-          {/* <div className="h-[416px]">6</div> */}
-          <RecurringBills className={cn("", styles.section)} />
+          <Budgets className={styles.section} />
+          <RecurringBills className={styles.section} />
         </section>
       </section>
     </main>

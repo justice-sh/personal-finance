@@ -6,30 +6,6 @@ import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionType } from "@/shared/types/transaction"
 
 export function Transactions({ className }: { className?: string }) {
-  const list: TransactionItemProps[] = [
-    {
-      name: "Salary",
-      image: "/images/avatars/user-1.png",
-      amount: 5000,
-      date: "2023-03-01",
-      type: "income",
-    },
-    {
-      name: "Groceries",
-      image: "/images/avatars/user-2.png",
-      amount: 150,
-      date: "2023-03-02",
-      type: "expense",
-    },
-    {
-      name: "Freelance",
-      image: "/images/avatars/user-3.png",
-      amount: 1200,
-      date: "2023-03-03",
-      type: "income",
-    },
-  ]
-
   return (
     <section className={cn(className, "pb-3")}>
       <SectionHeader title="Transactions" cta={{ href: "/transactions", label: "View All" }} />
@@ -63,3 +39,41 @@ const TransactionItem = ({ name, image, amount, date, type }: TransactionItemPro
     </div>
   )
 }
+
+const list: TransactionItemProps[] = [
+  {
+    name: "Salary",
+    image: "/images/avatars/user-1.png",
+    amount: 5000,
+    date: "2023-03-01",
+    type: "income",
+  },
+  {
+    name: "Groceries",
+    image: "/images/avatars/user-2.png",
+    amount: 150,
+    date: "2023-03-02",
+    type: "expense",
+  },
+  {
+    name: "Freelance",
+    image: "/images/avatars/user-3.png",
+    amount: 1200,
+    date: "2023-03-03",
+    type: "income",
+  },
+  {
+    name: "Something",
+    image: "/images/avatars/user-3.png",
+    amount: 1200,
+    date: "2023-03-03",
+    type: "income",
+  },
+  {
+    name: "Anotherthing",
+    image: "/images/avatars/user-3.png",
+    amount: 1200,
+    date: "2023-03-03",
+    type: "income",
+  },
+]

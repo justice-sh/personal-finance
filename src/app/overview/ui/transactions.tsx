@@ -1,0 +1,66 @@
+import { cn } from "@/shared/lib/utils"
+import { SectionHeader } from "./section-header"
+import { StringNumericLiteral } from "@/shared/types/number"
+import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
+import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
+import { TransactionDate } from "@/shared/components/transaction/tx-date"
+import { TransactionType } from "@/shared/types/transaction"
+
+export function Transactions({ className }: { className?: string }) {
+  const list: TransactionItemProps[] = [
+    {
+      name: "Salary",
+      image: "/images/avatars/user-1.png",
+      amount: 5000,
+      date: "2023-03-01",
+      type: "income",
+    },
+    {
+      name: "Groceries",
+      image: "/images/avatars/user-2.png",
+      amount: 150,
+      date: "2023-03-02",
+      type: "expense",
+    },
+    {
+      name: "Freelance",
+      image: "/images/avatars/user-3.png",
+      amount: 1200,
+      date: "2023-03-03",
+      type: "income",
+    },
+  ]
+
+  return (
+    <section className={cn("space-y-4", className, "pb-3")}>
+      <SectionHeader title="Transactions" cta={{ href: "/transactions", label: "View All" }} />
+
+      <div className="divide-y divide-gray-100">
+        {list.map((item) => (
+          <TransactionItem key={item.name} {...item} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+interface TransactionItemProps {
+  name: string
+  image: string
+  amount: StringNumericLiteral
+  date: string
+  type: TransactionType
+}
+
+const TransactionItem = ({ name, image, amount, date, type }: TransactionItemProps) => {
+  return (
+    <div className="flex items-center justify-between py-2.5">
+      <TransactionAvatar avatar={image} label={name} styles={{ label: "text-preset-4-bold" }} />
+
+      <div className="flex flex-col items-center gap-2">
+        <TransactionAmount className="text-preset-4-bold" amount={amount} type={type} />
+        <TransactionDate date={date} />
+      </div>
+    </div>
+  )
+}

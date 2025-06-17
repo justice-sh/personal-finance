@@ -3,8 +3,15 @@
 import { cn } from "@/shared/lib/utils"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import { Pots } from "./ui/pots"
+import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
+import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
+import { Transactions } from "./ui/transactions"
 
 export default function OverviewPage() {
+  const styles = {
+    section: "bg-white p-8 rounded-xl",
+  }
+
   return (
     <main className="@container flex flex-col gap-6">
       <header className="text-preset-1">Overview</header>
@@ -17,13 +24,12 @@ export default function OverviewPage() {
 
       <section className="@min-md-2:grid-cols-[608px_1fr] grid gap-6">
         <section className="@container flex flex-col gap-6">
-          <Pots className="w-full rounded-xl" />
-          <div className="flex-1">5</div>
+          <Pots className={cn("w-full", styles.section)} />
+          <Transactions className={cn("", styles.section)} />
         </section>
 
         <section className="flex flex-col gap-6 [&>*]:ring-1">
           <div className="h-[416px]">6</div>
-          <div className="">7</div>
         </section>
       </section>
     </main>

@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/utils"
-import { DetailsLink } from "./details-link"
+import { SectionHeader } from "./section-header"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import TipJarLightIcon from "@/shared/icons/tip-jar-light"
 
@@ -14,11 +14,8 @@ export function Pots({ className }: { className?: string }) {
   const totalSavedAmount = pots.reduce((acc, pot) => acc + pot.amount, 0)
 
   return (
-    <div className={cn("@container space-y-5 bg-white p-8", className)}>
-      <header className="flex items-center justify-between gap-4">
-        <h2 className="text-preset-2">Pots</h2>
-        <DetailsLink href="/pots" />
-      </header>
+    <section className={cn("@container space-y-5", className)}>
+      <SectionHeader title="Pots" cta={{ href: "/pots" }} />
 
       <div className="@min-sm-7:grid-cols-[247px_1fr] grid gap-5">
         <TotalSaved amount={totalSavedAmount} />
@@ -29,7 +26,7 @@ export function Pots({ className }: { className?: string }) {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   ],
   authors: [
     { name: "Justice N.", url: "https://portfolio.jutech.dev/" },
+    { name: "Najmudeen A.", url: "https://github.com/jumi525" },
     { name: "Frontend Mentors", url: "https://www.frontendmentor.io/" },
   ],
 }
@@ -54,7 +55,7 @@ export default async function RootLayout({
   const styles = {
     container: "flex max-md:flex-col",
     aside: "bg-sidebar",
-    scrollArea: "flex flex-1 p-4",
+    scrollArea: "flex flex-1 px-4 py-6 sm:px-10 sm:py-9",
     mobileNav: "md:hidden bg-sidebar flex-1 sticky bottom-0 z-50",
   }
 

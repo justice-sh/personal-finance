@@ -7,7 +7,7 @@ import { Pots } from "./ui/pots"
 
 export default function OverviewPage() {
   const styles = {
-    section: "bg-white p-7 rounded-xl",
+    section: "bg-white p-4 xs-5:p-7 rounded-xl",
   }
 
   return (

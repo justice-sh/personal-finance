@@ -6,10 +6,10 @@ import { PotSummary, PotSummaryProps } from "./pot-summary"
 
 export function Pots({ className }: { className?: string }) {
   const pots: PotSummaryProps[] = [
-    { title: "Savings", amount: 500, barColor: "green" },
-    { title: "Gift", amount: 200, barColor: "cyan" },
-    { title: "Concert Ticket", amount: 150, barColor: "yellow" },
-    { title: "New Laptop", amount: 110, barColor: "navy" },
+    { title: "Savings", amount: 500, color: "green" },
+    { title: "Gift", amount: 200, color: "cyan" },
+    { title: "Concert Ticket", amount: 150, color: "yellow" },
+    { title: "New Laptop", amount: 110, color: "navy" },
   ]
 
   const totalSavedAmount = pots.reduce((acc, pot) => acc + pot.amount, 0)

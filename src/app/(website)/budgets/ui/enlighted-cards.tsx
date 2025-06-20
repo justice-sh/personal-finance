@@ -29,6 +29,7 @@ const EnlightedCards = ({ color, name, priceOf, priceOut, next, range }: Props) 
           <div className={clsx("size-4 rounded-full bg-red-600", color)} />
           <p className="text-preset-2">{name}</p>
         </div>
+        {/* FIXME: this would be better as a standalone component (CardActions) */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <OptionsIcon className="size-4 text-gray-300" />

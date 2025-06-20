@@ -1,5 +1,4 @@
 import CaretDownFillIcon from "@/shared/icons/caret-down-fill"
-import { cn } from "@/shared/lib/utils"
 import React from "react"
 
 type Props = {
@@ -12,14 +11,14 @@ type Props = {
 
 const LatestEnlighted = ({ next }: Props) => {
   return (
-    <div className="col-span-1 flex h-min w-full flex-col gap-y-5 rounded-[0.75rem] bg-[#F2F3F7] p-5">
+    <div className="bg-beige-100 col-span-1 flex h-min w-full flex-col gap-y-5 rounded-[0.75rem] p-5">
       <div className="flex items-center justify-between">
         <h2 className="text-preset-3">Latest Spending</h2>
         <span className="flex items-center gap-x-3">
           <p className="text-preset-4 text-gray-500">See All</p> <CaretDownFillIcon className="size-3" />
         </span>
       </div>
-      <ul className="flex flex-col divide-y divide-black/50">
+      <ul className="flex flex-col divide-y divide-gray-500/15">
         {next.map((value) => (
           <li key={value.date} className="flex items-center justify-between py-[0.719rem]">
             <div className="flex items-center gap-x-4">
@@ -39,6 +38,7 @@ const LatestEnlighted = ({ next }: Props) => {
 
 export default LatestEnlighted
 
+// FIXME: always cleanup what you don't use
 {
   /* <ul className="flex flex-col gap-y-[0.719rem]">
         {next.map((value, index) => (

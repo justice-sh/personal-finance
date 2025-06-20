@@ -10,7 +10,7 @@ const Spending = ({ options }: SpendingProps) => {
   return (
     <div className="col-span-1 flex h-min w-full flex-col gap-y-6">
       <h2 className="text-preset-2">Spending Summary</h2>
-      <ul className="flex flex-col divide-y divide-black/50">
+      <ul className="flex flex-col divide-y divide-gray-100">
         {options.map((value) => (
           <li key={value.name} className="flex h-min flex-col items-center py-4">
             <div className="flex w-full items-center justify-between">

@@ -13,7 +13,7 @@ type Props = {
 }
 
 export default class SpendingCharts extends PureComponent<Props> {
-  static demoUrl = "https://codesandbox.io/s/pie-chart-with-padding-angle-7ux0o"
+  // static demoUrl = "https://codesandbox.io/s/pie-chart-with-padding-angle-7ux0o" // FIXME: remove if not needed
 
   render() {
     return (

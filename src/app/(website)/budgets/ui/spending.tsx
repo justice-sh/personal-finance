@@ -10,9 +10,9 @@ const Spending = ({ options }: SpendingProps) => {
   return (
     <div className="col-span-1 flex h-min w-full flex-col gap-y-6">
       <h2 className="text-preset-2">Spending Summary</h2>
-      <ul className="flex flex-col gap-y-4">
-        {options.map((value, index) => (
-          <li key={value.name} className="bg-gren-600 flex h-min flex-col items-center gap-y-4">
+      <ul className="flex flex-col divide-y divide-black/50">
+        {options.map((value) => (
+          <li key={value.name} className="flex h-min flex-col items-center py-4">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-x-4">
                 <div className={clsx("h-[1.32rem] w-1 rounded-[0.5rem] bg-blue-500", value.color)}></div>
@@ -23,7 +23,6 @@ const Spending = ({ options }: SpendingProps) => {
                 <p className="text-preset-5 text-nowrap text-gray-500">of ${value.priceOut}</p>
               </div>
             </div>
-            <div className={cn("h-0.5 w-full bg-black/50", { hidden: index === options.length - 1 })} />
           </li>
         ))}
       </ul>

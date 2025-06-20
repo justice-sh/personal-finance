@@ -10,7 +10,7 @@ type SliderProps = {
 const Slider = ({ sliderBorderClass, sliderPipeClass, value = 50 }: SliderProps) => {
   return (
     <div className={clsx("bg-beige-100 w-full rounded-[0.5rem]", sliderBorderClass)}>
-      <div className={clsx(`h-2 rounded-[0.5rem] bg-red-700`, sliderPipeClass)} style={{ width: `${value}%` }} />
+      <div className={clsx(`h-2 rounded-[0.5rem] bg-red-700`, sliderPipeClass)} style={{ width: `${value === 100 ? 100 : value}%` }} />
     </div>
   )
 }

@@ -8,6 +8,7 @@ import DeleteDialog from "@/shared/components/delete-dialog"
 import AddPots from "@/app/(website)/pots/ui/add-edit-pots"
 import Dialog from "@/app/(website)/pots/ui/withdraw-add-dialog"
 import Slider from "@/shared/components/slider"
+import OptionsIcon from "@/shared/icons/options-icon"
 
 type Props = { classname?: string; title: string; price: number; sliderValue: number; target: number; color: string }
 
@@ -26,7 +27,7 @@ const PotsCards = ({ classname, price, sliderValue, target, title, color }: Prop
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Image src="/asset/options.svg" alt="Menu" height={16} width={16} className="size-4" />
+            <OptionsIcon height={16} width={16} className="size-4 text-gray-300" />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="flex h-[5.69rem] w-[8.38rem] flex-col items-start gap-y-3 px-5 py-3">
             <DropdownMenuItem asChild>

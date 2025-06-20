@@ -1,12 +1,12 @@
 import React from "react"
 import LatestEnligted from "./latest-enlighted"
-import Image from "next/image"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu"
 import AddBudgets from "./add-edit-budget"
 import DeleteDialog from "@/shared/components/delete-dialog"
 import { Separator } from "@/shared/components/ui/separator"
 import clsx from "clsx"
 import Slider from "@/shared/components/slider"
+import OptionsIcon from "@/shared/icons/options-icon"
 
 type Props = {
   color: string
@@ -21,7 +21,7 @@ type Props = {
   }[]
 }
 
-const EnligtedCards = ({ color, name, priceOf, priceOut, next, range }: Props) => {
+const EnlightedCards = ({ color, name, priceOf, priceOut, next, range }: Props) => {
   return (
     <div className="flex flex-col gap-y-5 rounded-[0.75rem] bg-white px-5 py-6 sm:p-8">
       <div className="flex items-center justify-between">
@@ -31,7 +31,7 @@ const EnligtedCards = ({ color, name, priceOf, priceOut, next, range }: Props) =
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Image src={"/asset/options.svg"} alt="Menu" height={16} width={16} className="size-4" />
+            <OptionsIcon className="size-4 text-gray-300" />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="flex h-[5.69rem] w-[8.38rem] flex-col items-start gap-y-3 px-5 py-3">
             <DropdownMenuItem asChild>
@@ -62,12 +62,12 @@ const EnligtedCards = ({ color, name, priceOf, priceOut, next, range }: Props) =
           <div className="flex w-1/2 items-center gap-x-4">
             <div className={clsx("h-[2.69rem] w-1 rounded-[0.5rem] bg-green-800", color)} />
             <div className="flex flex-col justify-between">
-              <p className="text-preset-5 text-gray-500">Spend</p>
+              <p className="text-preset-5 text-gray-500">Spent</p>
               <p className="text-preset-4-bold">${priceOf}</p>
             </div>
           </div>
           <div className="flex w-1/2 items-center justify-start gap-x-4">
-            <div className="h-[2.69rem] w-1 rounded-[0.5rem] bg-gray-200" />
+            <div className="bg-beige-100 h-[2.69rem] w-1 rounded-[0.5rem]" />
             <div className="flex flex-col justify-between">
               <p className="text-preset-5 text-gray-500">Remaining</p>
               <p className="text-preset-4-bold">${priceOut}</p>
@@ -80,4 +80,4 @@ const EnligtedCards = ({ color, name, priceOf, priceOut, next, range }: Props) =
   )
 }
 
-export default EnligtedCards
+export default EnlightedCards

@@ -20,7 +20,7 @@ export default class SpendingCharts extends PureComponent<Props> {
       <div className="relative">
         <ResponsiveContainer height={240} width={240}>
           <PieChart>
-            <Pie data={this.props.data} innerRadius={80} outerRadius={120} fill="#8884d8" paddingAngle={0} dataKey="value">
+            <Pie data={this.props.data} innerRadius={80} outerRadius={120} paddingAngle={0} dataKey="value">
               {this.props.data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}

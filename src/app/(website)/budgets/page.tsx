@@ -17,7 +17,7 @@ const Data = [
   { name: "Group D", value: 650, color: "#82c9d7" },
 ]
 
-const next = [
+const Next = [
   { name: "James Thompson", value: "24", date: "11 Aug 2024" },
   { name: "Adams Smith", value: "28", date: "11 Dec 2022" },
   { name: "Plum Maths", value: "50", date: "1 Nov 2000" },
@@ -25,7 +25,7 @@ const next = [
 const BudgetsPage = () => {
   return (
     <section className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
-      <Summary Summaries={Summaries} Data={Data} />
+      <Summary summaries={Summaries} data={Data} />
       <div className="col-span-1 h-full w-full space-y-6">
         {Summaries.map((value) => (
           <EnligtedCards
@@ -35,7 +35,7 @@ const BudgetsPage = () => {
             priceOf={value.priceOf}
             priceOut={value.priceOut}
             range={value.range}
-            next={next}
+            next={Next}
           />
         ))}
       </div>

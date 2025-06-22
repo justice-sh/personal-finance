@@ -1,5 +1,5 @@
 import { FormFieldProps } from "@/shared/types/form"
-import { FieldWrapper } from "./field-wrapper"
+import { FieldWrapper } from "./ui/field-wrapper"
 import { cn } from "@/shared/lib/utils"
 import { Input } from "../ui/input"
 

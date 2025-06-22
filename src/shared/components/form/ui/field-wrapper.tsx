@@ -2,7 +2,7 @@ import { FormFieldStyles } from "@/shared/types/form"
 import { AnyFieldApi } from "@tanstack/react-form"
 import { FieldInfo } from "./field-info"
 import { cn } from "@/shared/lib/utils"
-import { Label } from "../ui/label"
+import { Label } from "../../ui/label"
 import React from "react"
 
 interface Props {

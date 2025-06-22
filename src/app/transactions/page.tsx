@@ -5,35 +5,50 @@ import { IconButton } from "@/shared/components/icon-button"
 import { PageLayer } from "@/shared/components/page-layer"
 import { IconInput } from "@/shared/components/icon-input"
 import SearchIcon from "@/shared/icons/search-icon"
+import { SortBy } from "./ui/sort-by"
 import React from "react"
+import { Category } from "./ui/category"
+
+type SortBy = "latest" | "oldest" | "A to Z" | "Z to A" | "highest" | "lowest" | ({} & string)
 
 type TransactionsQueryParams = {
-  query: string
   page: number
+  query: string
+  sortBy: SortBy
+  category: string
 }
 
 export default function TransactionsPage() {
-  const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({ query: "", page: 1 })
+  const filterSectionRef = React.useRef<HTMLDivElement>(null)
 
-  const isInvalid = queryParams.query.length > 10
-
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value
-    setQueryParams({ query })
-  }
+  const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({ query: "", page: 1, sortBy: "latest", category: "all" })
 
   return (
-    <PageLayer title="Transactions" className="@container flex flex-col gap-6 rounded-xl bg-white p-4">
-      <section className="flex items-center gap-5"></section>
+    <PageLayer title="Transactions" className="@container flex flex-col gap-6 rounded-xl bg-white p-6">
+      <section ref={filterSectionRef} className="@container flex items-center gap-3">
+        <IconInput
+          value={queryParams.query}
+          onChange={(e) => setQueryParams({ query: e.target.value })}
+          type="text"
+          icon={<IconButton icon={SearchIcon} />}
+          placeholder="Search transaction"
+          className="mr-auto max-w-[320px]"
+        />
 
-      <IconInput
-        isInvalid={isInvalid}
-        value={queryParams.query}
-        onChange={handleQueryChange}
-        type="text"
-        icon={<IconButton icon={SearchIcon} />}
-        placeholder="Search transactions..."
-      />
+        <SortBy
+          parentRef={filterSectionRef}
+          sortBy={queryParams.sortBy}
+          setSortBy={(value) => setQueryParams({ sortBy: value }, 0)}
+          className="ml-8"
+        />
+        <Category
+          parentRef={filterSectionRef}
+          category={queryParams.category}
+          setCategory={(value) => setQueryParams({ category: value }, 0)}
+        />
+      </section>
+
+      <section className="flex"></section>
     </PageLayer>
   )
 }

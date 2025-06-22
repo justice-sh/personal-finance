@@ -18,14 +18,13 @@ import { usePathname, useRouter } from "next/navigation"
  * and type hints for how to parse query strings.
  * @param {number} [debounceTime=500] The time in milliseconds to wait before updating the URL.
  *
- * @returns {[TParams, (updates: Partial<TParams>) => void]} A tuple containing:
+ * @returns {[TParams, (updates: Partial<TParams>, debounceTime?: number) => void]} A tuple containing:
  * 1. The current local state of the query parameters (`params`).
  * 2. A function `setQueryParamUpdates` to update the local state and trigger a debounced URL push.
  */
 export function useQueryParams<TParams extends Record<string, any>>(
   defaultValues: TParams,
-  debounceTime: number = 500,
-): [TParams, (updates: Partial<TParams>) => void] {
+): [TParams, (updates: Partial<TParams>, debounceTime?: number) => void] {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -43,8 +42,10 @@ export function useQueryParams<TParams extends Record<string, any>>(
     }
   }, [])
 
-  const setQueryParamUpdates = (updates: Partial<TParams>) => {
+  const setQueryParamUpdates = (updates: Partial<TParams>, debounceTime?: number) => {
     if (debounceTimerRef.current !== null) clearTimeout(debounceTimerRef.current)
+
+    if (debounceTime === undefined) debounceTime = 400
 
     const newLocalParams = { ...localParams, ...updates } as TParams
 

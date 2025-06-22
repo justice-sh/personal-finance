@@ -1,15 +1,26 @@
 "use client"
 
-import { PageLayer } from "@/shared/components/page-layer"
-import SearchIcon from "@/shared/icons/search-icon"
-import { IconInput } from "@/shared/components/icon-input"
+import { useQueryParams } from "@/shared/hooks/use-query-params"
 import { IconButton } from "@/shared/components/icon-button"
+import { PageLayer } from "@/shared/components/page-layer"
+import { IconInput } from "@/shared/components/icon-input"
+import SearchIcon from "@/shared/icons/search-icon"
 import React from "react"
 
-export default function TransactionsPage() {
-  const [state, setState] = React.useState("")
+type TransactionsQueryParams = {
+  query: string
+  page: number
+}
 
-  const isInvalid = state.length > 10
+export default function TransactionsPage() {
+  const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({ query: "", page: 1 })
+
+  const isInvalid = queryParams.query.length > 10
+
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value
+    setQueryParams({ query })
+  }
 
   return (
     <PageLayer title="Transactions" className="@container flex flex-col gap-6 rounded-xl bg-white p-4">
@@ -17,8 +28,8 @@ export default function TransactionsPage() {
 
       <IconInput
         isInvalid={isInvalid}
-        value={state}
-        onChange={(e) => setState(e.target.value)}
+        value={queryParams.query}
+        onChange={handleQueryChange}
         type="text"
         icon={<IconButton icon={SearchIcon} />}
         placeholder="Search transactions..."

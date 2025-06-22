@@ -1,7 +1,31 @@
 @utility input-container {
-  @apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive flex h-14 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
+  /*
+    * Order for Specificity (within the @apply chain for border/ring related styles):
+    * 1. Base/Default styles (lowest precedence for overrides)
+    * 2. Hover states
+    * 3. Focus/Focus-Within states
+    * 4. ARIA-Invalid state (highest precedence)
+    */
+
+  /* 4. Base/Default border (lowest priority for overrides) */
+  @apply border-input;
+
+  /* 3. Hover state overrides base border when hovered */
+  @apply hover:border-gray-500 hover:ring-[3px] hover:ring-gray-500/10;
+
+  /* 2. Focus states override hover and base when focused */
+  /* Note: focus-visible and focus-within have natural precedence over hover. */
+  @apply focus-visible:border-ring focus-visible:ring-ring/25 focus-visible:ring-[3px];
+  @apply focus-within:border-ring focus-within:ring-ring/25 focus-within:ring-[3px]; /* If you apply focus-within directly to the input */
+
+  /* 1. ARIA-Invalid state (highest priority) */
+  @apply aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40;
+
+  /* General input styles that are not part of the precedence layering for border/ring */
+  /* These can be placed anywhere, but often grouped for readability */
+  @apply flex h-11 w-full min-w-0 rounded-md border bg-transparent px-4 py-1.5 shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 @utility input-text {
-  @apply file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 text-base file:text-sm file:font-medium md:text-sm;
+  @apply file:text-foreground text-preset-4 placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium;
 }

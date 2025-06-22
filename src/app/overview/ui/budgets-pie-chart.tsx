@@ -32,7 +32,7 @@ export function BudgetsPieChart({ list, className }: { list: PotSummaryProps[]; 
   }, [chartData])
 
   return (
-    <div className={cn("flex h-[240px] w-full max-w-[247px] items-center justify-center overflow-hidden", className)}>
+    <div className={cn("flex h-[240px] w-full max-w-[247px] items-center justify-center", className)}>
       <ChartContainer config={chartConfig} className="aspect-square max-h-[340px] w-full max-w-[247px]">
         <PieChart className="sm-5:scale-[1.2]">
           <ChartTooltip cursor={false} formatter={RenderTooltipValue} content={<ChartTooltipContent hideLabel />} />

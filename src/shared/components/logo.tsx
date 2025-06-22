@@ -14,7 +14,7 @@ const Logo = ({ className }: Props) => {
   const { state } = useSidebar()
 
   const styles = {
-    reveal: "opacity-0 transition-all data-[reveal=true]:opacity-100 absolute duration-500 ",
+    reveal: "opacity-0 transition-all data-[reveal=true]:opacity-100 absolute duration-500 h-auto",
   }
 
   return (

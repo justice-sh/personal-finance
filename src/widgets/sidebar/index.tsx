@@ -19,7 +19,7 @@ import { AppSidebarTrigger } from "./trigger"
 
 export default function AppSidebar({ className }: { className?: string }) {
   return (
-    <Sidebar className={cn(className, "bg-sidebar py-4")} collapsible="icon">
+    <Sidebar className={cn(className, "bg-sidebar rounded-se-lg rounded-ee-lg py-4")} collapsible="icon">
       <SidebarHeader>
         <Logo />
       </SidebarHeader>

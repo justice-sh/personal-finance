@@ -30,7 +30,10 @@ interface TransactionItemProps {
 const TransactionItem = ({ name, image, amount, date, type }: TransactionItemProps) => {
   return (
     <div className="flex items-center justify-between py-2.5">
-      <TransactionAvatar avatar={image} label={name} styles={{ label: "text-preset-4-bold" }} />
+      <div className="flex items-center gap-4">
+        <TransactionAvatar avatar={image} />
+        <p className="text-preset-4-bold text-gray-900">{name}</p>
+      </div>
 
       <div className="flex flex-col items-center gap-2">
         <TransactionAmount className="text-preset-4-bold" amount={amount} type={type} />

@@ -13,44 +13,18 @@ export function TransactionsGrid() {
 
   const [queryParams, setQueryParams] = useQueryParams<{ page: number; pageSize: number }>({ page: 1, pageSize: 6 })
 
-  useDynamicPageSize(ref, ".table-row", (newPageSize) => {
+  useDynamicPageSize(ref, ".table-item", (newPageSize) => {
     setQueryParams({ page: 1, pageSize: newPageSize })
   })
 
   const paginatedTransactions = transactions.slice((queryParams.page - 1) * queryParams.pageSize, queryParams.page * queryParams.pageSize)
 
   return (
-    <section ref={ref} className="flex flex-1 flex-col">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="mr-auto">Recipient / Sender</TableHead>
-            <TableHead className="w-[150px]">Category</TableHead>
-            <TableHead className="w-[150px]">Transaction Date</TableHead>
-            <TableHead className="ml-auto text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {paginatedTransactions.map((transaction, idx) => (
-            <TableRow key={transaction.id + idx} className="table-row">
-              <TableCell>
-                <TransactionAvatar
-                  avatar={transaction.avatar}
-                  label={transaction.name}
-                  styles={{ label: "text-gray-900 text-preset-4-bold" }}
-                />
-              </TableCell>
-              <TableCell className="capitalize">{transaction.category}</TableCell>
-              <TableCell>
-                <TransactionDate date={transaction.date} />
-              </TableCell>
-              <TableCell className="text-right">
-                <TransactionAmount amount={transaction.totalAmount} type={transaction.type} currency={transaction.currency} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <section ref={ref} className="@container flex flex-1 flex-col">
+      <DesktopView list={paginatedTransactions} className="@max-[600px]:hidden" />
+
+      <MobileView list={paginatedTransactions} className="@min-[600px]:hidden" />
+
       <Pagination
         className="mt-auto"
         totalItems={transactions.length}
@@ -59,6 +33,68 @@ export function TransactionsGrid() {
         onPageChange={(page) => setQueryParams({ page })}
       />
     </section>
+  )
+}
+
+function DesktopView({ list, className }: { list: typeof transactions; className?: string }) {
+  return (
+    <Table className={className}>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="mr-auto">Recipient / Sender</TableHead>
+          <TableHead className="w-[150px]">Category</TableHead>
+          <TableHead className="w-[150px]">Transaction Date</TableHead>
+          <TableHead className="ml-auto text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {list.map((transaction, idx) => (
+          <TableRow key={transaction.id + idx} className="table-item">
+            <TableCell className="flex items-center gap-4">
+              <TransactionAvatar avatar={transaction.avatar} />
+              <p className="text-preset-4-bold text-gray-900">{transaction.name}</p>
+            </TableCell>
+            <TableCell className="capitalize">{transaction.category}</TableCell>
+            <TableCell>
+              <TransactionDate date={transaction.date} />
+            </TableCell>
+            <TableCell className="text-right">
+              <TransactionAmount amount={transaction.totalAmount} type={transaction.type} currency={transaction.currency} />
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  )
+}
+
+function MobileView({ list, className }: { list: typeof transactions; className?: string }) {
+  return (
+    <Table className={className}>
+      <TableBody>
+        {list.map((transaction, idx) => (
+          <TableRow key={transaction.id + idx} className="table-item flex w-full flex-row justify-between">
+            <TableCell className="flex w-full items-center gap-4">
+              <TransactionAvatar avatar={transaction.avatar} className="max-xs-5:hidden size-8" />
+              <div className="flex flex-col gap-1">
+                <p className="text-preset-4-bold text-gray-900">{transaction.name}</p>
+                <p className="text-preset-5 text-gray-500 capitalize">{transaction.category}</p>
+              </div>
+            </TableCell>
+
+            <TableCell className="grid gap-1">
+              <TransactionAmount
+                amount={transaction.totalAmount}
+                type={transaction.type}
+                currency={transaction.currency}
+                className="text-preset-4-bold"
+              />
+              <TransactionDate date={transaction.date} className="text-preset-5 text-gray-500" />
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   )
 }
 

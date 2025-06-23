@@ -35,17 +35,8 @@ export default function TransactionsPage() {
           className="mr-auto max-w-[320px]"
         />
 
-        <SortBy
-          parentRef={filterSectionRef}
-          sortBy={queryParams.sortBy}
-          setSortBy={(value) => setQueryParams({ sortBy: value }, 0)}
-          className="ml-8"
-        />
-        <Category
-          parentRef={filterSectionRef}
-          category={queryParams.category}
-          setCategory={(value) => setQueryParams({ category: value }, 0)}
-        />
+        <SortBy value={queryParams.sortBy} setValue={(value) => setQueryParams({ sortBy: value }, 0)} className="ml-8" />
+        <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 
       <section className="flex"></section>

@@ -8,6 +8,7 @@ import SearchIcon from "@/shared/icons/search-icon"
 import { SortBy } from "./ui/sort-by"
 import React from "react"
 import { Category } from "./ui/category"
+import { TransactionsGrid } from "./ui/grid"
 
 type SortBy = "latest" | "oldest" | "A to Z" | "Z to A" | "highest" | "lowest" | ({} & string)
 
@@ -39,7 +40,7 @@ export default function TransactionsPage() {
         <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 
-      <section className="flex"></section>
+      <TransactionsGrid />
     </PageLayer>
   )
 }

@@ -6,7 +6,7 @@ import AddPots from "@/app/(website)/pots/ui/add-edit-pots"
 
 type Props = { children: React.ReactNode }
 
-const template = ({ children }: Props) => {
+const Template = ({ children }: Props) => {
   const param = usePathname()
   const slicedPath = param.slice(1)
   const pathname = slicedPath.charAt(0).toUpperCase() + slicedPath.slice(1)
@@ -35,4 +35,4 @@ const template = ({ children }: Props) => {
   )
 }
 
-export default template
+export default Template

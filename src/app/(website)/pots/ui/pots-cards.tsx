@@ -1,7 +1,6 @@
 import { Button } from "@/shared/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu"
 import clsx from "clsx"
-import Image from "next/image"
 import React from "react"
 import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/delete-dialog"

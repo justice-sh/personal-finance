@@ -35,7 +35,9 @@ const Dialog = ({ state, purpose }: DialogProps) => {
       <AlertDialogContent className="mx-auto flex h-auto max-h-[32rem] w-[calc(100vw-2rem)] flex-col justify-between gap-y-5 px-5 py-6 sm:w-full sm:max-w-[35rem] sm:p-8">
         <AlertDialogHeader className="h-min w-full gap-y-5">
           <AlertDialogTitle className="flex items-center justify-between">
-            <p className="text-preset-2 sm:text-preset-1 text-start text-nowrap sm:text-center sm:text-wrap">{purpose} "Savings"?</p>
+            <p className="text-preset-2 sm:text-preset-1 text-start text-nowrap sm:text-center sm:text-wrap">
+              {purpose} {"Savings"}?
+            </p>
             <AlertDialogCancel className="h-8 w-8 rounded-full border-black/50">
               <X className="size-[1.57rem]" />
             </AlertDialogCancel>

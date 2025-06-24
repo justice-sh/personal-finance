@@ -8,6 +8,7 @@ import SearchIcon from "@/shared/icons/search-icon"
 import { SortBy } from "./ui/sort-by"
 import React from "react"
 import { Category } from "./ui/category"
+import { TransactionsGrid } from "./ui/grid"
 
 type SortBy = "latest" | "oldest" | "A to Z" | "Z to A" | "highest" | "lowest" | ({} & string)
 
@@ -35,20 +36,11 @@ export default function TransactionsPage() {
           className="mr-auto max-w-[320px]"
         />
 
-        <SortBy
-          parentRef={filterSectionRef}
-          sortBy={queryParams.sortBy}
-          setSortBy={(value) => setQueryParams({ sortBy: value }, 0)}
-          className="ml-8"
-        />
-        <Category
-          parentRef={filterSectionRef}
-          category={queryParams.category}
-          setCategory={(value) => setQueryParams({ category: value }, 0)}
-        />
+        <SortBy value={queryParams.sortBy} setValue={(value) => setQueryParams({ sortBy: value }, 0)} className="ml-8" />
+        <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 
-      <section className="flex"></section>
+      <TransactionsGrid />
     </PageLayer>
   )
 }

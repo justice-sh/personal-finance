@@ -39,8 +39,7 @@ const budgetValue = [
     color: "bg-secondary-purple",
   },
 ]
-type Props = {}
-const PotsPage = ({}: Props) => {
+const PotsPage = () => {
   return (
     <div className="flex h-full w-full flex-col items-center">
       <ul className="grid w-full auto-rows-auto gap-6 md:grid-cols-1 lg:grid-cols-2">

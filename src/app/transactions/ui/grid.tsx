@@ -148,6 +148,8 @@ function useDynamicPageSize(ref: React.RefObject<HTMLDivElement | null>, onPageS
       controller.abort()
       window.clearTimeout(timeoutID)
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref])
 }
 

@@ -33,7 +33,7 @@ export function Pagination({
         <ArrowRightFilledIcon className="rotate-180" /> Prev
       </Button>
 
-      <div className="relative h-10 w-full max-w-[240px] overflow-hidden">
+      <div className="max-sm-8:hidden relative h-10 w-full max-w-[240px] overflow-hidden">
         <div id={IDs.content} className="absolute flex h-full w-full gap-2">
           {Array.from({ length: totalPages }, (_, index) => (
             <Button key={index} onClick={() => handlePageChange(index + 1)} variant={currentPage === index + 1 ? "default" : "outline"}>

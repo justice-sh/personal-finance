@@ -7,15 +7,16 @@ import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { useQueryParams } from "@/shared/hooks/use-query-params"
 import { Pagination } from "./pagination"
 import React, { useCallback } from "react"
+import { cn } from "@/shared/lib/utils"
+
+const itemClassName = "table-item"
 
 export function TransactionsGrid() {
   const ref = React.useRef<HTMLDivElement>(null)
 
   const [queryParams, setQueryParams] = useQueryParams<{ page: number; pageSize: number }>({ page: 1, pageSize: 6 })
 
-  useDynamicPageSize(ref, ".table-item", (newPageSize) => {
-    setQueryParams({ page: 1, pageSize: newPageSize })
-  })
+  useDynamicPageSize(ref, `.${itemClassName}`, (pageSize) => setQueryParams({ pageSize, page: 1 }))
 
   const paginatedTransactions = transactions.slice((queryParams.page - 1) * queryParams.pageSize, queryParams.page * queryParams.pageSize)
 
@@ -49,15 +50,18 @@ function DesktopView({ list, className }: { list: typeof transactions; className
       </TableHeader>
       <TableBody>
         {list.map((transaction, idx) => (
-          <TableRow key={transaction.id + idx} className="table-item">
+          <TableRow key={transaction.id + idx} className={itemClassName}>
             <TableCell className="flex items-center gap-4">
               <TransactionAvatar avatar={transaction.avatar} />
               <p className="text-preset-4-bold text-gray-900">{transaction.name}</p>
             </TableCell>
+
             <TableCell className="capitalize">{transaction.category}</TableCell>
+
             <TableCell>
               <TransactionDate date={transaction.date} />
             </TableCell>
+
             <TableCell className="text-right">
               <TransactionAmount amount={transaction.totalAmount} type={transaction.type} currency={transaction.currency} />
             </TableCell>
@@ -73,7 +77,7 @@ function MobileView({ list, className }: { list: typeof transactions; className?
     <Table className={className}>
       <TableBody>
         {list.map((transaction, idx) => (
-          <TableRow key={transaction.id + idx} className="table-item flex w-full flex-row justify-between">
+          <TableRow key={transaction.id + idx} className={cn("flex w-full flex-row justify-between", itemClassName)}>
             <TableCell className="flex w-full items-center gap-4">
               <TransactionAvatar avatar={transaction.avatar} className="max-xs-5:hidden size-8" />
               <div className="flex flex-col gap-1">
@@ -103,34 +107,34 @@ function useDynamicPageSize(
   itemSelector: string,
   onPageSizeChange?: (pageSize: number) => void,
 ) {
-  const handleResize = useCallback(() => {
-    const parent = ref.current
-    if (!parent) return
-
-    const item = parent.querySelector(itemSelector)
-    if (!item) return
-
-    const parentHeight = window.innerHeight - 350
-    const itemHeight = item.clientHeight
-
-    const newPageSize = Math.max(3, Math.floor(parentHeight / itemHeight))
-
-    onPageSizeChange?.(newPageSize)
-  }, [ref, itemSelector])
-
   React.useEffect(() => {
+    const handleResize = () => {
+      const parent = ref.current
+      if (!parent) return
+
+      const item = parent.querySelector(itemSelector)
+      if (!item) return
+
+      const parentHeight = window.innerHeight - 350
+      const itemHeight = item.clientHeight
+
+      const newPageSize = Math.max(3, Math.floor(parentHeight / itemHeight))
+
+      onPageSizeChange?.(newPageSize)
+    }
+
     window.addEventListener("resize", handleResize)
     handleResize()
 
     return () => window.removeEventListener("resize", handleResize)
-  }, [handleResize])
+  }, [ref, itemSelector])
 }
 
 const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 1",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -140,7 +144,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 2",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -150,7 +154,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 3",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -160,7 +164,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 4",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -170,7 +174,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 5",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -180,7 +184,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 6",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -190,7 +194,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 7",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -200,7 +204,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 8",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -210,7 +214,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 9",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -220,7 +224,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 10",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -230,7 +234,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 11",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -240,7 +244,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 12",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -250,7 +254,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 13",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -260,7 +264,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 14",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -270,7 +274,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 15",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -280,7 +284,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 16",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -290,7 +294,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 17",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -300,7 +304,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 18",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -310,7 +314,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 19",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -320,7 +324,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 20",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -330,7 +334,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 21",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -340,7 +344,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 22",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -350,7 +354,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 23",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -360,7 +364,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 24",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -370,7 +374,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 25",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -380,7 +384,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 26",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -390,7 +394,7 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 27",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
@@ -400,11 +404,356 @@ const transactions = [
   {
     id: "1",
     avatar: "/images/avatar.png",
-    name: "James Peterson 28",
+    name: "James Peterson",
     totalAmount: 250,
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
     currency: "USD" as const,
   },
-]
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+  {
+    id: "1",
+    avatar: "/images/avatar.png",
+    name: "James Peterson",
+    totalAmount: 250,
+    category: "Entertainment",
+    date: "2023-10-01",
+    type: "expense" as const,
+    currency: "USD" as const,
+  },
+].map((tx, index) => ({
+  ...tx,
+  id: String(index + 1),
+  name: `Transaction ${index + 1}`,
+  type: index % 2 === 0 ? ("income" as const) : ("expense" as const),
+}))

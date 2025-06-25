@@ -13,8 +13,8 @@ import {
 import { Input } from "@/shared/components/ui/input"
 import { X } from "lucide-react"
 import React from "react"
-import { ComboboxDrawer } from "@/app/(website)/budgets/ui/combo-drawer"
 import { cn } from "@/shared/lib/utils"
+import { ComboboxDrawer } from "./combo-drawer"
 
 type AddBudgetsProps = { title: string; description: string; state: string; mode?: "add" | "edit" }
 const frameworks = [

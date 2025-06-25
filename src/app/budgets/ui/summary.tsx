@@ -1,6 +1,6 @@
 import React from "react"
-import Spending from "@/app/(website)/budgets/ui/spending"
 import SpendingCharts from "@/shared/components/spending-charts"
+import Spending from "./spending"
 
 type Props = {
   summaries: {

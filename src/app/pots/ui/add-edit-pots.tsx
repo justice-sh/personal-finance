@@ -50,7 +50,7 @@ const AddPots = ({ title, description, state, mode = "add" }: AddEditDialogProps
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        className={cn("flex h-full items-center justify-center rounded-md bg-black p-4 text-white", {
+        className={cn("text-preset-4-bold flex h-[53px] items-center justify-center rounded-md bg-black p-4 text-white", {
           "text-preset-4 h-5 bg-white p-0 font-normal text-black": mode === "edit",
         })}
       >
@@ -59,7 +59,7 @@ const AddPots = ({ title, description, state, mode = "add" }: AddEditDialogProps
       <AlertDialogContent className="mx-auto flex h-auto max-h-[35rem] w-[calc(100vw-2rem)] flex-col justify-between gap-y-5 px-5 py-6 sm:w-full sm:max-w-[35rem] sm:p-8">
         <AlertDialogHeader className="h-min w-full gap-y-5">
           <AlertDialogTitle className="flex items-center justify-between">
-            <p className="text-preset-2 sm:text-preset-1">{title}</p>
+            <p className="text-preset-2 sm:text-preset-1">{title.replace("+", "")}</p>
             <AlertDialogCancel className="h-8 w-8 rounded-full border-black/50">
               <X className="size-[1.57rem]" />
             </AlertDialogCancel>

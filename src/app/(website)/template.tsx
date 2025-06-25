@@ -2,7 +2,7 @@
 import React from "react"
 import { usePathname } from "next/navigation"
 import AddBudgets from "@/app/(website)/budgets/ui/add-edit-budget"
-import AddPots from "@/app/(website)/pots/ui/add-edit-pots"
+import AddPots from "@/app/pots/ui/add-edit-pots"
 
 type Props = { children: React.ReactNode }
 

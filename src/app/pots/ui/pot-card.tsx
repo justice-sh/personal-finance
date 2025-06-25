@@ -4,14 +4,14 @@ import clsx from "clsx"
 import React from "react"
 import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/delete-dialog"
-import AddPots from "@/app/(website)/pots/ui/add-edit-pots"
-import Dialog from "@/app/(website)/pots/ui/withdraw-add-dialog"
+import AddPots from "@/app/pots/ui/add-edit-pots"
+import Dialog from "@/app/pots/ui/withdraw-add-dialog"
 import Slider from "@/shared/components/slider"
 import OptionsIcon from "@/shared/icons/options-icon"
 
 type Props = { classname?: string; title: string; price: number; sliderValue: number; target: number; color: string }
 
-const PotsCards = ({ classname, price, sliderValue, target, title, color }: Props) => {
+const PotCard = ({ classname, price, sliderValue, target, title, color }: Props) => {
   return (
     <div
       className={clsx(
@@ -72,4 +72,4 @@ const PotsCards = ({ classname, price, sliderValue, target, title, color }: Prop
   )
 }
 
-export default PotsCards
+export default PotCard

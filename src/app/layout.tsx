@@ -40,7 +40,6 @@ export const metadata: Metadata = {
   authors: [
     { name: "Justice N.", url: "https://portfolio.jutech.dev/" },
     { name: "Najmudeen A.", url: "https://github.com/jumi525" },
-    { name: "Frontend Mentors", url: "https://www.frontendmentor.io/" },
   ],
 }
 

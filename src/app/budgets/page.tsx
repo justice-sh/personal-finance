@@ -1,8 +1,10 @@
 "use client"
+
 import React from "react"
 import { PageLayer } from "@/shared/components/page-layer"
 import Summary from "./ui/summary"
 import EnlightedCards from "./ui/enlighted-cards"
+import AddBudgets from "./ui/add-edit-budget"
 
 const Summaries = [
   { color: "bg-secondary-green", name: "Entertainment", priceOf: "15.00", priceOut: "50.00", range: 90 },
@@ -26,7 +28,7 @@ const Next = [
 
 const BudgetsPage = () => {
   return (
-    <PageLayer title="Budgets" className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
+    <PageLayer title="Budgets" cta={<AddBudgetsCTA />} className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
       <Summary summaries={Summaries} data={Data} />
 
       <div className="col-span-1 h-full w-full space-y-6">
@@ -45,5 +47,14 @@ const BudgetsPage = () => {
     </PageLayer>
   )
 }
+
+const AddBudgetsCTA = () => (
+  <AddBudgets
+    mode="add"
+    title="+ Add Budget"
+    description="Create a new budget to help you manage your spending effectively."
+    state="Add Budget"
+  />
+)
 
 export default BudgetsPage

@@ -1,4 +1,5 @@
 "use client"
+
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -14,7 +15,7 @@ import { Input } from "@/shared/components/ui/input"
 import { X } from "lucide-react"
 import React from "react"
 import { cn } from "@/shared/lib/utils"
-import { ComboboxDrawer } from "./combo-drawer"
+import { ComboboxDrawer } from "@/shared/components/combo-drawer"
 
 type AddBudgetsProps = { title: string; description: string; state: string; mode?: "add" | "edit" }
 const frameworks = [
@@ -50,7 +51,7 @@ const AddBudgets = ({ title, description, state, mode = "add" }: AddBudgetsProps
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        className={cn("flex h-full items-center justify-center rounded-md bg-black p-4 text-white", {
+        className={cn("text-preset-4-bold flex h-[53px] items-center justify-center rounded-md bg-black p-4 text-white", {
           "text-preset-4 h-5 bg-white p-0 font-normal text-black": mode === "edit",
         })}
       >
@@ -59,7 +60,7 @@ const AddBudgets = ({ title, description, state, mode = "add" }: AddBudgetsProps
       <AlertDialogContent className="mx-auto flex h-auto max-h-[35rem] w-[calc(100vw-2rem)] flex-col justify-between gap-y-5 p-8 sm:w-full sm:max-w-[35rem]">
         <AlertDialogHeader className="h-min w-full gap-y-5">
           <AlertDialogTitle className="sm:text-preset-1 flex items-center justify-between">
-            <p>{title}</p>
+            <p>{title.replace("+", "")}</p>
             <AlertDialogCancel className="h-8 w-8 rounded-full border-black/50">
               <X className="size-[1.57rem]" />
             </AlertDialogCancel>

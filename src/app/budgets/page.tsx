@@ -1,7 +1,10 @@
 "use client"
+
 import React from "react"
-import Summary from "@/app/(website)/budgets/ui/summary"
-import EnligtedCards from "@/app/(website)/budgets/ui/enlighted-cards"
+import { PageLayer } from "@/shared/components/page-layer"
+import Summary from "./ui/summary"
+import EnlightedCards from "./ui/enlighted-cards"
+import AddBudgets from "./ui/add-edit-budget"
 
 const Summaries = [
   { color: "bg-secondary-green", name: "Entertainment", priceOf: "15.00", priceOut: "50.00", range: 90 },
@@ -22,13 +25,15 @@ const Next = [
   { name: "Adams Smith", value: "28", date: "11 Dec 2022" },
   { name: "Plum Maths", value: "50", date: "1 Nov 2000" },
 ]
+
 const BudgetsPage = () => {
   return (
-    <section className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
+    <PageLayer title="Budgets" cta={<AddBudgetsCTA />} className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
       <Summary summaries={Summaries} data={Data} />
+
       <div className="col-span-1 h-full w-full space-y-6">
         {Summaries.map((value) => (
-          <EnligtedCards
+          <EnlightedCards
             key={value.name}
             color={value.color}
             name={value.name}
@@ -39,8 +44,17 @@ const BudgetsPage = () => {
           />
         ))}
       </div>
-    </section>
+    </PageLayer>
   )
 }
+
+const AddBudgetsCTA = () => (
+  <AddBudgets
+    mode="add"
+    title="+ Add Budget"
+    description="Create a new budget to help you manage your spending effectively."
+    state="Add Budget"
+  />
+)
 
 export default BudgetsPage

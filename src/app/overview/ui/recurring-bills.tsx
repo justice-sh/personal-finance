@@ -1,6 +1,7 @@
 import { cn } from "@/shared/lib/utils"
 import { SectionHeader } from "./section-header"
 import { formatAmount } from "@/shared/utils/formatAmount"
+import { routes } from "@/shared/constants/routes"
 
 export function RecurringBills({ className }: { className?: string }) {
   const list: BillCardProps[] = [
@@ -11,7 +12,7 @@ export function RecurringBills({ className }: { className?: string }) {
 
   return (
     <section className={cn("", className)}>
-      <SectionHeader title="Recurring Bills" cta={{ href: "/bills" }} />
+      <SectionHeader title="Recurring Bills" cta={{ href: routes.recurringBills }} />
 
       <div className="space-y-3">
         {list.map((bill, index) => (

@@ -1,6 +1,9 @@
 "use client"
+
 import React from "react"
-import PotsCards from "@/app/(website)/pots/ui/pots-cards"
+import PotCard from "./ui/pot-card"
+import AddPots from "./ui/add-edit-pots"
+import { PageLayer } from "@/shared/components/page-layer"
 
 const budgetValue = [
   {
@@ -39,25 +42,28 @@ const budgetValue = [
     color: "bg-secondary-purple",
   },
 ]
+
 const PotsPage = () => {
   return (
-    <div className="flex h-full w-full flex-col items-center">
-      <ul className="grid w-full auto-rows-auto gap-6 md:grid-cols-1 lg:grid-cols-2">
+    <PageLayer title="Pots" cta={<AddPotCTA />} className="@container">
+      <section className="@min-md-2:grid-cols-2 grid grid-cols-1 gap-6">
         {budgetValue.map((cards, key) => (
-          <li key={key}>
-            <PotsCards
-              key={key}
-              color={cards.color}
-              price={cards.price}
-              sliderValue={cards.sliderValue}
-              target={cards.target}
-              title={cards.title}
-            />
-          </li>
+          <PotCard
+            key={key}
+            color={cards.color}
+            price={cards.price}
+            sliderValue={cards.sliderValue}
+            target={cards.target}
+            title={cards.title}
+          />
         ))}
-      </ul>
-    </div>
+      </section>
+    </PageLayer>
   )
 }
+
+const AddPotCTA = () => (
+  <AddPots title="+ Add New Pot" description="If your saving targets change, feel free to update your pot." state="Add Pot" />
+)
 
 export default PotsPage

@@ -3,6 +3,7 @@ import { SectionHeader } from "./section-header"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import TipJarLightIcon from "@/shared/icons/tip-jar-light"
 import { PotSummary, PotSummaryProps } from "./pot-summary"
+import { routes } from "@/shared/constants/routes"
 
 export function Pots({ className }: { className?: string }) {
   const pots: PotSummaryProps[] = [
@@ -16,7 +17,7 @@ export function Pots({ className }: { className?: string }) {
 
   return (
     <section className={cn("@container", className)}>
-      <SectionHeader title="Pots" cta={{ href: "/pots" }} />
+      <SectionHeader title="Pots" cta={{ href: routes.pots }} />
 
       <div className="@min-sm-6:grid-cols-[247px_1fr] @min-sm-6:gap-10 grid gap-5">
         <TotalSaved amount={totalSavedAmount} />

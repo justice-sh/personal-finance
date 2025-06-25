@@ -4,11 +4,12 @@ import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionType } from "@/shared/types/transaction"
+import { routes } from "@/shared/constants/routes"
 
 export function Transactions({ className }: { className?: string }) {
   return (
     <section className={cn(className, "pb-3")}>
-      <SectionHeader title="Transactions" cta={{ href: "/transactions", label: "View All" }} />
+      <SectionHeader title="Transactions" cta={{ href: routes.transactions, label: "View All" }} />
 
       <div className="divide-y divide-gray-100 [&>*]:first-of-type:pt-0">
         {list.map((item) => (

@@ -45,9 +45,6 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# wakatime
-.wakatime-project
-
 # local
 local
 

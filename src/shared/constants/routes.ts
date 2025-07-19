@@ -4,4 +4,6 @@ export const routes = {
   budgets: "/budgets",
   pots: "/pots",
   recurringBills: "/recurring-bills",
+  login: "/login",
+  register: "/register",
 } as const

@@ -12,9 +12,7 @@ export default function AuthLayout({ children }: LayoutProps) {
         <Content />
       </section>
 
-      <section className="flex items-center justify-center">
-        <div className="h-[400px] w-full max-w-[560px] bg-white">{children}</div>
-      </section>
+      <section className="flex items-center justify-center">{children}</section>
     </main>
   )
 }

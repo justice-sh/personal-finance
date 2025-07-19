@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/shared/components/ui/sidebar"
 import Logo from "@/shared/components/logo"
 import { cn } from "@/shared/lib/utils"
@@ -21,7 +22,7 @@ export default function AppSidebar({ className }: { className?: string }) {
   return (
     <Sidebar className={cn(className, "bg-sidebar rounded-se-lg rounded-ee-lg py-4")} collapsible="icon">
       <SidebarHeader>
-        <Logo />
+        <SidebarLogo />
       </SidebarHeader>
 
       <SidebarContent className="mt-10 px-0">
@@ -45,4 +46,9 @@ export default function AppSidebar({ className }: { className?: string }) {
       </SidebarFooter>
     </Sidebar>
   )
+}
+
+const SidebarLogo = () => {
+  const { state } = useSidebar()
+  return <Logo state={state} />
 }

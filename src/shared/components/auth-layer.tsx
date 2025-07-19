@@ -1,5 +1,5 @@
-import Link from "next/link"
 import React from "react"
+import Link from "next/link"
 
 type Props = {
   title: string
@@ -13,19 +13,17 @@ type Props = {
 
 export const AuthLayer = ({ children, title, footer }: Props) => {
   return (
-    <div className="flex h-[400px] w-full max-w-[560px] flex-col justify-between rounded-xl bg-white p-6">
+    <section className="flex w-full max-w-[560px] flex-col justify-between gap-10 rounded-xl bg-white p-6">
       <h1 className="text-preset-1">{title}</h1>
 
       {children}
 
-      <div className="mx-auto text-center">
-        <span className="text-preset-4 text-gray-500">{footer.text}</span>
-
+      <footer className="mx-auto text-center">
+        <span className="text-preset-4 text-gray-500">{footer.text}</span>{" "}
         <Link href={footer.href} className="text-preset-4-bold inline text-gray-900">
-          {" "}
           {footer.action}
         </Link>
-      </div>
-    </div>
+      </footer>
+    </section>
   )
 }

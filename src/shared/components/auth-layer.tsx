@@ -18,10 +18,11 @@ export const AuthLayer = ({ children, title, footer }: Props) => {
 
       {children}
 
-      <div className="mx-auto flex items-center gap-2">
+      <div className="mx-auto text-center">
         <span className="text-preset-4 text-gray-500">{footer.text}</span>
 
-        <Link href={footer.href} className="text-preset-4-bold text-gray-900">
+        <Link href={footer.href} className="text-preset-4-bold inline text-gray-900">
+          {" "}
           {footer.action}
         </Link>
       </div>

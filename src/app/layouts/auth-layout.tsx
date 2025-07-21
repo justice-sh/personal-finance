@@ -11,7 +11,10 @@ export default function AuthLayout({ children }: LayoutProps) {
     <main className="lg-3:grid-cols-[560px_1fr] md-3:grid-cols-[1fr_520px] md-3:p-4 md-3:gap-6 md-3:grid flex h-screen max-h-screen flex-col">
       <Header className="md-3:hidden" />
       <Aside className="max-md-3:hidden" />
-      <section className="flex flex-1 items-center justify-center p-4">{children}</section>
+      <section className="flex flex-1 items-center justify-center p-4">
+        {/* TODO: add page transition here */}
+        {children}
+      </section>
     </main>
   )
 }

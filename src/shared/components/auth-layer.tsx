@@ -20,7 +20,7 @@ export const AuthLayer = ({ children, title, footer }: Props) => {
 
       <footer className="mx-auto text-center">
         <span className="text-preset-4 text-gray-500">{footer.text}</span>{" "}
-        <Link href={footer.href} className="text-preset-4-bold inline text-gray-900">
+        <Link href={footer.href} className="text-preset-4-bold inline text-gray-900 underline">
           {footer.action}
         </Link>
       </footer>

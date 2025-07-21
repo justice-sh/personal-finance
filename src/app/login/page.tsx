@@ -3,7 +3,6 @@
 import z from "zod"
 import { toast } from "sonner"
 import { useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
 import { formValidator } from "@/shared/utils/form"
@@ -13,11 +12,12 @@ import { Button } from "@/shared/components/ui/button"
 import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
 import { getErrorMessage } from "@/shared/utils/error-util"
+import { useRouter, useSearchParams } from "next/navigation"
 import { InputField } from "@/shared/components/form/input-field"
 
 const schema = z.object({
-  email: z.email("Invalid email address"),
-  password: PasswordSchema(),
+  email: z.email("Invalid email address").nonempty("Email is required"),
+  password: PasswordSchema().nonempty("Password is required"),
 })
 
 type FormData = z.infer<typeof schema>
@@ -29,8 +29,14 @@ export default function LoginPage() {
     router.prefetch(routes.overview)
   }, [router])
 
+  const searchParams = useSearchParams()
+
+  // For sharing login link with test account credentials
+  const email = searchParams.get("email")
+  const password = searchParams.get("password")
+
   const form = useForm({
-    defaultValues: { email: "test@tmail.com", password: "TestPass#1" } as FormData,
+    defaultValues: { email, password } as FormData,
     validators: { onChange: formValidator(schema) },
     onSubmit: async (data) => {
       try {
@@ -38,7 +44,7 @@ export default function LoginPage() {
         toast.success(resp.message)
         router.push(routes.overview)
       } catch (error) {
-        toast.error("Login failed", getErrorMessage(error))
+        toast.error("Login Failed", { description: getErrorMessage(error) })
       }
     },
   })
@@ -50,7 +56,11 @@ export default function LoginPage() {
         <form.Field name="password" children={(field) => <InputField field={field} label="Password" placeholder="******" />} />
 
         <form.Subscribe
-          selector={({ isValid, isSubmitting }) => ({ isValid, isSubmitting })}
+          selector={({ fieldMeta, isSubmitting }) => {
+            const isFormValid = Object.values(fieldMeta).map((meta) => meta.isDirty && meta.isValid)
+            const isValid = isFormValid.length ? isFormValid.every(Boolean) : false
+            return { isValid, isSubmitting }
+          }}
           children={({ isValid, isSubmitting }) => {
             return (
               <Button type="submit" size="lg" disabled={!isValid} isLoading={isSubmitting} onClick={form.handleSubmit}>

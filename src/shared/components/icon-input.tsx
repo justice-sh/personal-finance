@@ -1,6 +1,6 @@
 import { cn } from "../lib/utils"
-import { IconRenderer, IconRendererProps } from "./icon-renderer"
 import { Input } from "./ui/input"
+import { IconRenderer, IconRendererProps } from "./icon-renderer"
 
 interface IconInputProps extends React.ComponentProps<"input">, Required<Pick<IconRendererProps, "icon">> {
   isInvalid?: boolean

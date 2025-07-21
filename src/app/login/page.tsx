@@ -14,6 +14,7 @@ import { AuthLayer } from "@/shared/components/auth-layer"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { useRouter, useSearchParams } from "next/navigation"
 import { InputField } from "@/shared/components/form/input-field"
+import { PasswordField } from "@/shared/components/form/password-field"
 
 const schema = z.object({
   email: z.email("Invalid email address").nonempty("Email is required"),
@@ -32,8 +33,8 @@ export default function LoginPage() {
   const searchParams = useSearchParams()
 
   // For sharing login link with test account credentials
-  const email = searchParams.get("email")
-  const password = searchParams.get("password")
+  const email = searchParams.get("email") || ""
+  const password = searchParams.get("password") || ""
 
   const form = useForm({
     defaultValues: { email, password } as FormData,
@@ -53,7 +54,7 @@ export default function LoginPage() {
     <AuthLayer title="Login" footer={{ text: "Need to create an account?", action: "Sign Up", href: routes.register }}>
       <Form className="grid gap-5">
         <form.Field name="email" children={(field) => <InputField field={field} label="Email" placeholder="you@mail.com" />} />
-        <form.Field name="password" children={(field) => <InputField field={field} label="Password" placeholder="******" />} />
+        <form.Field name="password" children={(field) => <PasswordField field={field} label="Password" placeholder="******" />} />
 
         <form.Subscribe
           selector={({ fieldMeta, isSubmitting }) => {

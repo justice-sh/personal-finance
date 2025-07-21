@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import { cn } from "@/shared/lib/utils"
 
 interface InputProps extends React.ComponentPropsWithoutRef<"input"> {

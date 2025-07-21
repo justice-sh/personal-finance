@@ -13,6 +13,7 @@ import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { InputField } from "@/shared/components/form/input-field"
+import { PasswordField } from "@/shared/components/form/password-field"
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -44,7 +45,7 @@ export default function Page() {
       <Form className="grid gap-5">
         <form.Field name="name" children={(field) => <InputField field={field} label="Name" placeholder="John Doe" />} />
         <form.Field name="email" children={(field) => <InputField field={field} label="Email" placeholder="you@mail.com" />} />
-        <form.Field name="password" children={(field) => <InputField field={field} label="Password" placeholder="******" />} />
+        <form.Field name="password" children={(field) => <PasswordField field={field} label="Password" placeholder="******" />} />
 
         <form.Subscribe
           selector={({ fieldMeta, isSubmitting }) => {

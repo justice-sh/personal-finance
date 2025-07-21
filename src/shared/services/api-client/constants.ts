@@ -1,3 +1,3 @@
-import { config } from "@/shared/utils/config"
+import { configUtil } from "@/shared/utils/config"
 
-export const BaseUrl = config.get((env) => env.API_URL)
+export const BaseUrl = configUtil.get((env) => env.NEXT_PUBLIC_API_URL)

@@ -56,7 +56,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
         <LayoutManager defaultOpen={defaultOpen}>{children}</LayoutManager>
-        <Toaster />
+        <Toaster richColors />
       </body>
     </html>
   )

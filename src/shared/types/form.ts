@@ -1,4 +1,4 @@
-import { FieldApi, ReactFormExtendedApi } from "@tanstack/react-form"
+import { FieldApi, FormApi, ReactFormExtendedApi } from "@tanstack/react-form"
 
 export type Form<T> = ReactFormExtendedApi<T, any, any, any, any, any, any, any, any, any>
 
@@ -14,3 +14,5 @@ export type FormFieldStyles = {
   wrapper?: string
   error?: string
 }
+
+export type RFormApi<T> = FormApi<T, any, any, any, any, any, any, any, any, any>

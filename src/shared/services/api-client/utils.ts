@@ -1,8 +1,9 @@
 import type { AxiosError, InternalAxiosRequestConfig } from "axios"
 
 export const setupApiUrl = (config: InternalAxiosRequestConfig<unknown>) => {
-  // Remove baseUrl if url is raw, that is, contains http or https.
-  if (config.url?.includes("http://") || config.url?.includes("https://")) {
+  const isExternalUrl = config.url?.startsWith("http://") || config.url?.startsWith("https://")
+
+  if (isExternalUrl) {
     config.baseURL = ""
   } else {
     // Remove first slash in the url

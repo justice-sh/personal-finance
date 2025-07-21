@@ -3,7 +3,7 @@ import publicClient from "../api-client/public-client"
 import securedClient from "../api-client/secured-client"
 
 const login = async (data: { email: string; password: string }) => {
-  const resp = await publicClient.post<{ accessToken: string }>("/auth", data)
+  const resp = await publicClient.post<{ accessToken: string; message: string }>("/auth", data)
   return resp.data
 }
 

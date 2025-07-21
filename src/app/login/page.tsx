@@ -1,6 +1,8 @@
 "use client"
 
 import z from "zod"
+import { toast } from "sonner"
+import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
@@ -23,15 +25,20 @@ type FormData = z.infer<typeof schema>
 export default function LoginPage() {
   const router = useRouter()
 
+  useEffect(() => {
+    router.prefetch(routes.overview)
+  }, [router])
+
   const form = useForm({
     defaultValues: { email: "test@tmail.com", password: "TestPass#1" } as FormData,
     validators: { onChange: formValidator(schema) },
     onSubmit: async (data) => {
       try {
-        await authAPI.login(data.value)
+        const resp = await authAPI.login(data.value)
+        toast.success(resp.message)
         router.push(routes.overview)
       } catch (error) {
-        console.error("Login failed:", getErrorMessage(error))
+        toast.error("Login failed", getErrorMessage(error))
       }
     },
   })

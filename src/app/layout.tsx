@@ -4,6 +4,9 @@ import LayoutManager from "./layouts"
 import { cookies } from "next/headers"
 import { cn } from "@/shared/lib/utils"
 import { Public_Sans } from "next/font/google"
+import { config } from "@/shared/utils/config"
+
+config.validate()
 
 const publicSans = Public_Sans({
   variable: "--font-public-sans",

@@ -1,6 +1,6 @@
 import { FieldApi, FormApi, ReactFormExtendedApi } from "@tanstack/react-form"
 
-export type Form<T> = ReactFormExtendedApi<T, any, any, any, any, any, any, any, any, any>
+export type RForm<T> = ReactFormExtendedApi<T, any, any, any, any, any, any, any, any, any>
 
 export interface FormFieldProps extends Omit<React.ComponentProps<"input">, "form" | "name" | "list"> {
   label?: string

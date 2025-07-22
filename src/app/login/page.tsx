@@ -3,6 +3,7 @@
 import z from "zod"
 import { toast } from "sonner"
 import { useEffect } from "react"
+import { RForm } from "@/shared/types/form"
 import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
 import { formValidator } from "@/shared/utils/form"
@@ -33,8 +34,8 @@ export default function LoginPage() {
   const searchParams = useSearchParams()
 
   // For sharing login link with test account credentials
-  const email = searchParams.get("email") || ""
-  const password = searchParams.get("password") || ""
+  const email = searchParams.get("email") ?? undefined
+  const password = searchParams.get("password") ?? undefined
 
   const form = useForm({
     defaultValues: { email, password } as FormData,
@@ -49,6 +50,8 @@ export default function LoginPage() {
       }
     },
   })
+
+  useSetInitialFieldState(form, { email, password })
 
   return (
     <AuthLayer title="Login" footer={{ text: "Need to create an account?", action: "Sign Up", href: routes.register }}>
@@ -73,4 +76,25 @@ export default function LoginPage() {
       </Form>
     </AuthLayer>
   )
+}
+
+// This is needed especially when the pre-filled state is complete, so that the submit button will be enabled.
+function useSetInitialFieldState(form: RForm<FormData>, initialData: Partial<FormData>) {
+  const { email, password } = initialData
+
+  useEffect(() => {
+    if (Object.values(initialData).length === 0) return
+
+    const keys = Object.keys(initialData) as (keyof FormData)[]
+
+    for (const key of keys) {
+      const value = initialData[key]
+      if (!value) continue
+
+      const meta = form.getFieldMeta(key)
+      if (meta) form.setFieldMeta(key, { ...meta, isDirty: true, isTouched: true, isBlurred: true })
+    }
+
+    form.validate("change")
+  }, [email, password])
 }

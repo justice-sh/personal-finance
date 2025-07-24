@@ -12,6 +12,7 @@ import { authAPI } from "@/shared/services/apis/auth"
 import { Button } from "@/shared/components/ui/button"
 import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
+import { prefetchUserData } from "@/shared/data/user.data"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { useRouter, useSearchParams } from "next/navigation"
 import { InputField } from "@/shared/components/form/input-field"
@@ -44,6 +45,7 @@ export default function LoginPage() {
       try {
         const resp = await authAPI.login(data.value)
         toast.success(resp.message)
+        await prefetchUserData()
         router.push(routes.overview)
       } catch (error) {
         toast.error("Login Failed", { description: getErrorMessage(error) })

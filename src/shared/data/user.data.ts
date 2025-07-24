@@ -9,3 +9,5 @@ export const useUserData = () => {
 }
 
 export const clearUserData = () => queryClient.removeQueries({ queryKey })
+
+export const prefetchUserData = () => queryClient.prefetchQuery({ queryKey, queryFn: authAPI.getUser })

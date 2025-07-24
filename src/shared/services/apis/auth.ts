@@ -13,11 +13,11 @@ const signInWithProvider = async (provider = "google") => {
 }
 
 const getUser = async () => {
-  const resp = await securedClient.post<User>("/auth/me")
-  return resp.data
+  const resp = await securedClient.post<{ message: string; data: User }>("/auth/me")
+  return resp.data.data
 }
 
-const logout = async () => publicClient.post("/auth/logout")
+const logout = () => publicClient.post("/auth/logout")
 
 export const authAPI = {
   login,

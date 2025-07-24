@@ -1,11 +1,9 @@
 import { LayoutProps } from "./types"
 import AppSidebar from "@/widgets/sidebar"
+import AuthProvider from "../auth-provider"
 import MobileNavigation from "@/widgets/mobile-navigation"
-import { queryClient } from "@/shared/lib/ts-query-client"
-import { QueryClientProvider } from "@tanstack/react-query"
 import { ScrollArea } from "@/shared/components/ui/scroll-area"
 import { SidebarProvider } from "@/shared/components/ui/sidebar"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 export default function AppLayout({ children, defaultOpen }: LayoutProps) {
   const styles = {
@@ -16,7 +14,7 @@ export default function AppLayout({ children, defaultOpen }: LayoutProps) {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <AuthProvider>
       <SidebarProvider defaultOpen={defaultOpen} className={styles.container}>
         <AppSidebar className={styles.aside} />
         <ScrollArea className={styles.scrollArea}>
@@ -24,7 +22,6 @@ export default function AppLayout({ children, defaultOpen }: LayoutProps) {
         </ScrollArea>
         <MobileNavigation className={styles.mobileNav} />
       </SidebarProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    </AuthProvider>
   )
 }

@@ -22,7 +22,7 @@ type DialogProps = {
 const Dialog = ({ state, purpose }: DialogProps) => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="bg-beige-100 flex h-full w-full cursor-pointer items-center justify-center rounded-md p-4 text-black">
+      <AlertDialogTrigger className="btn btn-secondary flex h-full flex-1 items-center justify-center rounded-md p-4 text-black">
         {purpose.split(" ")[0] === "Add" ? (
           <div className="flex items-center gap-x-1">
             <PlusIcon className="size-3" />

@@ -2,15 +2,15 @@
 
 import {
   Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   useSidebar,
+  SidebarMenu,
+  SidebarGroup,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarContent,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarGroupContent,
 } from "@/shared/components/ui/sidebar"
 import { cn } from "@/shared/lib/utils"
 import Logo from "@/shared/components/logo"
@@ -29,13 +29,16 @@ export default function AppSidebar({ className }: { className?: string }) {
         <SidebarGroup className="pr-3 pl-0">
           <SidebarGroupContent>
             <SidebarMenu>
-              {navigationItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    {item.Element ? <item.Element key={item.url} /> : <NavigationItem key={item.url} item={item} />}
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {navigationItems.map((item) => {
+                const Item = item.Element || NavigationItem
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Item key={item.url} item={item} />
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

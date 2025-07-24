@@ -3,7 +3,6 @@ import logger from "../logger"
 import { BaseUrl } from "./constants"
 import publicClient from "./public-client"
 import { getRequestErrorMessage, setupApiUrl } from "./utils"
-// import { signOut } from "@/shared/utils/auth"
 
 const securedClient = axios.create({
   baseURL: BaseUrl,
@@ -54,7 +53,6 @@ async function refreshSession() {
   try {
     await publicClient.post("/auth/refresh")
   } catch (error: any) {
-    // await signOut().catch(console.error)
     throw error
   }
 }

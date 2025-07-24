@@ -1,16 +1,16 @@
 "use client"
 
+import { gsap } from "gsap"
 import Link from "next/link"
 import { cn } from "../lib/utils"
-import { NavigationItemProps } from "../types/navigation"
-import { gsap } from "gsap"
-import { useGSAP } from "@gsap/react"
-import { ExpoScaleEase } from "gsap/EasePack"
-import { usePathname } from "next/navigation"
 import React, { useRef } from "react"
+import { useGSAP } from "@gsap/react"
+import { useSidebar } from "./ui/sidebar"
 import { SplitText } from "gsap/SplitText"
 import { GSDevTools } from "gsap/GSDevTools"
-import { useSidebar } from "./ui/sidebar"
+import { ExpoScaleEase } from "gsap/EasePack"
+import { usePathname } from "next/navigation"
+import { NavigationItemProps } from "../types/navigation"
 
 gsap.registerPlugin(useGSAP, ExpoScaleEase, SplitText, GSDevTools)
 
@@ -44,9 +44,10 @@ export default function NavigationItem({ item, className, ...props }: { item: Na
       href={item.url || null}
       className={cn(
         className,
-        "text-sidebar-foreground group/menu-item relative z-10 flex h-auto gap-3 overflow-hidden rounded-none bg-transparent! p-3",
+        "text-sidebar-foreground group/menu-item relative z-10 flex h-auto cursor-pointer gap-3 overflow-hidden rounded-none bg-transparent! p-3",
         styles.mobile,
       )}
+      onClick={item.action}
       onMouseEnter={animation.play}
       onMouseLeave={animation.reverse}
       ref={ref}

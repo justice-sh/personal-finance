@@ -1,10 +1,11 @@
-import { NavigationItemProps } from "../types/navigation"
-import ArrowsDownUpIcon from "@/shared/icons/arrows-down-up"
+import { routes } from "./routes"
+import ReceiptIcon from "@/shared/icons/receipt"
 import JarFillIcon from "@/shared/icons/jar-fill"
 import HouseIcon from "@/shared/icons/house-icon"
-import ReceiptIcon from "@/shared/icons/receipt"
 import ChartDonutIcon from "@/shared/icons/chart-donut"
-import { routes } from "./routes"
+import { NavigationItemProps } from "../types/navigation"
+import ArrowsDownUpIcon from "@/shared/icons/arrows-down-up"
+import { Logout } from "../components/logout"
 
 export const navigationItems: NavigationItemProps[] = [
   {
@@ -31,5 +32,11 @@ export const navigationItems: NavigationItemProps[] = [
     title: "Recurring bills",
     url: routes.recurringBills,
     Icon: ReceiptIcon,
+  },
+  {
+    title: "Logout",
+    Element: Logout,
+    Icon: ReceiptIcon,
+    url: "nothing-to-see-here",
   },
 ]

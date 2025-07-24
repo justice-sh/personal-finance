@@ -12,11 +12,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/shared/components/ui/sidebar"
-import Logo from "@/shared/components/logo"
 import { cn } from "@/shared/lib/utils"
+import Logo from "@/shared/components/logo"
+import { AppSidebarTrigger } from "./trigger"
 import { navigationItems } from "@/shared/constants/navigation"
 import NavigationItem from "@/shared/components/navigation-item"
-import { AppSidebarTrigger } from "./trigger"
 
 export default function AppSidebar({ className }: { className?: string }) {
   return (
@@ -30,9 +30,9 @@ export default function AppSidebar({ className }: { className?: string }) {
           <SidebarGroupContent>
             <SidebarMenu>
               {navigationItems.map((item) => (
-                <SidebarMenuItem key={item.title} className="">
+                <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavigationItem key={item.url} item={item} />
+                    {item.Element ? <item.Element key={item.url} /> : <NavigationItem key={item.url} item={item} />}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

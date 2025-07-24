@@ -1,9 +1,10 @@
 import { FC } from "react"
+import NavigationItem from "../components/navigation-item"
 
 export type NavigationItemProps = {
-  title: string
   url?: string
+  title: string
   action?: () => void
-  Element?: FC<any>
+  Element?: FC<React.ComponentProps<typeof NavigationItem>>
   Icon: React.ComponentType<{ className?: string; "data-active"?: boolean; id?: string }>
 }

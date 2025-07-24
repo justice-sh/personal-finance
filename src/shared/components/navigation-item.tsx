@@ -16,7 +16,12 @@ gsap.registerPlugin(useGSAP, ExpoScaleEase, SplitText, GSDevTools)
 
 type ElementIds = Record<"overlay" | "icon" | "bar" | "text", string>
 
-export default function NavigationItem({ item, className, ...props }: { item: NavigationItemProps; className?: string }) {
+type Props = {
+  className?: string
+  item: Pick<NavigationItemProps, "Icon" | "action" | "title" | "url">
+}
+
+export default function NavigationItem({ item, className, ...props }: Props) {
   const ref = useRef<HTMLAnchorElement>(null)
   const pathname = usePathname()
 

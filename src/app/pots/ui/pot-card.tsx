@@ -1,4 +1,3 @@
-import { Button } from "@/shared/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu"
 import clsx from "clsx"
 import React from "react"
@@ -61,12 +60,8 @@ const PotCard = ({ classname, price, sliderValue, target, title, color }: Props)
         </div>
       </div>
       <div className="flex h-[3.33rem] items-center justify-center gap-x-4">
-        <Button className="h-[3.33rem] w-1/2" asChild>
-          <Dialog purpose="Add to" state="Confirm Addition" />
-        </Button>
-        <Button className="h-[3.33rem] w-1/2" asChild>
-          <Dialog purpose="Withdraw from" state="Confirm Withdraw" />
-        </Button>
+        <Dialog purpose="Add to" state="Confirm Addition" />
+        <Dialog purpose="Withdraw from" state="Confirm Withdraw" />
       </div>
     </div>
   )

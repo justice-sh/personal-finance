@@ -8,6 +8,4 @@ export const useUserData = () => {
   return useQuery({ queryKey, queryFn: authAPI.getUser, refetchInterval: 1000 * 10 })
 }
 
-export const clearUserData = async () => {
-  queryClient.removeQueries({ queryKey })
-}
+export const clearUserData = () => queryClient.removeQueries({ queryKey })

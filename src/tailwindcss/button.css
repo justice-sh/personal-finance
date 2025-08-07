@@ -28,7 +28,7 @@
   @apply h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5;
 }
 @utility btn-size-lg {
-  @apply h-14 rounded-md px-6 has-[>svg]:px-4;
+  @apply h-[53px] rounded-md px-6 has-[>svg]:px-4;
 }
 @utility btn-size-icon {
   @apply size-9;

@@ -1,5 +1,6 @@
 import { z, ZodType } from "zod"
 import { RFormApi } from "../types/form"
+import { AnyFieldMeta, DeepKeys } from "@tanstack/react-form"
 
 export function formValidator<S extends ZodType>(schema: S) {
   return <T extends z.infer<S>>({ value, formApi }: { formApi: RFormApi<T>; value: T }) => {
@@ -23,4 +24,10 @@ export function formValidator<S extends ZodType>(schema: S) {
 
     return { fields }
   }
+}
+
+export function isFormValid(fieldMeta: Record<DeepKeys<any>, AnyFieldMeta>) {
+  const isFormValid = Object.values(fieldMeta).map((meta) => meta.isDirty && meta.isValid)
+  const isValid = isFormValid.length ? isFormValid.every(Boolean) : false
+  return isValid
 }

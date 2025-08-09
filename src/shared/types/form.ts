@@ -1,10 +1,11 @@
 import { AnyFieldApi, FormApi, ReactFormExtendedApi } from "@tanstack/react-form"
 
-export interface FormFieldProps extends Omit<React.ComponentProps<"input">, "form" | "name" | "list"> {
+export interface FormFieldProps extends Omit<React.ComponentProps<"input">, "form" | "name" | "list" | "onChange"> {
   label?: string
   styles?: FormFieldStyles
   isNested?: boolean
   field: AnyFieldApi
+  onChange?: (value: string) => string | number | object | boolean | any[]
 }
 
 export type FormFieldStyles = {

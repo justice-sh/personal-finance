@@ -99,11 +99,12 @@ const AddBudgetDialog = () => {
                   name="maxAmount.value"
                   children={(field) => (
                     <InputField
+                      isNested
                       field={field}
                       type="number"
-                      onChange={(e) => parseInt(e.target.value)}
+                      min={0}
                       className="flex-1"
-                      isNested
+                      onChange={(value) => parseInt(value)}
                     />
                   )}
                 />

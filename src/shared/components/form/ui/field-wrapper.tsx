@@ -7,7 +7,7 @@ import { FormFieldProps } from "@/shared/types/form"
 type Props = Pick<FormFieldProps, "id" | "styles" | "label" | "field" | "children" | "isNested">
 
 export function FieldWrapper({ id, styles, label, field, children, isNested = true }: Props) {
-  if (!isNested) return children
+  if (isNested) return children
 
   id = id || field.name
 

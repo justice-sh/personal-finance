@@ -38,6 +38,7 @@ import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
 import { formValidator, isFormValid } from "@/shared/utils/form.util"
 import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
+import SubmitForm from "@/shared/components/form/submit"
 
 const schema = z.object({
   color: z.enum(Color, { message: "Invalid color" }),
@@ -109,23 +110,7 @@ const AddBudgetDialog = () => {
           <form.Field name="color" children={ColorTagSelectField} />
 
           <AlertDialogFooter className="h-[3.32rem]">
-            <form.Subscribe
-              selector={({ fieldMeta, isSubmitting }) => ({ isValid: isFormValid(fieldMeta), isSubmitting })}
-              children={({ isValid, isSubmitting }) => {
-                return (
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full"
-                    disabled={!isValid}
-                    isLoading={isSubmitting}
-                    onClick={form.handleSubmit}
-                  >
-                    Add Budget
-                  </Button>
-                )
-              }}
-            />
+            <SubmitForm form={form} label="Add Budget" />
           </AlertDialogFooter>
         </Form>
       </AlertDialogContent>

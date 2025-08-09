@@ -1,11 +1,11 @@
-import { FieldApi, FormApi, ReactFormExtendedApi } from "@tanstack/react-form"
-
-export type RForm<T> = ReactFormExtendedApi<T, any, any, any, any, any, any, any, any, any>
+import { AnyFieldApi, FormApi, ReactFormExtendedApi } from "@tanstack/react-form"
 
 export interface FormFieldProps extends Omit<React.ComponentProps<"input">, "form" | "name" | "list"> {
   label?: string
   styles?: FormFieldStyles
-  field: FieldApi<any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any>
+  withWrapper?: boolean
+  hasContainerStyle?: boolean
+  field: AnyFieldApi
 }
 
 export type FormFieldStyles = {
@@ -16,3 +16,27 @@ export type FormFieldStyles = {
 }
 
 export type RFormApi<T> = FormApi<T, any, any, any, any, any, any, any, any, any>
+
+export type RForm<T> = ReactFormExtendedApi<T, any, any, any, any, any, any, any, any, any>
+
+// export type RFieldApi<TForm, TName extends DeepKeys<TForm>> = FieldApi<
+//   TForm,
+//   TName,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any,
+//   any
+// >

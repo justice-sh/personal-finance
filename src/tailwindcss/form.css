@@ -27,5 +27,5 @@
 }
 
 @utility input-text {
-  @apply file:text-foreground text-preset-4 placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 file:inline-flex file:text-sm file:font-medium;
+  @apply file:text-foreground text-preset-4 placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 outline-0 file:inline-flex file:text-sm file:font-medium;
 }

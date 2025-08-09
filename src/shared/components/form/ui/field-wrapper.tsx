@@ -2,18 +2,15 @@ import React from "react"
 import { Label } from "../../ui/label"
 import { cn } from "@/shared/lib/utils"
 import { FieldInfo } from "./field-info"
-import { AnyFieldApi } from "@tanstack/react-form"
-import { FormFieldStyles } from "@/shared/types/form"
+import { FormFieldProps } from "@/shared/types/form"
 
-interface Props {
-  field: AnyFieldApi
-  label?: string
-  id?: string
-  children: React.ReactNode
-  styles?: FormFieldStyles
-}
+type Props = Pick<FormFieldProps, "id" | "styles" | "label" | "field" | "children" | "withWrapper">
 
-export function FieldWrapper({ id, styles, label, field, children }: Props) {
+export function FieldWrapper({ id, styles, label, field, children, withWrapper = true }: Props) {
+  if (!withWrapper) return children
+
+  id = id || field.name
+
   return (
     <div className={cn("flex flex-col gap-1", styles?.wrapper)}>
       {label && (

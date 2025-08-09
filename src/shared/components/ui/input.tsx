@@ -7,7 +7,12 @@ interface InputProps extends React.ComponentPropsWithoutRef<"input"> {
 
 function Input({ className, type, hasContainerStyle = true, ...props }: InputProps) {
   return (
-    <input type={type} data-slot="input" className={cn({ "input-container": hasContainerStyle }, "input-text", className)} {...props} />
+    <input
+      type={type}
+      data-slot="input"
+      className={cn({ "input-container": hasContainerStyle }, "input-text", className)}
+      {...props}
+    />
   )
 }
 

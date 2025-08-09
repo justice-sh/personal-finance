@@ -1,21 +1,21 @@
-import { FormFieldProps } from "@/shared/types/form"
-import { FieldWrapper } from "./ui/field-wrapper"
-import { cn } from "@/shared/lib/utils"
 import { Input } from "../ui/input"
+import { cn } from "@/shared/lib/utils"
+import { FieldWrapper } from "./ui/field-wrapper"
+import { FormFieldProps } from "@/shared/types/form"
 
-export function InputField({ field, label, styles, className, ...props }: FormFieldProps) {
-  if (!props.id) props.id = field.name
+export function InputField(props: FormFieldProps) {
+  const { field, label, styles, withWrapper, className, onChange = (e) => e.target.value, ...rest } = props
 
   return (
-    <FieldWrapper field={field} label={label} id={props.id} styles={styles}>
+    <FieldWrapper {...props}>
       <Input
-        {...props}
+        {...rest}
         id={props.id}
         name={field.name}
-        value={field.state.value || ""}
         onBlur={field.handleBlur}
-        onChange={(e) => field.handleChange(e.target.value)}
+        value={field.state.value || ""}
         className={cn(className, styles?.input)}
+        onChange={(e) => field.handleChange(onChange(e))}
       />
     </FieldWrapper>
   )

@@ -6,28 +6,6 @@ import { X } from "lucide-react"
 import z, { prettifyError } from "zod"
 import { cn } from "@/shared/lib/utils"
 import {
-  AlertDialog,
-  AlertDialogTitle,
-  AlertDialogCancel,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogTrigger,
-} from "@/shared/components/ui/alert-dialog"
-import { Color } from "@/shared/types/color"
-import { useForm } from "@tanstack/react-form"
-import { Form } from "@/shared/components/form/form"
-import { Button } from "@/shared/components/ui/button"
-import { CurrencySymbol } from "@/shared/types/currency"
-import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
-import { getErrorMessage } from "@/shared/utils/error-util"
-import { addBudgetToState } from "@/shared/data/budget.data"
-import { budgetAPI } from "@/shared/services/apis/budget.api"
-import { InputField } from "@/shared/components/form/input-field"
-import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
-import { formValidator, isFormValid } from "@/shared/utils/form.util"
-import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
-import {
   Select,
   SelectItem,
   SelectTrigger,
@@ -36,6 +14,30 @@ import {
   SelectGroup,
   SelectLabel,
 } from "@/shared/components/ui/select"
+import {
+  AlertDialog,
+  AlertDialogTitle,
+  AlertDialogCancel,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogTrigger,
+} from "@/shared/components/ui/alert-dialog"
+import { useForm } from "@tanstack/react-form"
+import { Color } from "@/shared/types/color.type"
+import { Form } from "@/shared/components/form/form"
+import { capitalize } from "@/shared/utils/str.util"
+import { Button } from "@/shared/components/ui/button"
+import { CurrencySymbol } from "@/shared/types/currency"
+import { color2Tailwind } from "@/shared/utils/color.util"
+import { getErrorMessage } from "@/shared/utils/error-util"
+import { addBudgetToState } from "@/shared/data/budget.data"
+import { budgetAPI } from "@/shared/services/apis/budget.api"
+import { InputField } from "@/shared/components/form/input-field"
+import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
+import { formValidator, isFormValid } from "@/shared/utils/form.util"
+import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
+import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
 
 const schema = z.object({
   color: z.enum(Color, { message: "Invalid color" }),
@@ -104,7 +106,7 @@ const AddBudgetDialog = () => {
             children={(field) => <MaxAmountField field={field} form={form} />}
           />
 
-          <form.Field name="color" children={(field) => <InputField field={field} label="Theme" />} />
+          <form.Field name="color" children={ColorTagSelectField} />
 
           <AlertDialogFooter className="h-[3.32rem]">
             <form.Subscribe
@@ -133,8 +135,8 @@ const AddBudgetDialog = () => {
 
 function MaxAmountField({ form, field }: { form: CustomForm<FormData>; field: CustomFieldApi<FormData, "maxAmount"> }) {
   return (
-    <FieldWrapper field={field} label="Maximum Amount">
-      <div className="input-container">
+    <FieldWrapper field={field} label="Maximum Spend">
+      <div className="input-container gap-2">
         <form.Field
           name="maxAmount.currency"
           defaultValue={CurrencySymbol.NGN}
@@ -151,14 +153,14 @@ function MaxAmountField({ form, field }: { form: CustomForm<FormData>; field: Cu
 function SelectCurrencyField(field: CustomFieldApi<FormData, "maxAmount.currency">) {
   return (
     <Select onValueChange={(value) => field.handleChange(value as CurrencySymbol)} defaultValue={field.state.value}>
-      <SelectTrigger isNested hideIcon className="max-w-10 min-w-10 pr-3">
-        <SelectValue />
+      <SelectTrigger isNested hideIcon>
+        <SelectValue placeholder={CurrencySymbol.NGN} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Select Currency</SelectLabel>
           {Object.values(CurrencySymbol).map((symbol) => (
-            <SelectItem key={symbol} value={symbol}>
+            <SelectItem key={symbol} value={symbol} className="">
               {symbol}
             </SelectItem>
           ))}
@@ -176,9 +178,34 @@ function AmountInputField(field: CustomFieldApi<FormData, "maxAmount.value">) {
       type="number"
       placeholder="E.g. 2000"
       min={0}
-      className="flex-1 pl-1"
+      className="flex-1"
       onChange={(value) => parseInt(value)}
     />
+  )
+}
+
+function ColorTagSelectField(field: CustomFieldApi<FormData, "color">) {
+  return (
+    <FieldWrapper field={field} label="Theme">
+      <Select onValueChange={(value) => field.handleChange(value as Color)} defaultValue={field.state.value}>
+        <SelectTrigger>
+          <SelectValue placeholder="Select theme" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Select theme</SelectLabel>
+            {Object.values(Color).map((symbol) => (
+              <SelectItem key={symbol} value={symbol}>
+                <div className="flex items-center gap-3 capitalize">
+                  <div className={cn(color2Tailwind(symbol), "size-4 rounded-full")}></div>
+                  <div className="">{symbol.split("_").map(capitalize).join(" ")}</div>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </FieldWrapper>
   )
 }
 

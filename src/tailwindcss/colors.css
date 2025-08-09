@@ -7,22 +7,22 @@
   --color-gray-500: var(--gray-500);
   --color-gray-900: var(--gray-900);
 
-  --color-secondary-green: var(--secondary-green);
-  --color-secondary-yellow: var(--secondary-yellow);
+  --color-secondary-red: var(--secondary-red);
   --color-secondary-cyan: var(--secondary-cyan);
   --color-secondary-navy: var(--secondary-navy);
-  --color-secondary-red: var(--secondary-red);
+  --color-secondary-green: var(--secondary-green);
+  --color-secondary-yellow: var(--secondary-yellow);
   --color-secondary-purple: var(--secondary-purple);
 
+  --color-other-blue: var(--other-blue);
+  --color-other-gold: var(--other-gold);
+  --color-other-brown: var(--other-brown);
+  --color-other-orange: var(--other-orange);
+  --color-other-margento: var(--other-margento);
+  --color-other-navy-gray: var(--other-navy-gray);
   --color-other-purple: var(--other-purple);
   --color-other-turquoise: var(--other-turquoise);
-  --color-other-brown: var(--other-brown);
-  --color-other-margento: var(--other-margento);
-  --color-other-blue: var(--other-blue);
-  --color-other-navy-gray: var(--other-navy-gray);
   --color-other-army-green: var(--other-army-green);
-  --color-other-gold: var(--other-gold);
-  --color-other-orange: var(--other-orange);
 }
 
 :root {

@@ -5,7 +5,7 @@ import { cn } from "@/shared/lib/utils"
 import { Label, Pie, PieChart } from "recharts"
 import { PotSummaryProps } from "./pot-summary"
 import { Currency } from "@/shared/types/currency"
-import { getCssColorVar } from "@/shared/utils/color"
+import { color2Css } from "@/shared/utils/color.util"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 
@@ -17,7 +17,7 @@ type ChartData = {
 
 export function BudgetsPieChart({ list, className }: { list: PotSummaryProps[]; className?: string }) {
   const chartData: ChartData[] = React.useMemo(() => {
-    return list.map((item) => ({ bill: item.title, amount: item.amount, fill: getCssColorVar(item.color) }))
+    return list.map((item) => ({ bill: item.title, amount: item.amount, fill: color2Css(item.color) }))
   }, [list])
 
   const chartConfig = React.useMemo<ChartConfig>(() => {

@@ -6,10 +6,10 @@ import { useEffect } from "react"
 import { RForm } from "@/shared/types/form"
 import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
-import { formValidator } from "@/shared/utils/form"
 import { Form } from "@/shared/components/form/form"
 import { authAPI } from "@/shared/services/apis/auth"
 import { Button } from "@/shared/components/ui/button"
+import { formValidator } from "@/shared/utils/form.util"
 import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
 import { prefetchUserData } from "@/shared/data/user.data"
@@ -58,8 +58,14 @@ export default function LoginPage() {
   return (
     <AuthLayer title="Login" footer={{ text: "Need to create an account?", action: "Sign Up", href: routes.register }}>
       <Form className="grid gap-5">
-        <form.Field name="email" children={(field) => <InputField field={field} label="Email" placeholder="you@mail.com" />} />
-        <form.Field name="password" children={(field) => <PasswordField field={field} label="Password" placeholder="******" />} />
+        <form.Field
+          name="email"
+          children={(field) => <InputField field={field} label="Email" placeholder="you@mail.com" />}
+        />
+        <form.Field
+          name="password"
+          children={(field) => <PasswordField field={field} label="Password" placeholder="******" />}
+        />
 
         <form.Subscribe
           selector={({ fieldMeta, isSubmitting }) => {

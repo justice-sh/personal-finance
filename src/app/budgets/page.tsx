@@ -1,10 +1,11 @@
 "use client"
 
 import React from "react"
-import { PageLayer } from "@/shared/components/page-layer"
 import Summary from "./ui/summary"
 import EnlightedCards from "./ui/enlighted-cards"
-import AddBudgets from "./ui/add-edit-budget"
+import AddBudgetDialog from "./ui/add-budget-dialog"
+import { useBudgets } from "@/shared/data/budget.data"
+import { PageLayer } from "@/shared/components/page-layer"
 
 const Summaries = [
   { color: "bg-secondary-green", name: "Entertainment", priceOf: "15.00", priceOut: "50.00", range: 90 },
@@ -27,34 +28,19 @@ const Next = [
 ]
 
 const BudgetsPage = () => {
+  const { data: budgets } = useBudgets()
+
   return (
-    <PageLayer title="Budgets" cta={<AddBudgetsCTA />} className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
+    <PageLayer title="Budgets" cta={<AddBudgetDialog />} className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
       <Summary summaries={Summaries} data={Data} />
 
       <div className="col-span-1 h-full w-full space-y-6">
-        {Summaries.map((value) => (
-          <EnlightedCards
-            key={value.name}
-            color={value.color}
-            name={value.name}
-            priceOf={value.priceOf}
-            priceOut={value.priceOut}
-            range={value.range}
-            next={Next}
-          />
+        {budgets.map((budget) => (
+          <EnlightedCards key={budget.category} budget={budget} next={Next} />
         ))}
       </div>
     </PageLayer>
   )
 }
-
-const AddBudgetsCTA = () => (
-  <AddBudgets
-    mode="add"
-    title="+ Add Budget"
-    description="Create a new budget to help you manage your spending effectively."
-    state="Add Budget"
-  />
-)
 
 export default BudgetsPage

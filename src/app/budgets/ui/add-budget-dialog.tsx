@@ -19,18 +19,29 @@ import { useForm } from "@tanstack/react-form"
 import { Form } from "@/shared/components/form/form"
 import { Button } from "@/shared/components/ui/button"
 import { CurrencySymbol } from "@/shared/types/currency"
+import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { addBudgetToState } from "@/shared/data/budget.data"
 import { budgetAPI } from "@/shared/services/apis/budget.api"
 import { InputField } from "@/shared/components/form/input-field"
 import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
 import { formValidator, isFormValid } from "@/shared/utils/form.util"
+import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
+import {
+  Select,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+} from "@/shared/components/ui/select"
 
 const schema = z.object({
   color: z.enum(Color, { message: "Invalid color" }),
   category: z.string().nonempty("Category is required"),
   maxAmount: z.object({
-    prefix: z.string().min(1, "Prefix error"),
+    currency: z.enum(CurrencySymbol),
     value: z.number().min(0, "Maximum amount must be a positive number"),
   }),
 })
@@ -43,6 +54,7 @@ const AddBudgetDialog = () => {
     validators: { onChange: formValidator(schema) },
     onSubmit: async ({ value }) => {
       try {
+        console.log(value)
         const resp = await budgetAPI.createBudget({
           category: value.category,
           color: value.color,
@@ -74,42 +86,22 @@ const AddBudgetDialog = () => {
         </AlertDialogDescription>
 
         <Form className="grid gap-4">
-          <form.Field name="category" children={(field) => <InputField field={field} label="Budget Category" />} />
+          <form.Field
+            name="category"
+            children={(field) => <InputField field={field} placeholder="E.g. entertainment" label="Budget Category" />}
+          />
 
           <form.Field
             name="maxAmount"
-            defaultValue={{ prefix: CurrencySymbol.USD, value: 0 }}
             defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }}
             validators={{
-              onChangeListenTo: ["maxAmount.prefix", "maxAmount.value"],
+              onChangeListenTo: ["maxAmount.currency", "maxAmount.value"],
               onChange: ({ value }) => {
                 const result = schema.pick({ maxAmount: true }).safeParse({ maxAmount: value })
                 return result.success ? undefined : prettifyError(result.error)
               },
             }}
-            children={() => (
-              <div className="input-container flex gap-2">
-                <form.Field
-                  name="maxAmount.prefix"
-                  defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }}
-                  children={(field) => <div className="input-text">{field.state.value as any}</div>}
-                />
-
-                <form.Field
-                  name="maxAmount.value"
-                  children={(field) => (
-                    <InputField
-                      isNested
-                      field={field}
-                      type="number"
-                      min={0}
-                      className="flex-1"
-                      onChange={(value) => parseInt(value)}
-                    />
-                  )}
-                />
-              </div>
-            )}
+            children={(field) => <MaxAmountField field={field} form={form} />}
           />
 
           <form.Field name="color" children={(field) => <InputField field={field} label="Theme" />} />
@@ -136,6 +128,57 @@ const AddBudgetDialog = () => {
         </Form>
       </AlertDialogContent>
     </AlertDialog>
+  )
+}
+
+function MaxAmountField({ form, field }: { form: CustomForm<FormData>; field: CustomFieldApi<FormData, "maxAmount"> }) {
+  return (
+    <FieldWrapper field={field} label="Maximum Amount">
+      <div className="input-container">
+        <form.Field
+          name="maxAmount.currency"
+          defaultValue={CurrencySymbol.NGN}
+          defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }} // I've set these because we have default value
+          children={SelectCurrencyField}
+        />
+
+        <form.Field name="maxAmount.value" children={AmountInputField} />
+      </div>
+    </FieldWrapper>
+  )
+}
+
+function SelectCurrencyField(field: CustomFieldApi<FormData, "maxAmount.currency">) {
+  return (
+    <Select onValueChange={(value) => field.handleChange(value as CurrencySymbol)} defaultValue={field.state.value}>
+      <SelectTrigger isNested hideIcon className="max-w-10 min-w-10 pr-3">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Select Currency</SelectLabel>
+          {Object.values(CurrencySymbol).map((symbol) => (
+            <SelectItem key={symbol} value={symbol}>
+              {symbol}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  )
+}
+
+function AmountInputField(field: CustomFieldApi<FormData, "maxAmount.value">) {
+  return (
+    <InputField
+      isNested
+      field={field}
+      type="number"
+      placeholder="E.g. 2000"
+      min={0}
+      className="flex-1 pl-1"
+      onChange={(value) => parseInt(value)}
+    />
   )
 }
 

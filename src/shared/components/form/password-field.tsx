@@ -3,7 +3,7 @@ import { cn } from "@/shared/lib/utils"
 import { IconInput } from "../icon-input"
 import { IconButton } from "../icon-button"
 import { FieldWrapper } from "./ui/field-wrapper"
-import { FormFieldProps } from "@/shared/types/form"
+import { FormFieldProps } from "@/shared/types/form.type"
 import HidePasswordIcon from "@/shared/icons/hide-password"
 import ShowPasswordIcon from "@/shared/icons/show-password"
 

@@ -23,9 +23,9 @@
 
   /* General input styles that are not part of the precedence layering for border/ring */
   /* These can be placed anywhere, but often grouped for readability */
-  @apply flex min-h-11 w-full min-w-0 items-center rounded-md border bg-transparent px-4 py-1.5 shadow-xs transition-[color,box-shadow] outline-none file:h-7 file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
+  @apply flex min-h-11 w-full min-w-0 items-center overflow-hidden rounded-md border bg-transparent shadow-xs transition-[color,box-shadow] outline-none file:h-7 file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 @utility input-text {
-  @apply file:text-foreground text-preset-4 placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 outline-0 file:inline-flex file:text-sm file:font-medium;
+  @apply file:text-foreground text-preset-4 placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 h-full px-4 py-1.5 outline-0 file:inline-flex file:text-sm file:font-medium;
 }

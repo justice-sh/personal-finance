@@ -3,7 +3,7 @@
 import z from "zod"
 import { toast } from "sonner"
 import { useEffect } from "react"
-import { RForm } from "@/shared/types/form"
+import { CustomForm } from "@/shared/types/form.type"
 import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
 import { Form } from "@/shared/components/form/form"
@@ -87,7 +87,7 @@ export default function LoginPage() {
 }
 
 // This is needed especially when the pre-filled state is complete, so that the submit button will be enabled.
-function useSetInitialFieldState(form: RForm<FormData>, initialData: Partial<FormData>) {
+function useSetInitialFieldState(form: CustomForm<FormData>, initialData: Partial<FormData>) {
   const { email, password } = initialData
 
   useEffect(() => {

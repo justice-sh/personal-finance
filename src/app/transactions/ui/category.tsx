@@ -1,11 +1,24 @@
 "use client"
 
 import { Label } from "@/shared/components/ui/label"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/shared/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select"
 import { cn } from "@/shared/lib/utils"
 import { TypcnFilter } from "@/shared/icons/typcn-filter"
 
-type Props = { value: string; setValue: (value: string) => void; className?: string; options?: { value: string; label: string }[] }
+type Props = {
+  value: string
+  setValue: (value: string) => void
+  className?: string
+  options?: { value: string; label: string }[]
+}
 
 export function Category({ value, setValue, className }: Props) {
   const categories = [
@@ -54,7 +67,7 @@ const MobileView = ({ value, setValue, options = [], className }: Props) => {
   return (
     <div className={className}>
       <Select onValueChange={setValue} value={value}>
-        <SelectTrigger showIcon={false} className={cn("aspect-square size-auto! w-auto border-transparent p-0")}>
+        <SelectTrigger hideIcon={false} className={cn("aspect-square size-auto! w-auto border-transparent p-0")}>
           <TypcnFilter className="mx-auto size-6 text-gray-900" />
         </SelectTrigger>
         <SelectContent>

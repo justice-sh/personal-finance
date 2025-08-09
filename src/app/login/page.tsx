@@ -104,5 +104,7 @@ function useSetInitialFieldState(form: RForm<FormData>, initialData: Partial<For
     }
 
     form.validate("change")
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, password])
 }

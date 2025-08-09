@@ -4,10 +4,10 @@ import { cn } from "@/shared/lib/utils"
 import { FieldInfo } from "./field-info"
 import { FormFieldProps } from "@/shared/types/form"
 
-type Props = Pick<FormFieldProps, "id" | "styles" | "label" | "field" | "children" | "withWrapper">
+type Props = Pick<FormFieldProps, "id" | "styles" | "label" | "field" | "children" | "isNested">
 
-export function FieldWrapper({ id, styles, label, field, children, withWrapper = true }: Props) {
-  if (!withWrapper) return children
+export function FieldWrapper({ id, styles, label, field, children, isNested = true }: Props) {
+  if (!isNested) return children
 
   id = id || field.name
 

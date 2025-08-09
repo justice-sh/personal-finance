@@ -31,10 +31,3 @@ export function isFormValid(fieldMeta: Record<DeepKeys<any>, AnyFieldMeta>) {
   const isValid = isFormValid.length ? isFormValid.every(Boolean) : false
   return isValid
 }
-
-export function prefixedFieldOnChange<S extends ZodType, T extends z.infer<S>>(schema: S, value: T, fieldApi: AnyFieldApi) {
-  const result = schema.safeParse(value)
-  fieldApi.setMeta({ ...fieldApi.state.meta, isTouched: true, isBlurred: true, isDirty: true })
-  if (result.success) return undefined
-  return prettifyError(result.error)
-}

@@ -8,8 +8,11 @@ interface IconInputProps extends React.ComponentProps<"input">, Required<Pick<Ic
 
 export function IconInput({ className, isInvalid, icon, ...props }: IconInputProps) {
   return (
-    <div aria-invalid={isInvalid} className={cn("input-container flex flex-1 items-center justify-between gap-1", className)}>
-      <Input {...props} hasContainerStyle={false} className={cn("input-text h-full w-full border-none ring-0 outline-none")} />
+    <div
+      aria-invalid={isInvalid}
+      className={cn("input-container flex flex-1 items-center justify-between gap-1", className)}
+    >
+      <Input {...props} isNested={false} className={cn("input-text h-full w-full border-none ring-0 outline-none")} />
 
       <IconRenderer icon={icon} />
     </div>

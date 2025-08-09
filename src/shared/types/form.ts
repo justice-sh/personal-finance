@@ -3,8 +3,7 @@ import { AnyFieldApi, FormApi, ReactFormExtendedApi } from "@tanstack/react-form
 export interface FormFieldProps extends Omit<React.ComponentProps<"input">, "form" | "name" | "list"> {
   label?: string
   styles?: FormFieldStyles
-  withWrapper?: boolean
-  hasContainerStyle?: boolean
+  isNested?: boolean
   field: AnyFieldApi
 }
 

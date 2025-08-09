@@ -1,9 +1,9 @@
 "use client"
 
-import z from "zod"
 import React from "react"
 import { toast } from "sonner"
 import { X } from "lucide-react"
+import z, { prettifyError } from "zod"
 import { cn } from "@/shared/lib/utils"
 import {
   AlertDialog,
@@ -24,8 +24,7 @@ import { addBudgetToState } from "@/shared/data/budget.data"
 import { budgetAPI } from "@/shared/services/apis/budget.api"
 import { InputField } from "@/shared/components/form/input-field"
 import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
-import { PrefixedInputField } from "@/shared/components/form/prefixed-input-field"
-import { formValidator, isFormValid, prefixedFieldOnChange } from "@/shared/utils/form.util"
+import { formValidator, isFormValid } from "@/shared/utils/form.util"
 
 const schema = z.object({
   color: z.enum(Color, { message: "Invalid color" }),
@@ -80,18 +79,35 @@ const AddBudgetDialog = () => {
           <form.Field
             name="maxAmount"
             defaultValue={{ prefix: CurrencySymbol.USD, value: 0 }}
+            defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }}
             validators={{
               onChangeListenTo: ["maxAmount.prefix", "maxAmount.value"],
-              onChange: (e) => prefixedFieldOnChange(schema.pick({ maxAmount: true }), { maxAmount: e.value }, e.fieldApi),
+              onChange: ({ value }) => {
+                const result = schema.pick({ maxAmount: true }).safeParse({ maxAmount: value })
+                return result.success ? undefined : prettifyError(result.error)
+              },
             }}
-            children={(field) => (
-              <PrefixedInputField
-                label="Maximum Spend"
-                form={form}
-                field={field}
-                prefixProps={{ name: "maxAmount.prefix" }}
-                valueProps={{ name: "maxAmount.value", onChange: (e) => parseInt(e.target.value) }}
-              />
+            children={() => (
+              <div className="input-container flex gap-2">
+                <form.Field
+                  name="maxAmount.prefix"
+                  defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }}
+                  children={(field) => <div className="input-text">{field.state.value as any}</div>}
+                />
+
+                <form.Field
+                  name="maxAmount.value"
+                  children={(field) => (
+                    <InputField
+                      field={field}
+                      type="number"
+                      onChange={(e) => parseInt(e.target.value)}
+                      className="flex-1"
+                      isNested
+                    />
+                  )}
+                />
+              </div>
             )}
           />
 

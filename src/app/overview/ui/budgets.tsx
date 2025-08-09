@@ -1,15 +1,16 @@
 import { cn } from "@/shared/lib/utils"
-import { PotSummary, PotSummaryProps } from "./pot-summary"
 import { SectionHeader } from "./section-header"
-import { BudgetsPieChart } from "./budgets-pie-chart"
+import { Color } from "@/shared/types/color.type"
 import { routes } from "@/shared/constants/routes"
+import { BudgetsPieChart } from "./budgets-pie-chart"
+import { PotSummary, PotSummaryProps } from "./pot-summary"
 
 export function Budgets({ className }: { className?: string }) {
   const budgets: PotSummaryProps[] = [
-    { title: "Entertainment", amount: 50, color: "green" },
-    { title: "Bills", amount: 750, color: "cyan" },
-    { title: "Dinning Out", amount: 75, color: "yellow" },
-    { title: "Personal Care", amount: 100, color: "navy" },
+    { title: "Entertainment", amount: 50, color: Color.Green },
+    { title: "Bills", amount: 750, color: Color.Cyan },
+    { title: "Dinning Out", amount: 75, color: Color.Yellow },
+    { title: "Personal Care", amount: 100, color: Color.Navy },
   ]
 
   return (

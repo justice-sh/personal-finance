@@ -1,6 +1,6 @@
+import { z, ZodType } from "zod"
 import { CustomFormApi } from "../types/form.type"
-import { prettifyError, z, ZodType } from "zod"
-import { AnyFieldApi, AnyFieldMeta, DeepKeys } from "@tanstack/react-form"
+import { AnyFieldMeta, DeepKeys } from "@tanstack/react-form"
 
 export function formValidator<S extends ZodType>(schema: S) {
   return <T extends z.infer<S>>({ value, formApi }: { formApi: CustomFormApi<T>; value: T }) => {

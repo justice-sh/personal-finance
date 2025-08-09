@@ -2,16 +2,17 @@ import { cn } from "@/shared/lib/utils"
 import { SectionHeader } from "./section-header"
 import { routes } from "@/shared/constants/routes"
 import { Currency } from "@/shared/types/currency"
+import { Color } from "@/shared/types/color.type"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import TipJarLightIcon from "@/shared/icons/tip-jar-light"
 import { PotSummary, PotSummaryProps } from "./pot-summary"
 
 export function Pots({ className }: { className?: string }) {
   const pots: PotSummaryProps[] = [
-    { title: "Savings", amount: 500, color: "green" },
-    { title: "Gift", amount: 200, color: "cyan" },
-    { title: "Concert Ticket", amount: 150, color: "yellow" },
-    { title: "New Laptop", amount: 110, color: "navy" },
+    { title: "Savings", amount: 500, color: Color.Green },
+    { title: "Gift", amount: 200, color: Color.Cyan },
+    { title: "Concert Ticket", amount: 150, color: Color.Yellow },
+    { title: "New Laptop", amount: 110, color: Color.Navy },
   ]
 
   const totalSavedAmount = pots.reduce((acc, pot) => acc + pot.amount, 0)

@@ -4,7 +4,7 @@ import { FieldWrapper } from "./ui/field-wrapper"
 import { FormFieldProps } from "@/shared/types/form"
 
 export function InputField(props: FormFieldProps) {
-  const { field, label, styles, withWrapper, className, onChange = (e) => e.target.value, ...rest } = props
+  const { field, styles, className, onChange = (e) => e.target.value, ...rest } = props
 
   return (
     <FieldWrapper {...props}>

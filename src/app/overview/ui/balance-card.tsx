@@ -1,4 +1,5 @@
 import { cn } from "@/shared/lib/utils"
+import { Currency } from "@/shared/types/currency"
 import { formatAmount } from "@/shared/utils/formatAmount"
 
 export const BalanceCard = ({
@@ -9,7 +10,7 @@ export const BalanceCard = ({
 }: {
   title: string
   balance: number
-  currency: "NGN" | "USD"
+  currency: Currency
   isStart?: boolean
 }) => {
   return (

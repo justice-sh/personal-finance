@@ -1,10 +1,9 @@
 import { ConfigData, EnvData } from "./type"
 import { EnvSchema } from "@/shared/schemas/env"
-import { ExactPathForValue } from "@/shared/types/util"
 
 export const configUtil = {
   validate: validateEnv,
-  get<R, K extends ExactPathForValue<ConfigData, R>>(selector: (env: ConfigData) => R): R {
+  get<T>(selector: (env: ConfigData) => T): T {
     const data = transformEnv()
     return selector(data)
   },

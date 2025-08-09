@@ -13,6 +13,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     if (error) {
       performSignOut(router).catch(console.error)
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, status])
 
   if (isLoading || status === "error") {

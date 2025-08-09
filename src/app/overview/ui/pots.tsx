@@ -1,9 +1,10 @@
 import { cn } from "@/shared/lib/utils"
 import { SectionHeader } from "./section-header"
+import { routes } from "@/shared/constants/routes"
+import { Currency } from "@/shared/types/currency"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import TipJarLightIcon from "@/shared/icons/tip-jar-light"
 import { PotSummary, PotSummaryProps } from "./pot-summary"
-import { routes } from "@/shared/constants/routes"
 
 export function Pots({ className }: { className?: string }) {
   const pots: PotSummaryProps[] = [
@@ -40,7 +41,7 @@ const TotalSaved = ({ amount }: { amount: number }) => {
       </div>
       <div className="flex flex-col justify-center gap-2">
         <p className="text-preset-4 text-gray-500">Total saved</p>
-        <p className="text-preset-1 text-gray-900">{formatAmount(amount, "USD", { maximumFractionDigits: 0 })}</p>
+        <p className="text-preset-1 text-gray-900">{formatAmount(amount, Currency.USD, { maximumFractionDigits: 0 })}</p>
       </div>
     </div>
   )

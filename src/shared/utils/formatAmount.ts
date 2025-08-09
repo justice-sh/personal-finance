@@ -1,10 +1,14 @@
-import { Currency } from "../types/currency"
 import { StringNumericLiteral } from "../types/number"
+import { Currency, CurrencySymbol } from "../types/currency"
 
-export function formatAmount(amount: StringNumericLiteral, currency: Currency = "USD", options?: Intl.NumberFormatOptions): string {
+export function formatAmount(
+  amount: StringNumericLiteral,
+  currency: Currency = Currency.USD,
+  options?: Intl.NumberFormatOptions,
+): string {
   const value = new Intl.NumberFormat("en-US", { style: "currency", currency, ...options }).format(amount)
 
-  if (currency === "NGN") return "₦" + value.replace(currency, "").trim()
+  if (currency === Currency.NGN) return CurrencySymbol.NGN + value.replace(currency, "").trim()
 
   return value
 }

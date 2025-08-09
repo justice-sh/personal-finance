@@ -1,12 +1,13 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/shared/lib/utils"
 import { Label, Pie, PieChart } from "recharts"
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 import { PotSummaryProps } from "./pot-summary"
+import { Currency } from "@/shared/types/currency"
 import { getCssColorVar } from "@/shared/utils/color"
 import { formatAmount } from "@/shared/utils/formatAmount"
-import { cn } from "@/shared/lib/utils"
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 
 type ChartData = {
   bill: string
@@ -44,11 +45,11 @@ export function BudgetsPieChart({ list, className }: { list: PotSummaryProps[]; 
                   return (
                     <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="">
                       <tspan x={viewBox.cx} y={viewBox.cy} className="text-preset-2 fill-gray-900">
-                        {formatAmount(totalAmount, "USD")}
+                        {formatAmount(totalAmount, Currency.USD)}
                       </tspan>
 
                       <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 24} className="text-preset-5 fill-gray-500">
-                        of {formatAmount(975, "USD")} limit
+                        of {formatAmount(975, Currency.USD)} limit
                       </tspan>
                     </text>
                   )
@@ -63,7 +64,7 @@ export function BudgetsPieChart({ list, className }: { list: PotSummaryProps[]; 
 }
 
 const RenderTooltipValue = (amount: number, key: string, { payload }: { payload?: ChartData }) => {
-  const formattedAmount = formatAmount(Number(amount), "USD", { maximumFractionDigits: 0 })
+  const formattedAmount = formatAmount(Number(amount), Currency.USD, { maximumFractionDigits: 0 })
 
   return (
     <div className="flex w-full items-center justify-between gap-2">

@@ -18,6 +18,7 @@ import { Color } from "@/shared/types/color"
 import { useForm } from "@tanstack/react-form"
 import { Form } from "@/shared/components/form/form"
 import { Button } from "@/shared/components/ui/button"
+import { CurrencySymbol } from "@/shared/types/currency"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { addBudgetToState } from "@/shared/data/budget.data"
 import { budgetAPI } from "@/shared/services/apis/budget.api"
@@ -78,7 +79,7 @@ const AddBudgetDialog = () => {
 
           <form.Field
             name="maxAmount"
-            defaultValue={{ prefix: "$", value: 0 }}
+            defaultValue={{ prefix: CurrencySymbol.USD, value: 0 }}
             validators={{
               onChangeListenTo: ["maxAmount.prefix", "maxAmount.value"],
               onChange: (e) => prefixedFieldOnChange(schema.pick({ maxAmount: true }), { maxAmount: e.value }, e.fieldApi),

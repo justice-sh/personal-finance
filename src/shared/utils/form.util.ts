@@ -1,6 +1,6 @@
-import { prettifyError, z, ZodType } from "zod"
 import { RFormApi } from "../types/form"
-import { AnyFieldApi, AnyFieldMeta, DeepKeys, FieldApi } from "@tanstack/react-form"
+import { prettifyError, z, ZodType } from "zod"
+import { AnyFieldApi, AnyFieldMeta, DeepKeys } from "@tanstack/react-form"
 
 export function formValidator<S extends ZodType>(schema: S) {
   return <T extends z.infer<S>>({ value, formApi }: { formApi: RFormApi<T>; value: T }) => {
@@ -27,7 +27,6 @@ export function formValidator<S extends ZodType>(schema: S) {
 }
 
 export function isFormValid(fieldMeta: Record<DeepKeys<any>, AnyFieldMeta>) {
-  console.log(fieldMeta)
   const isFormValid = Object.values(fieldMeta).map((meta) => meta.isDirty && meta.isValid)
   const isValid = isFormValid.length ? isFormValid.every(Boolean) : false
   return isValid

@@ -1,13 +1,14 @@
 "use client"
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
-import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
-import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
-import { TransactionDate } from "@/shared/components/transaction/tx-date"
-import { useQueryParams } from "@/shared/hooks/use-query-params"
-import { Pagination } from "./pagination"
-import { cn } from "@/shared/lib/utils"
 import React from "react"
+import { cn } from "@/shared/lib/utils"
+import { Pagination } from "./pagination"
+import { useQueryParams } from "@/shared/hooks/use-query-params"
+import { TransactionDate } from "@/shared/components/transaction/tx-date"
+import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
+import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
+import { Currency } from "@/shared/types/currency"
 
 const classes = {
   table: "my-grid-container",
@@ -21,7 +22,10 @@ export function TransactionsGrid() {
 
   useDynamicPageSize(ref, (pageSize) => setQueryParams({ pageSize, page: 1 }))
 
-  const paginatedTransactions = transactions.slice((queryParams.page - 1) * queryParams.pageSize, queryParams.page * queryParams.pageSize)
+  const paginatedTransactions = transactions.slice(
+    (queryParams.page - 1) * queryParams.pageSize,
+    queryParams.page * queryParams.pageSize,
+  )
 
   return (
     <section ref={ref} className="@container flex flex-1 flex-col">
@@ -162,7 +166,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -172,7 +176,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "income" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -182,7 +186,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "income" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -192,7 +196,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -202,7 +206,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -212,7 +216,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "income" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -222,7 +226,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -232,7 +236,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -242,7 +246,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -252,7 +256,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -262,7 +266,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -272,7 +276,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -282,7 +286,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -292,7 +296,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -302,7 +306,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -312,7 +316,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -322,7 +326,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -332,7 +336,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -342,7 +346,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -352,7 +356,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -362,7 +366,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -372,7 +376,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -382,7 +386,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -392,7 +396,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -402,7 +406,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -412,7 +416,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -422,7 +426,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -432,7 +436,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -442,7 +446,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -452,7 +456,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -462,7 +466,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -472,7 +476,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -482,7 +486,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -492,7 +496,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -502,7 +506,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -512,7 +516,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -522,7 +526,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -532,7 +536,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -542,7 +546,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -552,7 +556,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -562,7 +566,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -572,7 +576,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -582,7 +586,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -592,7 +596,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -602,7 +606,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -612,7 +616,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -622,7 +626,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -632,7 +636,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -642,7 +646,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -652,7 +656,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -662,7 +666,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -672,7 +676,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -682,7 +686,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -692,7 +696,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -702,7 +706,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -712,7 +716,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -722,7 +726,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -732,7 +736,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -742,7 +746,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -752,7 +756,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -762,7 +766,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
   {
     id: "1",
@@ -772,7 +776,7 @@ const transactions = [
     category: "Entertainment",
     date: "2023-10-01",
     type: "expense" as const,
-    currency: "USD" as const,
+    currency: Currency.USD,
   },
 ].map((tx, index) => ({
   ...tx,

@@ -3,7 +3,7 @@
 import React from "react"
 import { toast } from "sonner"
 import { X } from "lucide-react"
-import { prettifyError, ZodType } from "zod"
+import { prettifyError } from "zod"
 import { cn } from "@/shared/lib/utils"
 import {
   AlertDialog,
@@ -63,7 +63,7 @@ const BudgetDialog = (props: Props) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className={cn(dProps.styles.trigger, props.styles?.trigger)}>{dProps.name}</AlertDialogTrigger>
+      <AlertDialogTrigger className={cn(dProps.styles?.trigger, props.styles?.trigger)}>{dProps.name}</AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader className="flex w-full flex-row items-center justify-between">
@@ -132,9 +132,6 @@ function getProps(props: Props): DProps {
       errorTitle: "Failed to update budget",
       apiCall: (value: Partial<CreateBudget>) => budgetAPI.updateBudget(props.budget.id, value),
       modifyState: updateBudgetInState,
-      styles: {
-        trigger: "",
-      },
       defaultValues: {
         color: props.budget.color,
         category: props.budget.category,
@@ -156,8 +153,8 @@ interface DProps {
   errorTitle: string
   apiCall: typeof budgetAPI.createBudget
   modifyState: typeof addBudgetToState
-  styles: {
-    trigger: string
+  styles?: {
+    trigger?: string
   }
   defaultValues: CreateBudget
 }

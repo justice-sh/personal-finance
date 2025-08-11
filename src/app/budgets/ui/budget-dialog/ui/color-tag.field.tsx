@@ -1,12 +1,12 @@
 import {
   Select,
-  SelectTrigger,
+  SelectItem,
   SelectValue,
-  SelectContent,
   SelectGroup,
   SelectLabel,
-  SelectItem,
-} from "@radix-ui/react-select"
+  SelectContent,
+  SelectTrigger,
+} from "@/shared/components/ui/select"
 import { cn } from "@/shared/lib/utils"
 import { Color } from "@/shared/types/color.type"
 import { capitalize } from "@/shared/utils/str.util"

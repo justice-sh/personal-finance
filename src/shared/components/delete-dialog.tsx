@@ -37,9 +37,9 @@ const DeleteDialog = ({ description, title, name, styles, onDelete }: DeleteDial
       await onDelete()
 
       setIsOpen(false)
-      toast.success("Successful", { description: `"${capitalize(title)}" successfully deleted.` })
+      toast.success("Success", { description: `"${capitalize(title)}" successfully deleted.` })
     } catch (error) {
-      toast.error("Failed to delete", { description: getErrorMessage(error) })
+      toast.error("Error", { description: getErrorMessage(error) })
     } finally {
       setIsDeleting(false)
     }
@@ -49,7 +49,7 @@ const DeleteDialog = ({ description, title, name, styles, onDelete }: DeleteDial
 
   return (
     <AlertDialog open={isOpen}>
-      <AlertDialogTrigger className={cn(styles?.trigger)} onClick={toggleOpen}>
+      <AlertDialogTrigger className={cn("text-destructive", styles?.trigger)} onClick={toggleOpen}>
         {name}
       </AlertDialogTrigger>
 

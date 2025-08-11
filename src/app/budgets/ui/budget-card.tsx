@@ -15,6 +15,7 @@ import { formatAmount } from "@/shared/utils/formatAmount"
 import { BudgetTransactions } from "./budget-transactions"
 import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/delete-dialog"
+import { cn } from "@/shared/lib/utils"
 
 const BudgetCard = ({ budget }: { budget: Budget }) => {
   return (
@@ -62,6 +63,8 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
 }
 
 function BudgetCardActions({ budget }: { budget: Budget }) {
+  const styles = { item: "text-preset-4 text-left cursor-pointer" }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="btn btn-ghost btn-size-sm p-2">
@@ -70,7 +73,7 @@ function BudgetCardActions({ budget }: { budget: Budget }) {
 
       <DropdownMenuContent className="grid gap-3 p-4">
         <DropdownMenuItem asChild>
-          <BudgetDialog mode="edit" budget={budget} styles={{ trigger: "text-preset-4" }} />
+          <BudgetDialog mode="edit" budget={budget} styles={{ trigger: styles.item }} />
         </DropdownMenuItem>
 
         <Separator className="bg-gray-100" />
@@ -80,7 +83,7 @@ function BudgetCardActions({ budget }: { budget: Budget }) {
             name="Delete Budget"
             title={budget.category}
             description="Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever."
-            styles={{ trigger: "text-preset-4" }}
+            styles={{ trigger: cn(styles.item, "text-destructive") }}
           />
         </DropdownMenuItem>
       </DropdownMenuContent>

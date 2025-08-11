@@ -28,11 +28,11 @@ const BudgetsPage = () => {
     <PageLayer
       title="Budgets"
       cta={<BudgetDialog mode="add" />}
-      className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]"
+      className="lg-2:grid-cols-[428px_1fr] md-9:grid-cols-2 grid gap-6"
     >
       <Summary summaries={Summaries} data={Data} />
 
-      <div className="col-span-1 h-full w-full space-y-6">
+      <div className="space-y-6">
         {budgets.map((budget) => (
           <BudgetCard key={budget.category} budget={budget} />
         ))}

@@ -17,6 +17,7 @@ import {
 import { useForm } from "@tanstack/react-form"
 import { Form } from "@/shared/components/form/form"
 import { MaxSpendField } from "./ui/max-spend-field"
+import { refreshBudgets } from "@/shared/data/budget"
 import SubmitForm from "@/shared/components/form/submit"
 import { formValidator } from "@/shared/utils/form.util"
 import { ColorTagSelectField } from "./ui/color-tag-field"
@@ -26,7 +27,6 @@ import { budgetAPI } from "@/shared/services/apis/budget.api"
 import { InputField } from "@/shared/components/form/input-field"
 import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
 import { AddBudgetSchema, EditBudgetSchema } from "@/shared/schemas/budget"
-import { addBudgetToState, updateBudgetInState } from "@/shared/data/budget"
 
 type AddBudgetProps = {
   mode: "add"
@@ -52,7 +52,7 @@ const BudgetDialog = (props: Props) => {
     onSubmit: async ({ value }) => {
       try {
         const resp = await dProps.apiCall(value)
-        dProps.modifyState(resp.data)
+        await refreshBudgets()
         toast.success(resp.message)
       } catch (error) {
         toast.error(dProps.errorTitle, { description: getErrorMessage(error) })
@@ -115,7 +115,6 @@ function getProps(props: Props): DProps {
       schema: AddBudgetSchema,
       errorTitle: "Failed to create budget",
       apiCall: budgetAPI.createBudget,
-      modifyState: addBudgetToState,
       styles: {
         trigger: "btn btn-default btn-size-lg",
       },
@@ -130,7 +129,6 @@ function getProps(props: Props): DProps {
       schema: EditBudgetSchema,
       errorTitle: "Failed to update budget",
       apiCall: (value: Partial<CreateBudget>) => budgetAPI.updateBudget(props.budget.id, value),
-      modifyState: updateBudgetInState,
       defaultValues: props.budget,
     }
   }
@@ -144,7 +142,6 @@ interface DProps {
   schema: typeof AddBudgetSchema | typeof EditBudgetSchema
   errorTitle: string
   apiCall: typeof budgetAPI.createBudget
-  modifyState: typeof addBudgetToState
   styles?: {
     trigger?: string
   }

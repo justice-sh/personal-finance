@@ -5,7 +5,7 @@ import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 
-export function BudgetTransactions({ className }: { className?: string }) {
+export function BudgetTransactions() {
   return (
     <section className="bg-beige-100 rounded-lg p-4 pb-3">
       <header className="mb-6 flex items-center justify-between gap-4">

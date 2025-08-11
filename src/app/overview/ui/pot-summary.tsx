@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/utils"
-import { Color } from "@/shared/types/color.type"
+import { Color } from "@/shared/enums/color.enum"
 import { Currency } from "@/shared/types/currency"
 import { color2Tailwind } from "@/shared/utils/color.util"
 import { formatAmount } from "@/shared/utils/formatAmount"

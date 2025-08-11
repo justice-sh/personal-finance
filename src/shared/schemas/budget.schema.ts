@@ -1,5 +1,5 @@
 import z from "zod"
-import { Color } from "@/shared/types/color.type"
+import { Color } from "@/shared/enums/color.enum"
 import { CurrencySymbol } from "@/shared/types/currency"
 
 export const AddBudgetSchema = z.object({

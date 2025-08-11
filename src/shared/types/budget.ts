@@ -1,5 +1,5 @@
 import z from "zod"
-import { Color } from "./color.type"
+import { Color } from "../enums/color.enum"
 import { AddBudgetSchema } from "../schemas/budget.schema"
 
 export type Budget = {

@@ -8,7 +8,7 @@ import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
-import { Currency } from "@/shared/types/currency"
+import { Currency } from "@/shared/enums/currency"
 
 const classes = {
   table: "my-grid-container",

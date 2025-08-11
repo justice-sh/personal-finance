@@ -1,6 +1,6 @@
 import { cn } from "@/shared/lib/utils"
 import { SectionHeader } from "./section-header"
-import { Color } from "@/shared/enums/color.enum"
+import { Color } from "@/shared/enums/color"
 import { routes } from "@/shared/constants/routes"
 import { BudgetsPieChart } from "./budgets-pie-chart"
 import { PotSummary, PotSummaryProps } from "./pot-summary"

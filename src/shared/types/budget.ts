@@ -1,7 +1,7 @@
 import z from "zod"
-import { Color } from "../enums/color.enum"
-import { CurrencySymbol } from "./currency"
-import { AddBudgetSchema } from "../schemas/budget.schema"
+import { Color } from "../enums/color"
+import { CurrencySymbol } from "../enums/currency"
+import { AddBudgetSchema } from "../schemas/budget"
 
 export type Budget = {
   category: string

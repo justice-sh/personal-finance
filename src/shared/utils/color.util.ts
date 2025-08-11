@@ -1,4 +1,4 @@
-import { Color } from "../enums/color.enum"
+import { Color } from "../enums/color"
 
 export function color2Tailwind(color: Color) {
   const styles: Record<Color, string> = {

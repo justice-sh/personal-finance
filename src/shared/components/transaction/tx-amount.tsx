@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils"
-import { Currency } from "../../types/currency"
+import { Currency } from "../../enums/currency"
 import { formatAmount } from "../../utils/formatAmount"
 
 export function TransactionAmount({

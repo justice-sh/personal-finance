@@ -1,5 +1,5 @@
 import { StringNumericLiteral } from "../types/number"
-import { Currency, CurrencySymbol } from "../types/currency"
+import { Currency, CurrencySymbol } from "../enums/currency"
 
 export function formatAmount(
   amount: StringNumericLiteral,

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useUserData } from "@/shared/data/user.data"
+import { useUserData } from "@/shared/data/user"
 import { performSignOut } from "@/shared/utils/sign-out"
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {

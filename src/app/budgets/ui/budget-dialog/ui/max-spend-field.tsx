@@ -8,7 +8,7 @@ import {
   SelectLabel,
 } from "@/shared/components/ui/select"
 import { CreateBudget } from "@/shared/types/budget"
-import { CurrencySymbol } from "@/shared/types/currency"
+import { CurrencySymbol } from "@/shared/enums/currency"
 import { InputField } from "@/shared/components/form/input-field"
 import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"

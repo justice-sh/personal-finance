@@ -8,7 +8,7 @@ import {
   SelectTrigger,
 } from "@/shared/components/ui/select"
 import { cn } from "@/shared/lib/utils"
-import { Color } from "@/shared/enums/color.enum"
+import { Color } from "@/shared/enums/color"
 import { capitalize } from "@/shared/utils/str.util"
 import { CreateBudget } from "@/shared/types/budget"
 import { CustomFieldApi } from "@/shared/types/form.type"

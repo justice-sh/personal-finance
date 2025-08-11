@@ -5,7 +5,7 @@ import { BalanceCard } from "./ui/balance-card"
 import { cn } from "@/shared/lib/utils"
 import { Budgets } from "./ui/budgets"
 import { Pots } from "./ui/pots"
-import { Currency } from "@/shared/types/currency"
+import { Currency } from "@/shared/enums/currency"
 
 export default function OverviewPage() {
   const styles = {

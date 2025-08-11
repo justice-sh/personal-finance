@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/utils"
-import { Currency } from "@/shared/types/currency"
+import { Currency } from "@/shared/enums/currency"
 import { formatAmount } from "@/shared/utils/formatAmount"
 
 export const BalanceCard = ({

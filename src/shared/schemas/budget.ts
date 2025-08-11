@@ -1,6 +1,6 @@
 import z from "zod"
-import { Color } from "@/shared/enums/color.enum"
-import { CurrencySymbol } from "@/shared/types/currency"
+import { Color } from "@/shared/enums/color"
+import { CurrencySymbol } from "@/shared/enums/currency"
 
 export const AddBudgetSchema = z.object({
   color: z.enum(Color, { message: "Invalid color" }),

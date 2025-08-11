@@ -4,7 +4,7 @@ import React from "react"
 import Summary from "./ui/summary"
 import BudgetCard from "./ui/budget-card"
 import BudgetDialog from "./ui/budget-dialog"
-import { useBudgets } from "@/shared/data/budget.data"
+import { useBudgets } from "@/shared/data/budget"
 import { PageLayer } from "@/shared/components/page-layer"
 
 const Summaries = [

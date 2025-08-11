@@ -45,6 +45,7 @@ const Button = ({
   ref?: React.RefObject<HTMLButtonElement>
 }) => {
   const Comp = asChild ? Slot : "button"
+  if (isLoading) props.disabled = true
   return (
     <Comp className={cn(buttonVariants({ variant, size }), "flex items-center gap-3", className)} ref={ref} {...props}>
       {children} {isLoading && <LoaderIcon className="animate-spin" />}

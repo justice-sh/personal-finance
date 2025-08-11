@@ -65,6 +65,12 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
 function BudgetCardActions({ budget }: { budget: Budget }) {
   const styles = { item: "text-preset-4 text-left cursor-pointer" }
 
+  const handleDelete = () => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 3000)
+    })
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="btn btn-ghost btn-size-sm p-2">
@@ -84,6 +90,7 @@ function BudgetCardActions({ budget }: { budget: Budget }) {
             title={budget.category}
             description="Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever."
             styles={{ trigger: cn(styles.item, "text-destructive") }}
+            onDelete={handleDelete}
           />
         </DropdownMenuItem>
       </DropdownMenuContent>

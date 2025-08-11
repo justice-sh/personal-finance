@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import React from "react"
+import BudgetDialog from "./budget-dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,7 +9,6 @@ import {
 } from "@/shared/components/ui/dropdown-menu"
 import { Budget } from "@/shared/types/budget"
 import Slider from "@/shared/components/slider"
-import AddBudgetDialog from "./add-budget-dialog"
 import OptionsIcon from "@/shared/icons/options-icon"
 import { color2Tailwind } from "@/shared/utils/color.util"
 import { formatAmount } from "@/shared/utils/formatAmount"
@@ -64,22 +64,23 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
 function BudgetCardActions({ budget }: { budget: Budget }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger className="btn btn-ghost btn-size-sm p-2">
         <OptionsIcon className="size-4 text-gray-300" />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="flex w-[8.38rem] flex-col items-start gap-y-3 px-5 py-3">
+      <DropdownMenuContent className="grid gap-3 p-4">
         <DropdownMenuItem asChild>
-          <AddBudgetDialog />
+          <BudgetDialog mode="edit" budget={budget} styles={{ trigger: "text-preset-4" }} />
         </DropdownMenuItem>
 
         <Separator className="bg-gray-100" />
 
         <DropdownMenuItem asChild>
           <DeleteDialog
-            name="Delete Budgets"
+            name="Delete Budget"
             title={budget.category}
             description="Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever."
+            styles={{ trigger: "text-preset-4" }}
           />
         </DropdownMenuItem>
       </DropdownMenuContent>

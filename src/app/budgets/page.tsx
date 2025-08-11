@@ -3,7 +3,7 @@
 import React from "react"
 import Summary from "./ui/summary"
 import BudgetCard from "./ui/budget-card"
-import AddBudgetDialog from "./ui/add-budget-dialog"
+import BudgetDialog from "./ui/budget-dialog"
 import { useBudgets } from "@/shared/data/budget.data"
 import { PageLayer } from "@/shared/components/page-layer"
 
@@ -25,7 +25,11 @@ const BudgetsPage = () => {
   const { data: budgets } = useBudgets()
 
   return (
-    <PageLayer title="Budgets" cta={<AddBudgetDialog />} className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]">
+    <PageLayer
+      title="Budgets"
+      cta={<BudgetDialog mode="add" />}
+      className="grid gap-6 sm:grid-cols-1 lg:grid-cols-[41.4%_58.6%]"
+    >
       <Summary summaries={Summaries} data={Data} />
 
       <div className="col-span-1 h-full w-full space-y-6">

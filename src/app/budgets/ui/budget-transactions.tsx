@@ -13,7 +13,7 @@ export function BudgetTransactions({ className }: { className?: string }) {
         <DetailsLink href={routes.transactions} label="See All" />
       </header>
 
-      <div className="divide-y divide-gray-500 [&>*]:first-of-type:pt-0">
+      <div className="divide-y divide-gray-200 [&>*]:first-of-type:pt-0">
         {list.map((item) => (
           <TransactionItem key={item.name} {...item} />
         ))}

@@ -1,4 +1,6 @@
+import z from "zod"
 import { Color } from "./color.type"
+import { AddBudgetSchema } from "../schemas/budget.schema"
 
 export type Budget = {
   category: string
@@ -11,4 +13,4 @@ export type Budget = {
   updatedAt: string
 }
 
-export type CreateBudget = Pick<Budget, "category" | "color" | "maxAmount">
+export type CreateBudget = z.infer<typeof AddBudgetSchema>

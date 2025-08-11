@@ -7,10 +7,10 @@ import { PotSummary, PotSummaryProps } from "./pot-summary"
 
 export function Budgets({ className }: { className?: string }) {
   const budgets: PotSummaryProps[] = [
-    { title: "Entertainment", amount: 50, color: Color.Green },
-    { title: "Bills", amount: 750, color: Color.Cyan },
-    { title: "Dinning Out", amount: 75, color: Color.Yellow },
-    { title: "Personal Care", amount: 100, color: Color.Navy },
+    { title: "Entertainment", amount: 50, color: Color.GREEN },
+    { title: "Bills", amount: 750, color: Color.CYAN },
+    { title: "Dinning Out", amount: 75, color: Color.YELLOW },
+    { title: "Personal Care", amount: 100, color: Color.NAVY },
   ]
 
   return (

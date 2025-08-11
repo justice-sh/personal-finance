@@ -17,7 +17,7 @@ export const addBudgetToState = (budget: Budget) => {
 }
 
 export const updateBudgetInState = (budget: Budget) => {
-  const budgets = queryClient.getQueryData<Budget[]>(queryKey) ?? []
+  const budgets = [...(queryClient.getQueryData<Budget[]>(queryKey) ?? [])]
   const index = budgets.findIndex((b) => b.id === budget.id)
   if (index !== -1) {
     budgets[index] = budget

@@ -8,7 +8,7 @@ import {
   SelectLabel,
 } from "@/shared/components/ui/select"
 import { CreateBudget } from "@/shared/types/budget"
-import { CurrencySymbol } from "@/shared/enums/currency"
+import { Currency, CurrencySymbol } from "@/shared/enums/currency"
 import { InputField } from "@/shared/components/form/input-field"
 import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
@@ -25,7 +25,7 @@ export function MaxSpendField({
       <div className="input-container gap-2">
         <form.Field
           name="currency"
-          defaultValue={CurrencySymbol.NGN}
+          defaultValue={Currency.NGN}
           defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }} // I've set these because we have default value
           children={SelectCurrencyField}
         />
@@ -46,16 +46,16 @@ export function MaxSpendField({
 
 function SelectCurrencyField(field: CustomFieldApi<CreateBudget, "currency">) {
   return (
-    <Select onValueChange={(value) => field.handleChange(value as CurrencySymbol)} defaultValue={field.state.value}>
+    <Select onValueChange={(value) => field.handleChange(value as Currency)} defaultValue={field.state.value}>
       <SelectTrigger isNested hideIcon>
         <SelectValue placeholder={CurrencySymbol.NGN} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Select Currency</SelectLabel>
-          {Object.values(CurrencySymbol).map((symbol) => (
-            <SelectItem key={symbol} value={symbol} className="">
-              {symbol}
+          {Object.values(Currency).map((currency) => (
+            <SelectItem key={currency} value={currency} className="">
+              {CurrencySymbol[currency]}
             </SelectItem>
           ))}
         </SelectGroup>

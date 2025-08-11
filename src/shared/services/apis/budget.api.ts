@@ -17,8 +17,14 @@ const updateBudget = async (id: string, data: Partial<CreateBudget>) => {
   return resp.data
 }
 
+const deleteBudget = async (id: string) => {
+  const resp = await securedClient.delete<SuccessResponse<Budget>>(`/budgets/${id}`)
+  return resp.data
+}
+
 export const budgetAPI = {
   getBudgets,
   createBudget,
   updateBudget,
+  deleteBudget,
 }

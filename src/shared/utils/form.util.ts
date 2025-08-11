@@ -27,7 +27,7 @@ export function formValidator<S extends ZodType>(schema: S) {
 }
 
 export function isFormValid(fieldMeta: Record<DeepKeys<any>, AnyFieldMeta>) {
-  const isFormValid = Object.values(fieldMeta).map((meta) => meta.isDirty && meta.isValid)
+  const isFormValid = Object.values(fieldMeta).map((meta) => (meta.isDirty || meta.isDefaultValue) && meta.isValid)
   const isValid = isFormValid.length ? isFormValid.every(Boolean) : false
   return isValid
 }

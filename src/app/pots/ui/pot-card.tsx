@@ -1,4 +1,9 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/components/ui/dropdown-menu"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/shared/components/ui/dropdown-menu"
 import clsx from "clsx"
 import React from "react"
 import { Separator } from "@/shared/components/ui/separator"
@@ -43,6 +48,7 @@ const PotCard = ({ classname, price, sliderValue, target, title, color }: Props)
                 name="Delete Pots"
                 title={"Savings"}
                 description="Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever."
+                onDelete={() => Promise.resolve(true)}
               />
             </DropdownMenuItem>
           </DropdownMenuContent>

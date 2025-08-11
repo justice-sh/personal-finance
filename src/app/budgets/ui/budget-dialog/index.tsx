@@ -16,10 +16,9 @@ import {
 } from "@/shared/components/ui/alert-dialog"
 import { useForm } from "@tanstack/react-form"
 import { Form } from "@/shared/components/form/form"
-import { MaxAmountField } from "./ui/max-amount.field"
+import { MaxSpendField } from "./ui/max-spend.field"
 import SubmitForm from "@/shared/components/form/submit"
 import { formValidator } from "@/shared/utils/form.util"
-import { CurrencySymbol } from "@/shared/types/currency"
 import { ColorTagSelectField } from "./ui/color-tag.field"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { Budget, CreateBudget } from "@/shared/types/budget"
@@ -83,16 +82,16 @@ const BudgetDialog = (props: Props) => {
           />
 
           <form.Field
-            name="maxAmount"
-            defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }}
+            name="maxSpend"
             validators={{
-              onChangeListenTo: ["maxAmount.currency", "maxAmount.value"],
-              onChange: ({ value }) => {
-                const result = dProps.schema.pick({ maxAmount: true }).safeParse({ maxAmount: value })
+              onChangeListenTo: ["currency"],
+              onChange: ({ fieldApi, value: maxSpend }) => {
+                const { currency } = fieldApi.form.state.values
+                const result = dProps.schema.pick({ currency: true, maxSpend: true }).safeParse({ currency, maxSpend })
                 return result.success ? undefined : prettifyError(result.error)
               },
             }}
-            children={(field) => <MaxAmountField field={field} form={form} />}
+            children={(field) => <MaxSpendField field={field} form={form} />}
           />
 
           <form.Field name="color" children={ColorTagSelectField} />
@@ -132,14 +131,7 @@ function getProps(props: Props): DProps {
       errorTitle: "Failed to update budget",
       apiCall: (value: Partial<CreateBudget>) => budgetAPI.updateBudget(props.budget.id, value),
       modifyState: updateBudgetInState,
-      defaultValues: {
-        color: props.budget.color,
-        category: props.budget.category,
-        maxAmount: {
-          value: props.budget.maxAmount,
-          currency: CurrencySymbol.USD,
-        },
-      },
+      defaultValues: props.budget,
     }
   }
 }

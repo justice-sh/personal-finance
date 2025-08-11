@@ -5,19 +5,13 @@ import { CurrencySymbol } from "@/shared/types/currency"
 export const AddBudgetSchema = z.object({
   color: z.enum(Color, { message: "Invalid color" }),
   category: z.string().nonempty("Category is required"),
-  maxAmount: z.object({
-    currency: z.enum(CurrencySymbol),
-    value: z.number().min(0, "Maximum amount must be a positive number"),
-  }),
+  currency: z.enum(CurrencySymbol),
+  maxSpend: z.number().min(0, "Maximum Spend must be a positive number"),
 })
 
 export const EditBudgetSchema = z.object({
   color: z.enum(Color, { message: "Invalid color" }).optional(),
   category: z.string().nonempty("Category is required").optional(),
-  maxAmount: z
-    .object({
-      currency: z.enum(CurrencySymbol),
-      value: z.number().min(0, "Maximum amount must be a positive number"),
-    })
-    .optional(),
+  currency: z.enum(CurrencySymbol).optional(),
+  maxSpend: z.number().min(0, "Maximum Spend must be a positive number").optional(),
 })

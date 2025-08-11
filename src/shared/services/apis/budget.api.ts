@@ -8,15 +8,12 @@ const getBudgets = async () => {
 }
 
 const createBudget = async (data: CreateBudget) => {
-  const resp = await securedClient.post<SuccessResponse<Budget>>("/budgets", { ...data, maxAmount: data.maxAmount.value })
+  const resp = await securedClient.post<SuccessResponse<Budget>>("/budgets", data)
   return resp.data
 }
 
 const updateBudget = async (id: string, data: Partial<CreateBudget>) => {
-  const resp = await securedClient.put<SuccessResponse<Budget>>(`/budgets/${id}`, {
-    ...data,
-    maxAmount: data.maxAmount?.value,
-  })
+  const resp = await securedClient.put<SuccessResponse<Budget>>(`/budgets/${id}`, data)
   return resp.data
 }
 

@@ -1,5 +1,6 @@
 import z from "zod"
 import { Color } from "../enums/color.enum"
+import { CurrencySymbol } from "./currency"
 import { AddBudgetSchema } from "../schemas/budget.schema"
 
 export type Budget = {
@@ -8,9 +9,10 @@ export type Budget = {
   createdAt: string
   currentAmount: number
   id: string
-  maxAmount: number
+  maxSpend: number
   spent: number
   updatedAt: string
+  currency: CurrencySymbol
 }
 
 export type CreateBudget = z.infer<typeof AddBudgetSchema>

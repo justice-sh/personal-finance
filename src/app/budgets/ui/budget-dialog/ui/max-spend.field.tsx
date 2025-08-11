@@ -13,30 +13,38 @@ import { InputField } from "@/shared/components/form/input-field"
 import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
 
-export function MaxAmountField({
+export function MaxSpendField({
   form,
   field,
 }: {
   form: CustomForm<CreateBudget>
-  field: CustomFieldApi<CreateBudget, "maxAmount">
+  field: CustomFieldApi<CreateBudget, "maxSpend">
 }) {
   return (
     <FieldWrapper field={field} label="Maximum Spend">
       <div className="input-container gap-2">
         <form.Field
-          name="maxAmount.currency"
+          name="currency"
           defaultValue={CurrencySymbol.NGN}
           defaultMeta={{ isBlurred: true, isDirty: true, isTouched: true }} // I've set these because we have default value
           children={SelectCurrencyField}
         />
 
-        <form.Field name="maxAmount.value" children={AmountInputField} />
+        <InputField
+          isNested
+          field={field}
+          type="number"
+          placeholder="E.g. 2000"
+          min={0}
+          className="flex-1"
+          onChange={(value) => parseInt(value)}
+        />
       </div>
     </FieldWrapper>
   )
 }
 
-function SelectCurrencyField(field: CustomFieldApi<CreateBudget, "maxAmount.currency">) {
+function SelectCurrencyField(field: CustomFieldApi<CreateBudget, "currency">) {
   return (
     <Select onValueChange={(value) => field.handleChange(value as CurrencySymbol)} defaultValue={field.state.value}>
       <SelectTrigger isNested hideIcon>
@@ -53,19 +61,5 @@ function SelectCurrencyField(field: CustomFieldApi<CreateBudget, "maxAmount.curr
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
-}
-
-function AmountInputField(field: CustomFieldApi<CreateBudget, "maxAmount.value">) {
-  return (
-    <InputField
-      isNested
-      field={field}
-      type="number"
-      placeholder="E.g. 2000"
-      min={0}
-      className="flex-1"
-      onChange={(value) => parseInt(value)}
-    />
   )
 }

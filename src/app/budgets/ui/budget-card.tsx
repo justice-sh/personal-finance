@@ -29,12 +29,12 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
       </div>
 
       <div className="flex flex-col gap-y-4">
-        <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxAmount)}</p>
+        <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxSpend)}</p>
 
         <Slider
           sliderBorderClass="p-1"
           sliderPipeClass={clsx(color2Tailwind(budget.color), "h-6")}
-          value={Math.round((budget.spent / budget.maxAmount) * 100)}
+          value={Math.round((budget.spent / budget.maxSpend) * 100)}
         />
 
         <div className="flex items-center justify-between gap-x-4">

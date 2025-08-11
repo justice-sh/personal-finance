@@ -1,17 +1,19 @@
-import { cn } from "@/shared/lib/utils"
-import { SectionHeader } from "./section-header"
 import { routes } from "@/shared/constants/routes"
 import { TransactionType } from "@/shared/types/transaction"
+import { DetailsLink } from "@/shared/components/details-link"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 
-export function Transactions({ className }: { className?: string }) {
+export function BudgetTransactions({ className }: { className?: string }) {
   return (
-    <section className={cn(className, "pb-3")}>
-      <SectionHeader title="Transactions" cta={{ href: routes.transactions, label: "View All" }} />
+    <section className="bg-beige-100 rounded-lg p-4 pb-3">
+      <header className="mb-6 flex items-center justify-between gap-4">
+        <h3 className="text-preset-3 xs-5:text-preset-2">Latest Spending</h3>
+        <DetailsLink href={routes.transactions} label="See All" />
+      </header>
 
-      <div className="divide-y divide-gray-100 [&>*]:first-of-type:pt-0">
+      <div className="divide-y divide-gray-500 [&>*]:first-of-type:pt-0">
         {list.map((item) => (
           <TransactionItem key={item.name} {...item} />
         ))}
@@ -33,11 +35,11 @@ const TransactionItem = ({ name, image, amount, date, type }: TransactionItemPro
     <div className="flex items-center justify-between py-2.5">
       <div className="flex items-center gap-4">
         <TransactionAvatar avatar={image} />
-        <p className="text-preset-4-bold text-gray-900">{name}</p>
+        <p className="text-preset-5-bold text-gray-900">{name}</p>
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        <TransactionAmount className="text-preset-4-bold" amount={amount} type={type} />
+        <TransactionAmount className="text-preset-5-bold" amount={amount} type={type} />
         <TransactionDate date={date} />
       </div>
     </div>
@@ -61,20 +63,6 @@ const list: TransactionItemProps[] = [
   },
   {
     name: "Freelance",
-    image: "/images/avatars/user-3.png",
-    amount: 1200,
-    date: "2023-03-03",
-    type: "income",
-  },
-  {
-    name: "Something",
-    image: "/images/avatars/user-3.png",
-    amount: 1200,
-    date: "2023-03-03",
-    type: "income",
-  },
-  {
-    name: "Anotherthing",
     image: "/images/avatars/user-3.png",
     amount: 1200,
     date: "2023-03-03",

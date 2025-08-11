@@ -1,4 +1,4 @@
-import { DetailsLink } from "./details-link"
+import { DetailsLink } from "@/shared/components/details-link"
 
 export function SectionHeader({ title, cta }: { title: string; cta: { label?: string; href: string } }) {
   return (

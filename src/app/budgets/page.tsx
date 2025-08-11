@@ -2,7 +2,7 @@
 
 import React from "react"
 import Summary from "./ui/summary"
-import EnlightedCards from "./ui/enlighted-cards"
+import BudgetCard from "./ui/budget-card"
 import AddBudgetDialog from "./ui/add-budget-dialog"
 import { useBudgets } from "@/shared/data/budget.data"
 import { PageLayer } from "@/shared/components/page-layer"
@@ -21,12 +21,6 @@ const Data = [
   { name: "Group D", value: 650, color: "#82c9d7" },
 ]
 
-const Next = [
-  { name: "James Thompson", value: "24", date: "11 Aug 2024" },
-  { name: "Adams Smith", value: "28", date: "11 Dec 2022" },
-  { name: "Plum Maths", value: "50", date: "1 Nov 2000" },
-]
-
 const BudgetsPage = () => {
   const { data: budgets } = useBudgets()
 
@@ -36,7 +30,7 @@ const BudgetsPage = () => {
 
       <div className="col-span-1 h-full w-full space-y-6">
         {budgets.map((budget) => (
-          <EnlightedCards key={budget.category} budget={budget} next={Next} />
+          <BudgetCard key={budget.category} budget={budget} />
         ))}
       </div>
     </PageLayer>

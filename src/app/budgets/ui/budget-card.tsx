@@ -1,0 +1,90 @@
+import clsx from "clsx"
+import React from "react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/shared/components/ui/dropdown-menu"
+import { Budget } from "@/shared/types/budget"
+import Slider from "@/shared/components/slider"
+import AddBudgetDialog from "./add-budget-dialog"
+import OptionsIcon from "@/shared/icons/options-icon"
+import { color2Tailwind } from "@/shared/utils/color.util"
+import { formatAmount } from "@/shared/utils/formatAmount"
+import { BudgetTransactions } from "./budget-transactions"
+import { Separator } from "@/shared/components/ui/separator"
+import DeleteDialog from "@/shared/components/delete-dialog"
+
+const BudgetCard = ({ budget }: { budget: Budget }) => {
+  return (
+    <div className="flex flex-col gap-y-5 rounded-md bg-white px-5 py-6 sm:p-8">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-x-4">
+          <div className={clsx("size-4 rounded-full bg-gray-500", color2Tailwind(budget.color))} />
+          <p className="text-preset-2 capitalize">{budget.category}</p>
+        </div>
+
+        <BudgetCardActions budget={budget} />
+      </div>
+
+      <div className="flex flex-col gap-y-4">
+        <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxAmount)}</p>
+
+        <Slider
+          sliderBorderClass="p-1"
+          sliderPipeClass={clsx(color2Tailwind(budget.color), "h-6")}
+          value={Math.round((budget.spent / budget.maxAmount) * 100)}
+        />
+
+        <div className="flex items-center justify-between gap-x-4">
+          <div className="flex w-1/2 items-center gap-x-4">
+            <div className={clsx("h-[2.69rem] w-1 rounded-[0.5rem]", color2Tailwind(budget.color))} />
+            <div className="flex flex-col justify-between">
+              <p className="text-preset-5 text-gray-500">Spent</p>
+              <p className="text-preset-4-bold">{formatAmount(budget.spent)}</p>
+            </div>
+          </div>
+
+          <div className="flex w-1/2 items-center justify-start gap-x-4">
+            <div className="bg-beige-100 h-[2.69rem] w-1 rounded-[0.5rem]" />
+            <div className="flex flex-col justify-between">
+              <p className="text-preset-5 text-gray-500">Remaining</p>
+              <p className="text-preset-4-bold">{formatAmount(budget.currentAmount)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <BudgetTransactions />
+    </div>
+  )
+}
+
+function BudgetCardActions({ budget }: { budget: Budget }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <OptionsIcon className="size-4 text-gray-300" />
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent className="flex w-[8.38rem] flex-col items-start gap-y-3 px-5 py-3">
+        <DropdownMenuItem asChild>
+          <AddBudgetDialog />
+        </DropdownMenuItem>
+
+        <Separator className="bg-gray-100" />
+
+        <DropdownMenuItem asChild>
+          <DeleteDialog
+            name="Delete Budgets"
+            title={budget.category}
+            description="Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever."
+          />
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
+export default BudgetCard

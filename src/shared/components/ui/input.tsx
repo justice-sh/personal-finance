@@ -10,7 +10,7 @@ function Input({ className, type, isNested, ...props }: InputProps) {
     <input
       type={type}
       data-slot="input"
-      className={cn({ "input-container": !isNested }, "input-text", className)}
+      className={cn("input-text", { "input-container": !isNested }, className)}
       {...props}
     />
   )

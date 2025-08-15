@@ -10,9 +10,9 @@ export function IconInput({ className, isInvalid, icon, ...props }: IconInputPro
   return (
     <div
       aria-invalid={isInvalid}
-      className={cn("input-container flex flex-1 items-center justify-between gap-1", className)}
+      className={cn("input-container flex flex-1 items-center justify-between gap-0 px-0", className)}
     >
-      <Input {...props} isNested={false} className={cn("input-text h-full w-full border-none ring-0 outline-none")} />
+      <Input {...props} isNested className={cn("input-text h-full w-full border-none px-4 ring-0 outline-none")} />
 
       <IconRenderer icon={icon} />
     </div>

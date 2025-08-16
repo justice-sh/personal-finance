@@ -1,28 +1,15 @@
 "use client"
 
 import React from "react"
-import Summary from "./ui/summary"
 import BudgetCard from "./ui/budget-card"
 import BudgetDialog from "./ui/budget-dialog"
 import { useBudgets } from "@/shared/data/budget"
+import SpendingSummary from "./ui/spending-summary"
 import { PageLayer } from "@/shared/components/page-layer"
-
-const Summaries = [
-  { color: "bg-secondary-green", name: "Entertainment", priceOf: "15.00", priceOut: "50.00", range: 90 },
-  { color: "bg-secondary-yellow", name: "Bills", priceOf: "150.00", priceOut: "750.00", range: 50 },
-  { color: "bg-secondary-navy", name: "Dinning Out", priceOf: "133.00", priceOut: "75.00", range: 20 },
-  { color: "bg-secondary-cyan", name: "Personnal Care", priceOf: "40.00", priceOut: "100.00", range: 30 },
-]
-
-const Data = [
-  { name: "Group A", value: 50, color: "#277c78" },
-  { name: "Group B", value: 150, color: "#f2cdac" },
-  { name: "Group C", value: 150, color: "#626070" },
-  { name: "Group D", value: 650, color: "#82c9d7" },
-]
+import { ConditionalRenderer } from "@/shared/components/conditional-renderer"
 
 const BudgetsPage = () => {
-  const { data: budgets } = useBudgets()
+  const { data: budgets, isLoading } = useBudgets()
 
   return (
     <PageLayer
@@ -30,13 +17,13 @@ const BudgetsPage = () => {
       cta={<BudgetDialog mode="add" />}
       className="lg-2:grid-cols-[428px_1fr] md-9:grid-cols-2 grid gap-6"
     >
-      <Summary summaries={Summaries} data={Data} />
+      <SpendingSummary budgets={budgets} />
 
-      <div className="space-y-6">
+      <ConditionalRenderer className="space-y-6" isEmpty={budgets.length === 0} isLoading={isLoading}>
         {budgets.map((budget) => (
           <BudgetCard key={budget.category} budget={budget} />
         ))}
-      </div>
+      </ConditionalRenderer>
     </PageLayer>
   )
 }

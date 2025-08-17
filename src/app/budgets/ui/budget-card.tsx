@@ -10,13 +10,13 @@ import {
 import { Budget } from "@/shared/types/budget"
 import Slider from "@/shared/components/slider"
 import OptionsIcon from "@/shared/icons/options-icon"
+import { refreshBudgets } from "@/shared/data/budget"
 import { color2Tailwind } from "@/shared/utils/color.util"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import { BudgetTransactions } from "./budget-transactions"
 import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/delete-dialog"
 import { budgetAPI } from "@/shared/services/apis/budget.api"
-import { refreshBudgets } from "@/shared/data/budget"
 
 const BudgetCard = ({ budget }: { budget: Budget }) => {
   return (

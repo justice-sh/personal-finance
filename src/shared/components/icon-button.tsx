@@ -1,7 +1,7 @@
 import React from "react"
+import { cn } from "../lib/utils"
 import { Button, ButtonProps } from "./ui/button"
 import { IconRenderer, IconRendererProps } from "./icon-renderer"
-import { cn } from "../lib/utils"
 
 interface Props extends ButtonProps, Pick<IconRendererProps, "icon"> {
   className?: string
@@ -10,7 +10,7 @@ interface Props extends ButtonProps, Pick<IconRendererProps, "icon"> {
 
 export function IconButton({ icon, className, children, variant = "ghost", ...props }: Props) {
   return (
-    <Button {...props} size="icon" className={cn("aspect-square h-full w-auto", className)} data-slot="icon" variant={variant}>
+    <Button {...props} size="icon" className={cn("m-0", className)} data-slot="icon" variant={variant}>
       <IconRenderer icon={icon}>{children}</IconRenderer>
     </Button>
   )

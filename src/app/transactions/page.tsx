@@ -1,14 +1,14 @@
 "use client"
 
-import { useQueryParams } from "@/shared/hooks/use-query-params"
-import { IconButton } from "@/shared/components/icon-button"
-import { PageLayer } from "@/shared/components/page-layer"
-import { IconInput } from "@/shared/components/icon-input"
-import SearchIcon from "@/shared/icons/search-icon"
-import { SortBy } from "@/shared/components/transaction/tx-sort-by"
 import React from "react"
 import { Category } from "./ui/category"
 import { TransactionsGrid } from "./ui/grid"
+import SearchIcon from "@/shared/icons/search-icon"
+import { PageLayer } from "@/shared/components/page-layer"
+import { IconInput } from "@/shared/components/icon-input"
+import { IconButton } from "@/shared/components/icon-button"
+import { useQueryParams } from "@/shared/hooks/use-query-params"
+import { SortBy } from "@/shared/components/transaction/tx-sort-by"
 
 type SortBy = "latest" | "oldest" | "A to Z" | "Z to A" | "highest" | "lowest" | ({} & string)
 
@@ -22,7 +22,12 @@ type TransactionsQueryParams = {
 export default function TransactionsPage() {
   const filterSectionRef = React.useRef<HTMLDivElement>(null)
 
-  const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({ query: "", page: 1, sortBy: "latest", category: "all" })
+  const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({
+    query: "",
+    page: 1,
+    sortBy: "latest",
+    category: "all",
+  })
 
   return (
     <PageLayer title="Transactions" className="@container flex flex-col gap-6 rounded-xl bg-white p-6">

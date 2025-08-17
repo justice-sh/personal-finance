@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import { X } from "lucide-react"
 import { prettifyError } from "zod"
 import { cn } from "@/shared/lib/utils"
+import { BudgetDialogProps } from "./types"
 import {
   AlertDialog,
   AlertDialogTitle,
@@ -15,6 +16,7 @@ import {
   AlertDialogTrigger,
 } from "@/shared/components/ui/alert-dialog"
 import { useForm } from "@tanstack/react-form"
+import { CreateBudget } from "@/shared/types/budget"
 import { Form } from "@/shared/components/form/form"
 import { MaxSpendField } from "./ui/max-spend-field"
 import { refreshBudgets } from "@/shared/data/budget"
@@ -22,28 +24,12 @@ import SubmitForm from "@/shared/components/form/submit"
 import { formValidator } from "@/shared/utils/form.util"
 import { ColorTagSelectField } from "./ui/color-tag-field"
 import { getErrorMessage } from "@/shared/utils/error-util"
-import { Budget, CreateBudget } from "@/shared/types/budget"
 import { budgetAPI } from "@/shared/services/apis/budget.api"
 import { InputField } from "@/shared/components/form/input-field"
 import { AlertDialogDescription } from "@radix-ui/react-alert-dialog"
 import { AddBudgetSchema, EditBudgetSchema } from "@/shared/schemas/budget"
 
-type AddBudgetProps = {
-  mode: "add"
-}
-
-type EditBudgetProps = {
-  mode: "edit"
-  budget: Budget
-}
-
-type Props = {
-  styles?: {
-    trigger?: string
-  }
-} & (AddBudgetProps | EditBudgetProps)
-
-const BudgetDialog = (props: Props) => {
+const BudgetDialog = (props: BudgetDialogProps) => {
   const dProps = getProps(props)
 
   const form = useForm({
@@ -91,7 +77,7 @@ const BudgetDialog = (props: Props) => {
                 return result.success ? undefined : prettifyError(result.error)
               },
             }}
-            children={(field) => <MaxSpendField field={field} form={form} />}
+            children={(field) => <MaxSpendField mode={props.mode} field={field} form={form} />}
           />
 
           <form.Field name="color" children={ColorTagSelectField} />
@@ -105,7 +91,7 @@ const BudgetDialog = (props: Props) => {
   )
 }
 
-function getProps(props: Props): DProps {
+function getProps(props: BudgetDialogProps): DProps {
   if (props.mode === "add") {
     return {
       name: "+ Add Budget",

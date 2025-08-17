@@ -1,28 +1,31 @@
 import {
   Select,
   SelectItem,
-  SelectTrigger,
   SelectValue,
-  SelectContent,
   SelectGroup,
   SelectLabel,
+  SelectTrigger,
+  SelectContent,
 } from "@/shared/components/ui/select"
+import { BudgetDialogProps } from "../types"
 import { CreateBudget } from "@/shared/types/budget"
-import { Currency, CurrencySymbol } from "@/shared/enums/currency"
 import { InputField } from "@/shared/components/form/input-field"
+import { Currency, CurrencySymbol } from "@/shared/enums/currency"
 import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
 
 export function MaxSpendField({
   form,
   field,
+  mode,
 }: {
+  mode: BudgetDialogProps["mode"]
   form: CustomForm<CreateBudget>
   field: CustomFieldApi<CreateBudget, "maxSpend">
 }) {
   return (
     <FieldWrapper field={field} label="Maximum Spend">
-      <div className="input-container gap-2">
+      <div className="input-container">
         <form.Field
           name="currency"
           defaultValue={Currency.NGN}
@@ -36,7 +39,8 @@ export function MaxSpendField({
           type="number"
           placeholder="E.g. 2000"
           min={0}
-          className="flex-1"
+          className="flex-1 pl-0"
+          disabled={mode === "edit"}
           onChange={(value) => parseInt(value)}
         />
       </div>
@@ -54,7 +58,7 @@ function SelectCurrencyField(field: CustomFieldApi<CreateBudget, "currency">) {
         <SelectGroup>
           <SelectLabel>Select Currency</SelectLabel>
           {Object.values(Currency).map((currency) => (
-            <SelectItem key={currency} value={currency} className="">
+            <SelectItem key={currency} value={currency}>
               {CurrencySymbol[currency]}
             </SelectItem>
           ))}

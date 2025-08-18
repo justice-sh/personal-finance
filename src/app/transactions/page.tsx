@@ -8,32 +8,24 @@ import { PageLayer } from "@/shared/components/page-layer"
 import { IconInput } from "@/shared/components/icon-input"
 import { useTransactions } from "@/shared/data/transaction"
 import { IconButton } from "@/shared/components/icon-button"
+import { TransactionParam } from "@/shared/types/transaction"
 import { useQueryParams } from "@/shared/hooks/use-query-params"
 import { SortBy } from "@/shared/components/transaction/tx-sort-by"
 
 type SortBy = "latest" | "oldest" | "A to Z" | "Z to A" | "highest" | "lowest" | ({} & string)
 
-type TransactionsQueryParams = {
-  page: number
-  query: string
-  sortBy: SortBy
-  category: string
-  pageSize: number
-}
-
 export default function TransactionsPage() {
   const filterSectionRef = React.useRef<HTMLDivElement>(null)
 
-  // TODO: include pageSize here.
-  const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({
+  const [queryParams, setQueryParams] = useQueryParams<TransactionParam>({
     query: "",
-    page: 1,
+    offset: 0,
     sortBy: "latest",
     category: "all",
-    pageSize: 6,
+    limit: 6,
   })
 
-  const { data, isLoading } = useTransactions()
+  const { data, isLoading } = useTransactions(queryParams)
 
   return (
     <PageLayer title="Transactions" className="@container flex flex-col gap-6 rounded-xl bg-white p-6">
@@ -46,12 +38,16 @@ export default function TransactionsPage() {
           placeholder="Search transaction"
           className="mr-auto max-w-[320px]"
         />
-
         <SortBy value={queryParams.sortBy} setValue={(value) => setQueryParams({ sortBy: value }, 0)} className="ml-8" />
         <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 
-      <TransactionsGrid data={data} isLoading={isLoading} />
+      <TransactionsGrid
+        transactions={data}
+        isLoading={isLoading}
+        queryParams={queryParams}
+        setQueryParams={setQueryParams}
+      />
     </PageLayer>
   )
 }

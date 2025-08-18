@@ -1,9 +1,9 @@
 import securedClient from "../api-client/secured-client"
 import { SuccessResponse } from "@/shared/types/api.type"
-import { TransactionResponse } from "@/shared/types/transaction"
+import { TransactionParam, TransactionResponse } from "@/shared/types/transaction"
 
-const getTransactions = async () => {
-  const resp = await securedClient.get<SuccessResponse<TransactionResponse[]>>("/transactions")
+const getTransactions = async (params?: TransactionParam) => {
+  const resp = await securedClient.get<SuccessResponse<TransactionResponse>>("/transactions", { params })
   return resp.data.data
 }
 

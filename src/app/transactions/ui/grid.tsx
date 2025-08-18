@@ -3,31 +3,36 @@
 import React from "react"
 import { cn } from "@/shared/lib/utils"
 import { Pagination } from "./pagination"
-import { TransactionResponse } from "@/shared/types/transaction"
-import { useQueryParams } from "@/shared/hooks/use-query-params"
 import { parseTransactionType } from "@/shared/utils/transaction"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 import { ConditionalRenderer } from "@/shared/components/conditional-renderer"
+import { TransactionParam, TransactionResponse } from "@/shared/types/transaction"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
+
+type Props = {
+  isLoading: boolean
+  queryParams: TransactionParam
+  transactions: TransactionResponse
+  setQueryParams: (params: Partial<TransactionParam>, offset?: number) => void
+}
 
 const classes = {
   table: "my-grid-container",
   row: "my-grid-row",
 }
 
-export function TransactionsGrid({ data, isLoading }: { data: TransactionResponse[]; isLoading: boolean }) {
+export function TransactionsGrid({ transactions, isLoading, queryParams, setQueryParams }: Props) {
   const ref = React.useRef<HTMLDivElement>(null)
 
-  const [queryParams, setQueryParams] = useQueryParams<{ page: number; pageSize: number }>({ page: 1, pageSize: 6 })
+  useDynamicPageSize(ref, (limit) => setQueryParams({ limit, offset: queryParams.offset }))
 
-  useDynamicPageSize(ref, (pageSize) => setQueryParams({ pageSize, page: 1 }))
-
-  const paginatedTransactions = data.slice(
-    (queryParams.page - 1) * queryParams.pageSize,
-    queryParams.page * queryParams.pageSize,
-  )
+  const paginatedTransactions = transactions.data
+  // const paginatedTransactions = transactions.data.slice(
+  //   (queryParams.offset + 1 - 1) * queryParams.limit,
+  //   (queryParams.offset + 1) * queryParams.limit,
+  // )
 
   return (
     <ConditionalRenderer
@@ -35,7 +40,7 @@ export function TransactionsGrid({ data, isLoading }: { data: TransactionRespons
       ref={ref}
       className="@container flex flex-1 flex-col"
       isLoading={isLoading}
-      isEmpty={data.length === 0}
+      isEmpty={transactions.data.length === 0}
     >
       <DesktopView list={paginatedTransactions} className={cn("@max-[600px]:hidden", classes.table)} />
 
@@ -43,16 +48,16 @@ export function TransactionsGrid({ data, isLoading }: { data: TransactionRespons
 
       <Pagination
         className="mt-auto"
-        totalItems={data.length}
-        itemsPerPage={queryParams.pageSize}
-        currentPage={queryParams.page}
-        onPageChange={(page) => setQueryParams({ page })}
+        totalItems={transactions.meta.total}
+        itemsPerPage={queryParams.limit}
+        currentPage={queryParams.offset}
+        onPageChange={(offset) => setQueryParams({ offset })}
       />
     </ConditionalRenderer>
   )
 }
 
-function DesktopView({ list, className }: { list: TransactionResponse[]; className?: string }) {
+function DesktopView({ list, className }: { list: TransactionResponse["data"]; className?: string }) {
   return (
     <Table className={className}>
       <TableHeader>
@@ -91,7 +96,7 @@ function DesktopView({ list, className }: { list: TransactionResponse[]; classNa
   )
 }
 
-function MobileView({ list, className }: { list: TransactionResponse[]; className?: string }) {
+function MobileView({ list, className }: { list: TransactionResponse["data"]; className?: string }) {
   return (
     <Table className={className}>
       <TableBody>

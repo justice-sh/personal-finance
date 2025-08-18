@@ -27,6 +27,8 @@ export function Pagination({
     animatePagination(totalPages, page, `#${IDs.content}`)
   }
 
+  if (totalPages < 2) return null
+
   return (
     <div className={cn("mt-4 flex items-center justify-between", className)}>
       <Button disabled={currentPage < 2} onClick={() => handlePageChange(currentPage - 1)} variant="outline">
@@ -36,7 +38,11 @@ export function Pagination({
       <div className="max-sm-8:hidden relative h-10 w-full max-w-[240px] overflow-hidden">
         <div id={IDs.content} className="absolute flex h-full w-full gap-2">
           {Array.from({ length: totalPages }, (_, index) => (
-            <Button key={index} onClick={() => handlePageChange(index + 1)} variant={currentPage === index + 1 ? "default" : "outline"}>
+            <Button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              variant={currentPage === index + 1 ? "default" : "outline"}
+            >
               {index + 1}
             </Button>
           ))}

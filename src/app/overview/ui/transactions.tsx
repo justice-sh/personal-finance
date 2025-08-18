@@ -1,7 +1,7 @@
 import { cn } from "@/shared/lib/utils"
 import { SectionHeader } from "./section-header"
 import { routes } from "@/shared/constants/routes"
-import { TransactionType } from "@/shared/types/transaction"
+import { TransactionTypeUnion } from "@/shared/types/transaction"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
@@ -25,7 +25,7 @@ interface TransactionItemProps {
   image: string
   amount: number
   date: string
-  type: TransactionType
+  type: TransactionTypeUnion
 }
 
 const TransactionItem = ({ name, image, amount, date, type }: TransactionItemProps) => {

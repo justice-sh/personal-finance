@@ -1,5 +1,5 @@
 import { routes } from "@/shared/constants/routes"
-import { TransactionType } from "@/shared/types/transaction"
+import { TransactionTypeUnion } from "@/shared/types/transaction"
 import { DetailsLink } from "@/shared/components/details-link"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
@@ -27,7 +27,7 @@ interface TransactionItemProps {
   image: string
   amount: number
   date: string
-  type: TransactionType
+  type: TransactionTypeUnion
 }
 
 const TransactionItem = ({ name, image, amount, date, type }: TransactionItemProps) => {

@@ -3,48 +3,57 @@
 import React from "react"
 import { cn } from "@/shared/lib/utils"
 import { Pagination } from "./pagination"
+import { Currency } from "@/shared/enums/currency"
+import { TransactionResponse } from "@/shared/types/transaction"
 import { useQueryParams } from "@/shared/hooks/use-query-params"
+import { parseTransactionType } from "@/shared/utils/transaction"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
+import { ConditionalRenderer } from "@/shared/components/conditional-renderer"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
-import { Currency } from "@/shared/enums/currency"
 
 const classes = {
   table: "my-grid-container",
   row: "my-grid-row",
 }
 
-export function TransactionsGrid() {
+export function TransactionsGrid({ data, isLoading }: { data: TransactionResponse[]; isLoading: boolean }) {
   const ref = React.useRef<HTMLDivElement>(null)
 
   const [queryParams, setQueryParams] = useQueryParams<{ page: number; pageSize: number }>({ page: 1, pageSize: 6 })
 
   useDynamicPageSize(ref, (pageSize) => setQueryParams({ pageSize, page: 1 }))
 
-  const paginatedTransactions = transactions.slice(
+  const paginatedTransactions = data.slice(
     (queryParams.page - 1) * queryParams.pageSize,
     queryParams.page * queryParams.pageSize,
   )
 
   return (
-    <section ref={ref} className="@container flex flex-1 flex-col">
+    <ConditionalRenderer
+      tag="section"
+      ref={ref}
+      className="@container flex flex-1 flex-col"
+      isLoading={isLoading}
+      isEmpty={data.length === 0}
+    >
       <DesktopView list={paginatedTransactions} className={cn("@max-[600px]:hidden", classes.table)} />
 
       <MobileView list={paginatedTransactions} className={cn("@min-[600px]:hidden", classes.table)} />
 
       <Pagination
         className="mt-auto"
-        totalItems={transactions.length}
+        totalItems={data.length}
         itemsPerPage={queryParams.pageSize}
         currentPage={queryParams.page}
         onPageChange={(page) => setQueryParams({ page })}
       />
-    </section>
+    </ConditionalRenderer>
   )
 }
 
-function DesktopView({ list, className }: { list: typeof transactions; className?: string }) {
+function DesktopView({ list, className }: { list: TransactionResponse[]; className?: string }) {
   return (
     <Table className={className}>
       <TableHeader>
@@ -59,18 +68,22 @@ function DesktopView({ list, className }: { list: typeof transactions; className
         {list.map((transaction, idx) => (
           <TableRow key={transaction.id + idx} className={classes.row}>
             <TableCell className="flex items-center gap-4">
-              <TransactionAvatar avatar={transaction.avatar} />
-              <p className="text-preset-4-bold text-gray-900">{transaction.name}</p>
+              <TransactionAvatar avatar={transaction.avatarUrl} />
+              <p className="text-preset-4-bold text-gray-900 capitalize">{transaction.description}</p>
             </TableCell>
 
             <TableCell className="capitalize">{transaction.category}</TableCell>
 
             <TableCell>
-              <TransactionDate date={transaction.date} />
+              <TransactionDate date={transaction.createdAt} />
             </TableCell>
 
             <TableCell className="text-right">
-              <TransactionAmount amount={transaction.totalAmount} type={transaction.type} currency={transaction.currency} />
+              <TransactionAmount
+                amount={transaction.amount}
+                type={parseTransactionType(transaction.type)}
+                currency={transaction.currency}
+              />
             </TableCell>
           </TableRow>
         ))}
@@ -79,28 +92,28 @@ function DesktopView({ list, className }: { list: typeof transactions; className
   )
 }
 
-function MobileView({ list, className }: { list: typeof transactions; className?: string }) {
+function MobileView({ list, className }: { list: TransactionResponse[]; className?: string }) {
   return (
     <Table className={className}>
       <TableBody>
         {list.map((transaction, idx) => (
           <TableRow key={transaction.id + idx} className={cn("flex w-full flex-row justify-between", classes.row)}>
             <TableCell className="flex w-full items-center gap-4">
-              <TransactionAvatar avatar={transaction.avatar} className="max-xs-5:hidden size-8" />
+              <TransactionAvatar avatar={transaction.avatarUrl} className="max-xs-5:hidden size-8" />
               <div className="flex flex-col gap-1">
-                <p className="text-preset-4-bold text-gray-900">{transaction.name}</p>
+                <p className="text-preset-4-bold text-gray-900">{transaction.description}</p>
                 <p className="text-preset-5 text-gray-500 capitalize">{transaction.category}</p>
               </div>
             </TableCell>
 
             <TableCell className="grid gap-1">
               <TransactionAmount
-                amount={transaction.totalAmount}
-                type={transaction.type}
+                amount={transaction.amount}
+                type={parseTransactionType(transaction.type)}
                 currency={transaction.currency}
                 className="text-preset-4-bold"
               />
-              <TransactionDate date={transaction.date} className="text-preset-5 text-gray-500" />
+              <TransactionDate date={transaction.createdAt} className="text-preset-5 text-gray-500" />
             </TableCell>
           </TableRow>
         ))}

@@ -6,6 +6,7 @@ type Props = {
   className?: string
   isLoading?: boolean
   tag?: "div" | "section"
+  ref?: React.Ref<HTMLDivElement>
 
   children?: React.ReactNode
   emptyState?: React.ReactNode
@@ -20,6 +21,7 @@ export function ConditionalRenderer({
   isEmpty,
   children,
   styles,
+  ref,
   emptyState = "Nothing to show...",
 }: Props) {
   const Tag = tag
@@ -34,5 +36,9 @@ export function ConditionalRenderer({
 
   if (isEmpty) return <Tag className={cn("text-preset-2 flex items-center justify-center", styles?.empty)}>{emptyState}</Tag>
 
-  return <Tag className={className}>{children}</Tag>
+  return (
+    <Tag className={className} ref={ref}>
+      {children}
+    </Tag>
+  )
 }

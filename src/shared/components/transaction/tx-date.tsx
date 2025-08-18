@@ -1,11 +1,13 @@
 import { cn } from "@/shared/lib/utils"
 
-export function TransactionDate({ date, className }: { date: string; className?: string }) {
+export function TransactionDate({ date, className }: { date: Date | string; className?: string }) {
+  const _date = typeof date === "string" ? new Date(date) : date
+
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
     day: "2-digit",
-  }).format(new Date(date))
+  }).format(_date)
 
   const [month, day, year] = formattedDate.replace(", ", " ").split(" ")
 

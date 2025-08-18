@@ -6,6 +6,7 @@ import { TransactionsGrid } from "./ui/grid"
 import SearchIcon from "@/shared/icons/search-icon"
 import { PageLayer } from "@/shared/components/page-layer"
 import { IconInput } from "@/shared/components/icon-input"
+import { useTransactions } from "@/shared/data/transaction"
 import { IconButton } from "@/shared/components/icon-button"
 import { useQueryParams } from "@/shared/hooks/use-query-params"
 import { SortBy } from "@/shared/components/transaction/tx-sort-by"
@@ -29,6 +30,8 @@ export default function TransactionsPage() {
     category: "all",
   })
 
+  const { data, isLoading } = useTransactions()
+
   return (
     <PageLayer title="Transactions" className="@container flex flex-col gap-6 rounded-xl bg-white p-6">
       <section ref={filterSectionRef} className="@container flex items-center gap-3">
@@ -45,7 +48,7 @@ export default function TransactionsPage() {
         <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 
-      <TransactionsGrid />
+      <TransactionsGrid data={data} isLoading={isLoading} />
     </PageLayer>
   )
 }

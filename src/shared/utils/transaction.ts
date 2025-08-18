@@ -1,4 +1,4 @@
-import { TransactionType } from "../types/transaction"
+import { TransactionType } from "../enums/transaction"
 
 // TODO: include "unknown" type and log this hit to avoid disrupting UX.
 export function parseTransactionType(type: TransactionType): "income" | "expense" {

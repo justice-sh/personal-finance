@@ -8,3 +8,5 @@ export const useTransactions = () => {
   const { data = [], isLoading } = useQuery({ queryKey, queryFn })
   return { data, isLoading }
 }
+
+// TODO: create useTransactionQuery hook here

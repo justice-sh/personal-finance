@@ -18,16 +18,19 @@ type TransactionsQueryParams = {
   query: string
   sortBy: SortBy
   category: string
+  pageSize: number
 }
 
 export default function TransactionsPage() {
   const filterSectionRef = React.useRef<HTMLDivElement>(null)
 
+  // TODO: include pageSize here.
   const [queryParams, setQueryParams] = useQueryParams<TransactionsQueryParams>({
     query: "",
     page: 1,
     sortBy: "latest",
     category: "all",
+    pageSize: 6,
   })
 
   const { data, isLoading } = useTransactions()

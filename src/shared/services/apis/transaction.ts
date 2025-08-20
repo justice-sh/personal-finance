@@ -7,6 +7,12 @@ const getTransactions = async (params?: TransactionParam) => {
   return resp.data.data
 }
 
+const getSortBy = async () => {
+  const resp = await securedClient.get<SuccessResponse<{ value: string; label: string }[]>>("/transactions/sort-by")
+  return resp.data.data
+}
+
 export const transactionAPI = {
   getTransactions,
+  getSortBy,
 }

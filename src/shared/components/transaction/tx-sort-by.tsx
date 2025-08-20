@@ -1,17 +1,18 @@
 "use client"
 
-import { Label } from "@/shared/components/ui/label"
 import {
   Select,
-  SelectContent,
-  SelectGroup,
   SelectItem,
+  SelectGroup,
   SelectLabel,
-  SelectTrigger,
   SelectValue,
+  SelectTrigger,
+  SelectContent,
 } from "@/shared/components/ui/select"
-import SortAscendingFillIcon from "@/shared/icons/sort-ascending-fill"
 import { cn } from "@/shared/lib/utils"
+import { Label } from "@/shared/components/ui/label"
+import { useTransactionSortBy } from "@/shared/data/transaction"
+import SortAscendingFillIcon from "@/shared/icons/sort-ascending-fill"
 
 type Props = {
   value: string
@@ -20,25 +21,13 @@ type Props = {
   options?: { value: string; label: string }[]
 }
 
-export function SortBy({ value, setValue, className }: Props) {
-  const sortOptions = [
-    { value: "latest", label: "Latest" },
-    { value: "oldest", label: "Oldest" },
-    { value: "a-2-z", label: "A to Z" },
-    { value: "z-2-a", label: "Z to A" },
-    { value: "highest", label: "Highest" },
-    { value: "lowest", label: "Lowest" },
-  ]
+export function TransactionSortBy({ value, setValue, className }: Props) {
+  const { data } = useTransactionSortBy()
 
   return (
     <>
-      <DesktopView
-        value={value}
-        setValue={setValue}
-        options={sortOptions}
-        className={cn(className, "@max-[616px]:hidden")}
-      />
-      <MobileView value={value} setValue={setValue} options={sortOptions} className={cn(className, "@min-[616px]:hidden")} />
+      <DesktopView value={value} setValue={setValue} options={data} className={cn(className, "@max-[616px]:hidden")} />
+      <MobileView value={value} setValue={setValue} options={data} className={cn(className, "@min-[616px]:hidden")} />
     </>
   )
 }

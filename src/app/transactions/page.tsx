@@ -10,9 +10,7 @@ import { useTransactions } from "@/shared/data/transaction"
 import { IconButton } from "@/shared/components/icon-button"
 import { TransactionParam } from "@/shared/types/transaction"
 import { useQueryParams } from "@/shared/hooks/use-query-params"
-import { SortBy } from "@/shared/components/transaction/tx-sort-by"
-
-type SortBy = "latest" | "oldest" | "A to Z" | "Z to A" | "highest" | "lowest" | ({} & string)
+import { TransactionSortBy } from "@/shared/components/transaction/tx-sort-by"
 
 export default function TransactionsPage() {
   const filterSectionRef = React.useRef<HTMLDivElement>(null)
@@ -38,7 +36,11 @@ export default function TransactionsPage() {
           placeholder="Search transaction"
           className="mr-auto max-w-[320px]"
         />
-        <SortBy value={queryParams.sortBy} setValue={(value) => setQueryParams({ sortBy: value }, 0)} className="ml-8" />
+        <TransactionSortBy
+          value={queryParams.sortBy}
+          setValue={(value) => setQueryParams({ sortBy: value }, 0)}
+          className="ml-8"
+        />
         <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 

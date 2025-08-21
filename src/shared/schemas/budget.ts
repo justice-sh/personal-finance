@@ -30,3 +30,14 @@ export const AdjustBudgetSchema = z
     return data
   })
   .describe("Increase or Decrease the allocated amount for a budget")
+
+export const SpendBudgetSchema = z
+  .object({
+    description: z.string().describe("Reason for spend"),
+    amount: z.number().positive("Amount must be a positive number").describe("Amount to spend"),
+  })
+  .transform((data) => {
+    data.description = data.description.toLowerCase()
+    return data
+  })
+  .describe("Perform spend operation on a budget")

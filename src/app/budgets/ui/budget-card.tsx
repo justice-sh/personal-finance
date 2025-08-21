@@ -11,6 +11,7 @@ import { Budget } from "@/shared/types/budget"
 import Slider from "@/shared/components/slider"
 import OptionsIcon from "@/shared/icons/options-icon"
 import { refreshBudgets } from "@/shared/data/budget"
+import BudgetSpendDialog from "./budget-spend-dialog"
 import { color2Tailwind } from "@/shared/utils/color.util"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import { BudgetTransactions } from "./budget-transactions"
@@ -80,13 +81,19 @@ function BudgetCardActions({ budget }: { budget: Budget }) {
 
       <DropdownMenuContent className="grid gap-3 p-4">
         <DropdownMenuItem asChild>
-          <BudgetDialog mode="edit" budget={budget} styles={{ trigger: styles.item }} />
+          <BudgetSpendDialog budget={budget} styles={{ trigger: styles.item }} />
         </DropdownMenuItem>
 
         <Separator className="bg-gray-100" />
 
         <DropdownMenuItem asChild>
           <BudgetAdjustmentDialog budget={budget} styles={{ trigger: styles.item }} />
+        </DropdownMenuItem>
+
+        <Separator className="bg-gray-100" />
+
+        <DropdownMenuItem asChild>
+          <BudgetDialog mode="edit" budget={budget} styles={{ trigger: styles.item }} />
         </DropdownMenuItem>
 
         <Separator className="bg-gray-100" />

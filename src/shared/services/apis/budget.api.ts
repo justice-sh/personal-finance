@@ -1,6 +1,6 @@
 import securedClient from "../api-client/secured-client"
 import { SuccessResponse } from "@/shared/types/api.type"
-import { AdjustBudget, Budget, CreateBudget } from "@/shared/types/budget"
+import { AdjustBudget, Budget, CreateBudget, SpendBudget } from "@/shared/types/budget"
 
 const getBudgets = async () => {
   const resp = await securedClient.get<SuccessResponse<Budget[]>>("/budgets")
@@ -27,10 +27,16 @@ const adjustBudget = async (id: string, data: AdjustBudget) => {
   return resp.data
 }
 
+const spendBudget = async (id: string, data: SpendBudget) => {
+  const resp = await securedClient.post<SuccessResponse<Budget>>(`/budgets/${id}/spend`, data)
+  return resp.data
+}
+
 export const budgetAPI = {
   getBudgets,
   createBudget,
   updateBudget,
   deleteBudget,
   adjustBudget,
+  spendBudget,
 }

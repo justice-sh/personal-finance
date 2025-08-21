@@ -31,7 +31,7 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
       </div>
 
       <div className="flex flex-col gap-y-4">
-        <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxSpend)}</p>
+        <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxSpend, budget.currency)}</p>
 
         <Slider
           sliderBorderClass="p-1"
@@ -44,7 +44,7 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
             <div className={clsx("h-[2.69rem] w-1 rounded-[0.5rem]", color2Tailwind(budget.color))} />
             <div className="flex flex-col justify-between">
               <p className="text-preset-5 text-gray-500">Spent</p>
-              <p className="text-preset-4-bold">{formatAmount(budget.spent)}</p>
+              <p className="text-preset-4-bold">{formatAmount(budget.spent, budget.currency)}</p>
             </div>
           </div>
 
@@ -52,7 +52,7 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
             <div className="bg-beige-100 h-[2.69rem] w-1 rounded-[0.5rem]" />
             <div className="flex flex-col justify-between">
               <p className="text-preset-5 text-gray-500">Remaining</p>
-              <p className="text-preset-4-bold">{formatAmount(budget.currentAmount)}</p>
+              <p className="text-preset-4-bold">{formatAmount(budget.currentAmount, budget.currency)}</p>
             </div>
           </div>
         </div>

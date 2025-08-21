@@ -3,14 +3,14 @@
 import React from "react"
 import { cn } from "@/shared/lib/utils"
 import { Pagination } from "./pagination"
+import { TransactionResponse } from "@/shared/types/transaction"
 import { parseTransactionType } from "@/shared/utils/transaction"
+import { useTransactionsQueryParams } from "@/shared/data/transaction"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 import { ConditionalRenderer } from "@/shared/components/conditional-renderer"
-import { TransactionParam, TransactionResponse } from "@/shared/types/transaction"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
-import { useTransactionsQueryParams } from "@/shared/data/transaction"
 
 type Props = {
   isLoading: boolean

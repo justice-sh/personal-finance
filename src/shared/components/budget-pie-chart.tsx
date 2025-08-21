@@ -29,8 +29,10 @@ export function BudgetPieChart({ data, limit, spent, currency, className }: Prop
   if (!spent) data = [{ name: "No Data", amount: 1, fill: "var(--gray-300)" }]
 
   return (
-    <div className={cn("flex h-[240px] w-full max-w-[247px] items-center justify-center", className, "relative")}>
-      <ChartContainer config={chartConfig} className="aspect-square max-h-[340px] w-full max-w-[247px]">
+    <div
+      className={cn("relative z-10 flex h-[240px] w-full max-w-[247px] items-center justify-center", className, "relative")}
+    >
+      <ChartContainer config={chartConfig} className="relative z-50 aspect-square max-h-[340px] w-full max-w-[247px]">
         <PieChart className="sm-5:scale-[1.2]">
           <ChartTooltip cursor={false} formatter={tooltipFormatter(currency)} content={<ChartTooltipContent hideLabel />} />
           <Pie data={data} dataKey={dataKey} nameKey={nameKey} innerRadius={65} strokeWidth={3} />

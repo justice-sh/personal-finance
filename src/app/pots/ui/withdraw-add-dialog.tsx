@@ -44,8 +44,8 @@ const Dialog = ({ state, purpose }: DialogProps) => {
           </AlertDialogTitle>
           <div className="flex h-min flex-col justify-between gap-y-5">
             <AlertDialogDescription className="text-preset-4 h-min text-start text-gray-500">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi
-              neque, aliquet.
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec
+              urna. In nisi neque, aliquet.
             </AlertDialogDescription>
             <div className="flex h-min flex-col gap-y-4">
               <div className="flex h-[7.13rem] flex-col justify-between">
@@ -53,7 +53,7 @@ const Dialog = ({ state, purpose }: DialogProps) => {
                   <p className="text-preset-4 text-gray-500">New amount</p>
                   <h2 className="text-preset-1 font-bold">${100}.00</h2>
                 </div>
-                <Slider sliderPipeClass="bg-green-200" />
+                <Slider styles={{ pipe: "bg-green-200" }} />
                 <div className="mt-3 flex w-full items-center justify-between">
                   <p className="text-preset-5-bold text-green-400">{20}%</p>
                   <p className="text-preset-5 text-gray-500">target of ${2000}</p>

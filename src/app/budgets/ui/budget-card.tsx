@@ -36,8 +36,7 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
         <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxSpend, budget.currency)}</p>
 
         <Slider
-          sliderBorderClass="p-1"
-          sliderPipeClass={clsx(color2Tailwind(budget.color), "h-6")}
+          styles={{ border: "p-1", pipe: clsx(color2Tailwind(budget.color), "h-6") }}
           value={Math.round((budget.spent / budget.maxSpend) * 100)}
         />
 

@@ -6,10 +6,11 @@ type TransactionAvatarProps = {
   avatar?: string
   icon?: React.ReactNode
   className?: string
+  fallback?: string
 }
 
-export function TransactionAvatar({ avatar, icon, className }: TransactionAvatarProps) {
-  const fallbackInitials = "TA"
+export function TransactionAvatar({ avatar, icon, className, fallback }: TransactionAvatarProps) {
+  const fallbackInitials = fallback || "TA"
   const alt = "Transaction Avatar"
 
   return (

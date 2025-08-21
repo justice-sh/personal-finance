@@ -41,6 +41,7 @@ export function BudgetTransactions({ budget }: { budget: Budget }) {
 
 const TransactionItem = ({
   category,
+  description,
   avatarUrl,
   currency,
   amount,
@@ -50,8 +51,8 @@ const TransactionItem = ({
   return (
     <div className="flex items-center justify-between py-2.5">
       <div className="flex items-center gap-4">
-        <TransactionAvatar avatar={avatarUrl} />
-        <p className="text-preset-5-bold text-gray-900">{category}</p>
+        <TransactionAvatar avatar={avatarUrl} fallback={category.substring(0, 2).toUpperCase()} />
+        <p className="text-preset-5-bold text-gray-900 capitalize">{description}</p>
       </div>
 
       <div className="flex flex-col items-center gap-2">

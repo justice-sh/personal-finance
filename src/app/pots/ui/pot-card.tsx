@@ -59,7 +59,7 @@ const PotCard = ({ classname, price, sliderValue, target, title, color }: Props)
           <p className="text-preset-4 text-gray-500">Total Saved</p>
           <h2 className="text-preset-1 font-bold">${price}.00</h2>
         </div>
-        <Slider sliderPipeClass={color} value={sliderValue} />
+        <Slider styles={{ pipe: color }} value={sliderValue} />
         <div className="mt-3 flex w-full items-center justify-between">
           <p className="text-preset-5-bold text-gray-500">{sliderValue}%</p>
           <p className="text-preset-5 text-gray-500">target of ${target}</p>

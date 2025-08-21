@@ -1,6 +1,6 @@
 import { routes } from "@/shared/constants/routes"
-import { TransactionTypeUnion } from "@/shared/types/transaction"
 import { DetailsLink } from "@/shared/components/details-link"
+import { TransactionTypeUnion } from "@/shared/types/transaction"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"

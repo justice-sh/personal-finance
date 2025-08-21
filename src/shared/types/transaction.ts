@@ -1,10 +1,10 @@
 import { Currency } from "../enums/currency"
-import { TransactionStatus, TransactionType } from "../enums/transaction"
+import { TransactionSortBy, TransactionStatus, TransactionType } from "../enums/transaction"
 
 export type TransactionTypeUnion = "income" | "expense"
 
 export type TransactionResponse = {
-  data: {
+  transactions: {
     id: string
     type: TransactionType
     amount: number
@@ -27,6 +27,10 @@ export type TransactionParam = {
   offset: number
   query?: string
   budgetId?: string
-  sortBy: string
-  category: string
+  category?: string
+  type?: TransactionType
+  sortBy?: TransactionSortBy
+  status?: TransactionStatus
 }
+
+export type TxSortByResponse = { value: TransactionSortBy; label: string }

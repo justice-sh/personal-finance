@@ -10,12 +10,13 @@ import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
 import { ConditionalRenderer } from "@/shared/components/conditional-renderer"
 import { TransactionParam, TransactionResponse } from "@/shared/types/transaction"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
+import { useTransactionsQueryParams } from "@/shared/data/transaction"
 
 type Props = {
   isLoading: boolean
-  queryParams: TransactionParam
-  transactions: TransactionResponse
-  setQueryParams: (params: Partial<TransactionParam>, offset?: number) => void
+  data: TransactionResponse
+  // queryParams: TransactionParam
+  // setQueryParams: (params: Partial<TransactionParam>, offset?: number) => void
 }
 
 const classes = {
@@ -23,12 +24,14 @@ const classes = {
   row: "my-grid-row",
 }
 
-export function TransactionsGrid({ transactions, isLoading, queryParams, setQueryParams }: Props) {
+export function TransactionsGrid({ data, isLoading }: Props) {
   const ref = React.useRef<HTMLDivElement>(null)
+
+  const [queryParams, setQueryParams] = useTransactionsQueryParams()
 
   useDynamicPageSize(ref, (limit) => setQueryParams({ limit, offset: queryParams.offset }))
 
-  const paginatedTransactions = transactions.data
+  const paginatedTransactions = data.transactions
   // const paginatedTransactions = transactions.data.slice(
   //   (queryParams.offset + 1 - 1) * queryParams.limit,
   //   (queryParams.offset + 1) * queryParams.limit,
@@ -40,7 +43,7 @@ export function TransactionsGrid({ transactions, isLoading, queryParams, setQuer
       ref={ref}
       className="@container flex flex-1 flex-col"
       isLoading={isLoading}
-      isEmpty={transactions.data.length === 0}
+      isEmpty={data.transactions.length === 0}
     >
       <DesktopView list={paginatedTransactions} className={cn("@max-[600px]:hidden", classes.table)} />
 
@@ -48,7 +51,7 @@ export function TransactionsGrid({ transactions, isLoading, queryParams, setQuer
 
       <Pagination
         className="mt-auto"
-        totalItems={transactions.meta.total}
+        totalItems={data.meta.total}
         itemsPerPage={queryParams.limit}
         currentPage={queryParams.offset}
         onPageChange={(offset) => setQueryParams({ offset })}
@@ -57,7 +60,7 @@ export function TransactionsGrid({ transactions, isLoading, queryParams, setQuer
   )
 }
 
-function DesktopView({ list, className }: { list: TransactionResponse["data"]; className?: string }) {
+function DesktopView({ list, className }: { list: TransactionResponse["transactions"]; className?: string }) {
   return (
     <Table className={className}>
       <TableHeader>
@@ -96,7 +99,7 @@ function DesktopView({ list, className }: { list: TransactionResponse["data"]; c
   )
 }
 
-function MobileView({ list, className }: { list: TransactionResponse["data"]; className?: string }) {
+function MobileView({ list, className }: { list: TransactionResponse["transactions"]; className?: string }) {
   return (
     <Table className={className}>
       <TableBody>

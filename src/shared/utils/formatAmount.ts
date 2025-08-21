@@ -8,7 +8,13 @@ export function formatAmount(
 ): string {
   const value = new Intl.NumberFormat("en-US", { style: "currency", currency, ...options }).format(amount)
 
-  if (currency === Currency.NGN) return CurrencySymbol.NGN + value.replace(currency, "").trim()
+  if (currency === Currency.NGN) {
+    return value
+      .replace(currency, CurrencySymbol.NGN)
+      .split("")
+      .map((char) => char.trim())
+      .join("")
+  }
 
   return value
 }

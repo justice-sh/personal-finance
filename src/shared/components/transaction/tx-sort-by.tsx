@@ -11,17 +11,19 @@ import {
 } from "@/shared/components/ui/select"
 import { cn } from "@/shared/lib/utils"
 import { Label } from "@/shared/components/ui/label"
+import { TxSortByResponse } from "@/shared/types/transaction"
+import { TransactionSortBy } from "@/shared/enums/transaction"
 import { useTransactionSortBy } from "@/shared/data/transaction"
 import SortAscendingFillIcon from "@/shared/icons/sort-ascending-fill"
 
 type Props = {
-  value: string
-  setValue: (value: string) => void
+  value?: TransactionSortBy
+  setValue: (value: TransactionSortBy) => void
   className?: string
-  options?: { value: string; label: string }[]
+  options?: TxSortByResponse[]
 }
 
-export function TransactionSortBy({ value, setValue, className }: Props) {
+export function TxSortBy({ value, setValue, className }: Props) {
   const { data } = useTransactionSortBy()
 
   return (

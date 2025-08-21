@@ -1,14 +1,14 @@
 import securedClient from "../api-client/secured-client"
 import { SuccessResponse } from "@/shared/types/api.type"
-import { TransactionParam, TransactionResponse } from "@/shared/types/transaction"
+import { TransactionParam, TransactionResponse, TxSortByResponse } from "@/shared/types/transaction"
 
-const getTransactions = async (params?: TransactionParam) => {
+const getTransactions = async (params?: Partial<TransactionParam>) => {
   const resp = await securedClient.get<SuccessResponse<TransactionResponse>>("/transactions", { params })
   return resp.data.data
 }
 
 const getSortBy = async () => {
-  const resp = await securedClient.get<SuccessResponse<{ value: string; label: string }[]>>("/transactions/sort-by")
+  const resp = await securedClient.get<SuccessResponse<TxSortByResponse[]>>("/transactions/sort-by")
   return resp.data.data
 }
 

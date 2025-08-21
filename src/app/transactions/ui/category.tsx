@@ -14,7 +14,7 @@ import { cn } from "@/shared/lib/utils"
 import { TypcnFilter } from "@/shared/icons/typcn-filter"
 
 type Props = {
-  value: string
+  value?: string
   setValue: (value: string) => void
   className?: string
   options?: { value: string; label: string }[]

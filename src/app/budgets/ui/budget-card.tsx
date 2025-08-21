@@ -60,7 +60,7 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
         </div>
       </div>
 
-      <BudgetTransactions />
+      <BudgetTransactions budget={budget} />
     </div>
   )
 }

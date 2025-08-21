@@ -6,22 +6,14 @@ import { TransactionsGrid } from "./ui/grid"
 import SearchIcon from "@/shared/icons/search-icon"
 import { PageLayer } from "@/shared/components/page-layer"
 import { IconInput } from "@/shared/components/icon-input"
-import { useTransactions } from "@/shared/data/transaction"
 import { IconButton } from "@/shared/components/icon-button"
-import { TransactionParam } from "@/shared/types/transaction"
-import { useQueryParams } from "@/shared/hooks/use-query-params"
-import { TransactionSortBy } from "@/shared/components/transaction/tx-sort-by"
+import { TxSortBy } from "@/shared/components/transaction/tx-sort-by"
+import { useTransactions, useTransactionsQueryParams } from "@/shared/data/transaction"
 
 export default function TransactionsPage() {
   const filterSectionRef = React.useRef<HTMLDivElement>(null)
 
-  const [queryParams, setQueryParams] = useQueryParams<TransactionParam>({
-    query: "",
-    offset: 0,
-    sortBy: "latest",
-    category: "all",
-    limit: 6,
-  })
+  const [queryParams, setQueryParams] = useTransactionsQueryParams()
 
   const { data, isLoading } = useTransactions(queryParams)
 
@@ -36,20 +28,11 @@ export default function TransactionsPage() {
           placeholder="Search transaction"
           className="mr-auto max-w-[320px]"
         />
-        <TransactionSortBy
-          value={queryParams.sortBy}
-          setValue={(value) => setQueryParams({ sortBy: value }, 0)}
-          className="ml-8"
-        />
+        <TxSortBy value={queryParams.sortBy} setValue={(sortBy) => setQueryParams({ sortBy }, 0)} className="ml-8" />
         <Category value={queryParams.category} setValue={(value) => setQueryParams({ category: value }, 0)} />
       </section>
 
-      <TransactionsGrid
-        transactions={data}
-        isLoading={isLoading}
-        queryParams={queryParams}
-        setQueryParams={setQueryParams}
-      />
+      <TransactionsGrid data={data} isLoading={isLoading} />
     </PageLayer>
   )
 }

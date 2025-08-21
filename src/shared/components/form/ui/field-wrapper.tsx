@@ -3,6 +3,7 @@ import { Label } from "../../ui/label"
 import { cn } from "@/shared/lib/utils"
 import { FieldInfo } from "./field-info"
 import { FormFieldProps } from "@/shared/types/form.type"
+import { capitalize } from "@/shared/utils/str.util"
 
 type Props = Pick<FormFieldProps, "id" | "styles" | "label" | "field" | "children" | "isNested">
 
@@ -10,6 +11,7 @@ export function FieldWrapper({ id, styles, label, field, children, isNested }: P
   if (isNested) return children
 
   id = id || field.name
+  label = capitalize(label || field.name || id)
 
   return (
     <div className={cn("flex flex-col gap-1", styles?.wrapper)}>

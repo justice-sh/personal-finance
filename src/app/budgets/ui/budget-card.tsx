@@ -17,6 +17,7 @@ import { BudgetTransactions } from "./budget-transactions"
 import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/delete-dialog"
 import { budgetAPI } from "@/shared/services/apis/budget.api"
+import BudgetAdjustmentDialog from "./budget-adjustment-dialog"
 
 const BudgetCard = ({ budget }: { budget: Budget }) => {
   return (
@@ -80,6 +81,12 @@ function BudgetCardActions({ budget }: { budget: Budget }) {
       <DropdownMenuContent className="grid gap-3 p-4">
         <DropdownMenuItem asChild>
           <BudgetDialog mode="edit" budget={budget} styles={{ trigger: styles.item }} />
+        </DropdownMenuItem>
+
+        <Separator className="bg-gray-100" />
+
+        <DropdownMenuItem asChild>
+          <BudgetAdjustmentDialog budget={budget} styles={{ trigger: styles.item }} />
         </DropdownMenuItem>
 
         <Separator className="bg-gray-100" />

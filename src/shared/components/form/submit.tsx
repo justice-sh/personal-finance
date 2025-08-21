@@ -1,11 +1,13 @@
+import { ZodType } from "zod"
 import { Button } from "../ui/button"
 import { CustomForm } from "@/shared/types/form.type"
-import { isFormValid } from "@/shared/utils/form.util"
 
-export default function SubmitForm({ form, label }: { form: CustomForm<any>; label: string }) {
+export default function SubmitForm({ form, label, schema }: { form: CustomForm<any>; label: string; schema?: ZodType }) {
   return (
     <form.Subscribe
-      selector={({ fieldMeta, isSubmitting }) => ({ isValid: isFormValid(fieldMeta), isSubmitting })}
+      selector={({ isSubmitting }) => {
+        return { isValid: schema?.safeParse(form.state.values).success, isSubmitting }
+      }}
       children={({ isValid, isSubmitting }) => {
         return (
           <Button

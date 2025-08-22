@@ -1,5 +1,5 @@
-import clsx from "clsx"
 import React from "react"
+import { cn } from "@/shared/lib/utils"
 import BudgetDialog from "./budget-dialog"
 import {
   DropdownMenu,
@@ -13,11 +13,11 @@ import OptionsIcon from "@/shared/icons/options-icon"
 import { refreshBudgets } from "@/shared/data/budget"
 import BudgetSpendDialog from "./budget-spend-dialog"
 import { color2Tailwind } from "@/shared/utils/color"
+import { budgetAPI } from "@/shared/services/apis/budget"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import { BudgetTransactions } from "./budget-transactions"
 import { Separator } from "@/shared/components/ui/separator"
 import DeleteDialog from "@/shared/components/delete-dialog"
-import { budgetAPI } from "@/shared/services/apis/budget"
 import BudgetAdjustmentDialog from "./budget-adjustment-dialog"
 
 const BudgetCard = ({ budget }: { budget: Budget }) => {
@@ -25,7 +25,7 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
     <div className="flex flex-col gap-y-5 rounded-md bg-white px-5 py-6 sm:p-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-4">
-          <div className={clsx("size-4 rounded-full bg-gray-500", color2Tailwind(budget.color))} />
+          <div className={cn("size-4 rounded-full bg-gray-500", color2Tailwind(budget.color))} />
           <p className="text-preset-2 capitalize">{budget.category}</p>
         </div>
 
@@ -36,13 +36,13 @@ const BudgetCard = ({ budget }: { budget: Budget }) => {
         <p className="text-preset-4 text-gray-500">Maximum of {formatAmount(budget.maxSpend, budget.currency)}</p>
 
         <Slider
-          styles={{ border: "p-1", pipe: clsx(color2Tailwind(budget.color), "h-6") }}
+          styles={{ border: "p-1", pipe: cn(color2Tailwind(budget.color), "h-6") }}
           value={Math.round((budget.spent / budget.maxSpend) * 100)}
         />
 
         <div className="flex items-center justify-between gap-x-4">
           <div className="flex w-1/2 items-center gap-x-4">
-            <div className={clsx("h-[2.69rem] w-1 rounded-[0.5rem]", color2Tailwind(budget.color))} />
+            <div className={cn("h-[2.69rem] w-1 rounded-[0.5rem]", color2Tailwind(budget.color))} />
             <div className="flex flex-col justify-between">
               <p className="text-preset-5 text-gray-500">Spent</p>
               <p className="text-preset-4-bold">{formatAmount(budget.spent, budget.currency)}</p>

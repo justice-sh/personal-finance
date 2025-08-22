@@ -19,10 +19,12 @@ const BudgetsPage = () => {
     >
       <SpendingSummary budgets={budgets} />
 
-      <ConditionalRenderer className="space-y-6" isEmpty={budgets.length === 0} isLoading={isLoading}>
-        {budgets.map((budget) => (
-          <BudgetCard key={budget.category} budget={budget} />
-        ))}
+      <ConditionalRenderer className="@container" isEmpty={budgets.length === 0} isLoading={isLoading}>
+        <section className="@min-md-5:grid-cols-2 grid gap-6">
+          {budgets.map((budget) => (
+            <BudgetCard key={budget.category} budget={budget} />
+          ))}
+        </section>
       </ConditionalRenderer>
     </PageLayer>
   )

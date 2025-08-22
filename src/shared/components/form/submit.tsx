@@ -1,6 +1,6 @@
 import { ZodType } from "zod"
 import { Button } from "../ui/button"
-import { CustomForm } from "@/shared/types/form.type"
+import { CustomForm } from "@/shared/types/form"
 
 export default function SubmitForm({ form, label, schema }: { form: CustomForm<any>; label: string; schema: ZodType }) {
   return (

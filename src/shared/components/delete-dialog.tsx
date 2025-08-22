@@ -13,7 +13,7 @@ import {
   AlertDialogTrigger,
   AlertDialogDescription,
 } from "@/shared/components/ui/alert-dialog"
-import { capitalize } from "../utils/str.util"
+import { capitalize } from "../utils/string"
 import { getErrorMessage } from "../utils/error-util"
 
 type DeleteDialogProps = {

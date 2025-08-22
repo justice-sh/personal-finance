@@ -2,8 +2,8 @@ import React from "react"
 import { Label } from "../../ui/label"
 import { cn } from "@/shared/lib/utils"
 import { FieldInfo } from "./field-info"
-import { FormFieldProps } from "@/shared/types/form.type"
-import { capitalize } from "@/shared/utils/str.util"
+import { FormFieldProps } from "@/shared/types/form"
+import { capitalize } from "@/shared/utils/string"
 
 type Props = Pick<FormFieldProps, "id" | "styles" | "label" | "field" | "children" | "isNested">
 

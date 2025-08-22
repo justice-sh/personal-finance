@@ -11,7 +11,7 @@ import { BudgetDialogProps } from "../types"
 import { CreateBudget } from "@/shared/types/budget"
 import { InputField } from "@/shared/components/form/input-field"
 import { Currency, CurrencySymbol } from "@/shared/enums/currency"
-import { CustomFieldApi, CustomForm } from "@/shared/types/form.type"
+import { CustomFieldApi, CustomForm } from "@/shared/types/form"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
 
 export function MaxSpendField({

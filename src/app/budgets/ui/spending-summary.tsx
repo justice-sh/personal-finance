@@ -2,7 +2,7 @@ import React from "react"
 import { cn } from "@/shared/lib/utils"
 import { Budget } from "@/shared/types/budget"
 import { formatAmount } from "@/shared/utils/formatAmount"
-import { color2Css, color2Tailwind } from "@/shared/utils/color.util"
+import { color2Css, color2Tailwind } from "@/shared/utils/color"
 import { BudgetPieChart } from "@/shared/components/budget-pie-chart"
 import { ConditionalRenderer } from "@/shared/components/conditional-renderer"
 

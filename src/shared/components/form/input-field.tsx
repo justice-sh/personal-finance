@@ -1,7 +1,7 @@
 import { Input } from "../ui/input"
 import { cn } from "@/shared/lib/utils"
 import { FieldWrapper } from "./ui/field-wrapper"
-import { FormFieldProps } from "@/shared/types/form.type"
+import { FormFieldProps } from "@/shared/types/form"
 
 export function InputField(props: FormFieldProps) {
   const { field, styles, className, onChange = (value) => value, ...rest } = props

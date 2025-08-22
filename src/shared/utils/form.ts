@@ -1,5 +1,5 @@
 import { z, ZodType } from "zod"
-import { CustomFormApi } from "../types/form.type"
+import { CustomFormApi } from "../types/form"
 import { AnyFieldMeta, DeepKeys } from "@tanstack/react-form"
 
 export function formValidator<S extends ZodType>(schema: S) {

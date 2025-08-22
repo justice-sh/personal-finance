@@ -4,7 +4,7 @@ import { Color } from "@/shared/enums/color"
 import { SectionHeader } from "./section-header"
 import { routes } from "@/shared/constants/routes"
 import { Currency } from "@/shared/enums/currency"
-import { color2Css } from "@/shared/utils/color.util"
+import { color2Css } from "@/shared/utils/color"
 import { BudgetPieChart } from "@/shared/components/budget-pie-chart"
 
 export function Budgets({ className }: { className?: string }) {

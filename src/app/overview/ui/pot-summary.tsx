@@ -1,7 +1,7 @@
 import { cn } from "@/shared/lib/utils"
 import { Color } from "@/shared/enums/color"
 import { Currency } from "@/shared/enums/currency"
-import { color2Tailwind } from "@/shared/utils/color.util"
+import { color2Tailwind } from "@/shared/utils/color"
 import { formatAmount } from "@/shared/utils/formatAmount"
 
 export type PotSummaryProps = { color: Color; title: string; amount: number }

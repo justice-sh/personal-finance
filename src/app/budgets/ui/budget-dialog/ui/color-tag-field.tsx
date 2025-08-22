@@ -9,10 +9,10 @@ import {
 } from "@/shared/components/ui/select"
 import { cn } from "@/shared/lib/utils"
 import { Color } from "@/shared/enums/color"
-import { capitalize } from "@/shared/utils/str.util"
+import { capitalize } from "@/shared/utils/string"
 import { CreateBudget } from "@/shared/types/budget"
-import { CustomFieldApi } from "@/shared/types/form.type"
-import { color2Tailwind } from "@/shared/utils/color.util"
+import { CustomFieldApi } from "@/shared/types/form"
+import { color2Tailwind } from "@/shared/utils/color"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
 
 export function ColorTagSelectField(field: CustomFieldApi<CreateBudget, "color">) {

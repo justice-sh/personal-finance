@@ -1,5 +1,5 @@
+import { SuccessResponse } from "@/shared/types/api"
 import securedClient from "../api-client/secured-client"
-import { SuccessResponse } from "@/shared/types/api.type"
 import { AdjustBudget, Budget, CreateBudget, SpendBudget } from "@/shared/types/budget"
 
 const getBudgets = async () => {

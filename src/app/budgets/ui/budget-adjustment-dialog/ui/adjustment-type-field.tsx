@@ -8,7 +8,7 @@ import {
   SelectTrigger,
 } from "@/shared/components/ui/select"
 import { AdjustBudget } from "@/shared/types/budget"
-import { CustomFieldApi } from "@/shared/types/form.type"
+import { CustomFieldApi } from "@/shared/types/form"
 import { BudgetAdjustmentType } from "@/shared/enums/budget"
 import { FieldWrapper } from "@/shared/components/form/ui/field-wrapper"
 

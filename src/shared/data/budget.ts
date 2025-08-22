@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { queryClient } from "../lib/ts-query-client"
-import { budgetAPI } from "../services/apis/budget.api"
+import { budgetAPI } from "../services/apis/budget"
 
 const queryKey = ["user-budgets"]
 const queryFn = budgetAPI.getBudgets

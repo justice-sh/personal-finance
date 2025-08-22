@@ -1,5 +1,5 @@
 import securedClient from "../api-client/secured-client"
-import { SuccessResponse } from "@/shared/types/api.type"
+import { SuccessResponse } from "@/shared/types/api"
 import { TransactionParam, TransactionResponse, TxSortByResponse } from "@/shared/types/transaction"
 
 const getTransactions = async (params?: Partial<TransactionParam>) => {

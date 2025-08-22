@@ -83,7 +83,7 @@ const BudgetDialog = (props: BudgetDialogProps) => {
           <form.Field name="color" children={ColorTagSelectField} />
 
           <AlertDialogFooter className="mt-4">
-            <SubmitForm form={form} label={dProps.buttonLabel} />
+            <SubmitForm form={form} schema={dProps.schema} label={dProps.buttonLabel} />
           </AlertDialogFooter>
         </Form>
       </AlertDialogContent>

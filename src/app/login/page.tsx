@@ -3,16 +3,16 @@
 import z from "zod"
 import { toast } from "sonner"
 import { useEffect } from "react"
-import { CustomForm } from "@/shared/types/form.type"
 import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
 import { Form } from "@/shared/components/form/form"
+import { CustomForm } from "@/shared/types/form.type"
 import { authAPI } from "@/shared/services/apis/auth"
-import { Button } from "@/shared/components/ui/button"
+import { prefetchUserData } from "@/shared/data/user"
+import SubmitForm from "@/shared/components/form/submit"
 import { formValidator } from "@/shared/utils/form.util"
 import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
-import { prefetchUserData } from "@/shared/data/user"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { useRouter, useSearchParams } from "next/navigation"
 import { InputField } from "@/shared/components/form/input-field"
@@ -67,20 +67,7 @@ export default function LoginPage() {
           children={(field) => <PasswordField field={field} label="Password" placeholder="******" />}
         />
 
-        <form.Subscribe
-          selector={({ fieldMeta, isSubmitting }) => {
-            const isFormValid = Object.values(fieldMeta).map((meta) => meta.isDirty && meta.isValid)
-            const isValid = isFormValid.length ? isFormValid.every(Boolean) : false
-            return { isValid, isSubmitting }
-          }}
-          children={({ isValid, isSubmitting }) => {
-            return (
-              <Button type="submit" size="lg" disabled={!isValid} isLoading={isSubmitting} onClick={form.handleSubmit}>
-                Login
-              </Button>
-            )
-          }}
-        />
+        <SubmitForm form={form} schema={schema} label="Login" />
       </Form>
     </AuthLayer>
   )

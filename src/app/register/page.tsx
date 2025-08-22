@@ -7,12 +7,12 @@ import { useForm } from "@tanstack/react-form"
 import { routes } from "@/shared/constants/routes"
 import { Form } from "@/shared/components/form/form"
 import { userAPI } from "@/shared/services/apis/user"
-import { Button } from "@/shared/components/ui/button"
+import SubmitForm from "@/shared/components/form/submit"
+import { formValidator } from "@/shared/utils/form.util"
 import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
 import { getErrorMessage } from "@/shared/utils/error-util"
 import { InputField } from "@/shared/components/form/input-field"
-import { formValidator, isFormValid } from "@/shared/utils/form.util"
 import { PasswordField } from "@/shared/components/form/password-field"
 
 const schema = z.object({
@@ -53,16 +53,7 @@ export default function Page() {
           children={(field) => <PasswordField field={field} label="Password" placeholder="******" />}
         />
 
-        <form.Subscribe
-          selector={({ fieldMeta, isSubmitting }) => ({ isValid: isFormValid(fieldMeta), isSubmitting })}
-          children={({ isValid, isSubmitting }) => {
-            return (
-              <Button type="submit" size="lg" disabled={!isValid} isLoading={isSubmitting} onClick={form.handleSubmit}>
-                Create Account
-              </Button>
-            )
-          }}
-        />
+        <SubmitForm form={form} schema={schema} label="Create Account" />
       </Form>
     </AuthLayer>
   )

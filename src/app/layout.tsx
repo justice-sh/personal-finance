@@ -3,16 +3,19 @@ import type { Metadata } from "next"
 import LayoutManager from "./layouts"
 import { cookies } from "next/headers"
 import { cn } from "@/shared/lib/utils"
-import { Public_Sans } from "next/font/google"
+import localFont from "next/font/local"
 import { configUtil } from "@/shared/utils/config"
 import { Toaster } from "@/shared/components/ui/sonner"
 
 configUtil.validate()
 
-const publicSans = Public_Sans({
+const publicSans = localFont({
+  src: [
+    { path: "./fonts/public_sans/PublicSans-Italic-VariableFont_wght.ttf", style: "italics" },
+    { path: "./fonts/public_sans/PublicSans-VariableFont_wght.ttf", style: "normal" },
+  ],
+  display: "swap",
   variable: "--font-public-sans",
-  subsets: ["latin"],
-  weight: ["500", "700"],
 })
 
 export const metadata: Metadata = {

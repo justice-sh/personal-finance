@@ -5,6 +5,7 @@ import { cookies } from "next/headers"
 import { cn } from "@/shared/lib/utils"
 import localFont from "next/font/local"
 import { configUtil } from "@/shared/utils/config"
+import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/shared/components/ui/sonner"
 
 configUtil.validate()
@@ -60,6 +61,7 @@ export default async function RootLayout({
       <body className={cn(publicSans.variable, "bg-beige-100 antialiased")}>
         <LayoutManager defaultOpen={defaultOpen}>{children}</LayoutManager>
         <Toaster richColors />
+        <Analytics />
       </body>
     </html>
   )

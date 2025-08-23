@@ -43,10 +43,10 @@ next-env.d.ts
 # lock files
 package-lock.json 
 yarn.lock
-pnpm-lock.yaml
+# pnpm-lock.yaml
 
 # local
 local
 
 # workspace files
-pnpm-workspace.yaml
+# pnpm-workspace.yaml

@@ -9,10 +9,10 @@ import { PotSummary, PotSummaryProps } from "./pot-summary"
 
 export function Pots({ className }: { className?: string }) {
   const pots: PotSummaryProps[] = [
-    { title: "Savings", amount: 500, color: Color.GREEN },
-    { title: "Gift", amount: 200, color: Color.CYAN },
-    { title: "Concert Ticket", amount: 150, color: Color.YELLOW },
-    { title: "New Laptop", amount: 110, color: Color.NAVY },
+    { title: "Savings", amount: 500, color: Color.GREEN, currency: Currency.USD },
+    { title: "Gift", amount: 200, color: Color.CYAN, currency: Currency.USD },
+    { title: "Concert Ticket", amount: 150, color: Color.YELLOW, currency: Currency.USD },
+    { title: "New Laptop", amount: 110, color: Color.NAVY, currency: Currency.USD },
   ]
 
   const totalSavedAmount = pots.reduce((acc, pot) => acc + pot.amount, 0)

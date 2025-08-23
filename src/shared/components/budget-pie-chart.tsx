@@ -7,21 +7,20 @@ import { Currency } from "@/shared/enums/currency"
 import { formatAmount } from "@/shared/utils/formatAmount"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 
-type Props = { data: ChartData[]; className?: string; limit: number; spent: number; currency: Currency }
-
-type ChartData = {
-  name: string
-  amount: number
-  /**
-   * `fill` - should be any css color or css variable, E.g.: `red` | `var(--color-name)` | `#fff`
-   */
-  fill: string
+type Props = {
+  data: ChartData[]
+  className?: string
+  limit: number
+  spent: number
+  currency: Currency
+  styles?: { container?: string; chartContainer?: string }
+  innerRadius?: number
 }
 
 const dataKey: keyof ChartData = "amount"
 const nameKey: keyof ChartData = "name"
 
-export function BudgetPieChart({ data, limit, spent, currency, className }: Props) {
+export function BudgetPieChart({ data, limit, spent, currency, className, styles, innerRadius = 85 }: Props) {
   const chartConfig = React.useMemo<ChartConfig>(() => {
     return { amount: { label: "Amount" } } satisfies ChartConfig
   }, [])
@@ -29,11 +28,21 @@ export function BudgetPieChart({ data, limit, spent, currency, className }: Prop
   if (!spent) data = [{ name: "No Data", amount: 1, fill: "var(--gray-300)" }]
 
   return (
-    <div className={cn("relative z-10 flex w-full max-w-[300px] items-center justify-center", className, "relative")}>
-      <ChartContainer config={chartConfig} className="relative z-50 aspect-square w-full max-w-[300px]">
+    <div
+      className={cn(
+        "relative z-10 flex w-full max-w-[300px] items-center justify-center",
+        className,
+        styles?.container,
+        "relative",
+      )}
+    >
+      <ChartContainer
+        config={chartConfig}
+        className={cn("relative z-50 aspect-square w-full max-w-[300px]", styles?.chartContainer)}
+      >
         <PieChart className="sm-5:scale-[1.2]">
           <ChartTooltip cursor={false} formatter={tooltipFormatter(currency)} content={<ChartTooltipContent hideLabel />} />
-          <Pie data={data} dataKey={dataKey} nameKey={nameKey} innerRadius={85} strokeWidth={3} />
+          <Pie data={data} dataKey={dataKey} nameKey={nameKey} innerRadius={innerRadius} strokeWidth={3} />
         </PieChart>
       </ChartContainer>
 
@@ -59,4 +68,13 @@ function tooltipFormatter(currency: Currency) {
   }
 
   return FormatTooltip
+}
+
+type ChartData = {
+  name: string
+  amount: number
+  /**
+   * `fill` - should be any css color or css variable, E.g.: `red` | `var(--color-name)` | `#fff`
+   */
+  fill: string
 }

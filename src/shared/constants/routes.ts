@@ -6,4 +6,5 @@ export const routes = {
   recurringBills: "/recurring-bills",
   login: "/login",
   register: "/register",
+  token: "/token",
 } as const

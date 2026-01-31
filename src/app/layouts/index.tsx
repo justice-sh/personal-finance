@@ -24,4 +24,4 @@ export default function LayoutManager({ children, defaultOpen }: LayoutProps) {
   )
 }
 
-const authRoutes = [routes.login, routes.register]
+const authRoutes = [routes.login, routes.register, routes.token]

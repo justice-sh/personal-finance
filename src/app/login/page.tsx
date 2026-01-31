@@ -10,6 +10,7 @@ import { formValidator } from "@/shared/utils/form"
 import { Form } from "@/shared/components/form/form"
 import { authAPI } from "@/shared/services/apis/auth"
 import { prefetchUserData } from "@/shared/data/user"
+import { Button } from "@/shared/components/ui/button"
 import SubmitForm from "@/shared/components/form/submit"
 import { PasswordSchema } from "@/shared/schemas/password"
 import { AuthLayer } from "@/shared/components/auth-layer"
@@ -55,6 +56,15 @@ export default function LoginPage() {
 
   useSetInitialFieldState(form, { email, password })
 
+  const handleGoogleSignIn = async () => {
+    try {
+      const resp = await authAPI.signInWithProvider("GOOGLE")
+      window.location.href = resp.url
+    } catch (error) {
+      toast.error("Google Sign-in Failed", { description: getErrorMessage(error) })
+    }
+  }
+
   return (
     <AuthLayer title="Login" footer={{ text: "Need to create an account?", action: "Sign Up", href: routes.register }}>
       <Form className="grid gap-5">
@@ -68,6 +78,8 @@ export default function LoginPage() {
         />
 
         <SubmitForm form={form} schema={schema} label="Login" />
+
+        <Button onClick={handleGoogleSignIn}>Google Sign-in</Button>
       </Form>
     </AuthLayer>
   )

@@ -7,8 +7,8 @@ const login = async (data: { email: string; password: string }) => {
   return resp.data
 }
 
-const signInWithProvider = async (provider = "google") => {
-  const resp = await publicClient.post<string>(`/auth/oauth/${provider}`)
+const signInWithProvider = async (provider = "GOOGLE") => {
+  const resp = await publicClient.get<{ url: string }>(`auth/oauth/${provider}`)
   return resp.data
 }
 

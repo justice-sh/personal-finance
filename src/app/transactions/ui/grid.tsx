@@ -29,7 +29,7 @@ export function TransactionsGrid({ data, isLoading }: Props) {
 
   const [queryParams, setQueryParams] = useTransactionsQueryParams()
 
-  useDynamicPageSize(ref, (limit) => setQueryParams({ limit, offset: queryParams.offset }))
+  // useDynamicPageSize(ref, (limit) => setQueryParams({ limit, offset: queryParams.offset }))
 
   const paginatedTransactions = data.transactions
   // const paginatedTransactions = transactions.data.slice(
@@ -49,13 +49,13 @@ export function TransactionsGrid({ data, isLoading }: Props) {
 
       <MobileView list={paginatedTransactions} className={cn("@min-[600px]:hidden", classes.table)} />
 
-      <Pagination
+      {/* <Pagination
         className="mt-auto"
         totalItems={data.meta.total}
         itemsPerPage={queryParams.limit}
         currentPage={queryParams.offset}
         onPageChange={(offset) => setQueryParams({ offset })}
-      />
+      /> */}
     </ConditionalRenderer>
   )
 }

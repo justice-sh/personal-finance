@@ -33,7 +33,8 @@ export const useTransactionsQueryParams = (defaultParams?: Partial<TransactionPa
     offset: 0,
     sortBy: TransactionSortBy.LATEST,
     category: "all",
-    limit: 6,
+    limit: 10000,
+    // limit: 6,
     ...defaultParams,
   })
 

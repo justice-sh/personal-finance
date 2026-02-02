@@ -2,10 +2,10 @@
 
 import React from "react"
 import { cn } from "@/shared/lib/utils"
-import { Pagination } from "./pagination"
+// import { Pagination } from "./pagination"
 import { TransactionResponse } from "@/shared/types/transaction"
 import { parseTransactionType } from "@/shared/utils/transaction"
-import { useTransactionsQueryParams } from "@/shared/data/transaction"
+// import { useTransactionsQueryParams } from "@/shared/data/transaction"
 import { TransactionDate } from "@/shared/components/transaction/tx-date"
 import { TransactionAvatar } from "@/shared/components/transaction/tx-avatar"
 import { TransactionAmount } from "@/shared/components/transaction/tx-amount"
@@ -27,7 +27,7 @@ const classes = {
 export function TransactionsGrid({ data, isLoading }: Props) {
   const ref = React.useRef<HTMLDivElement>(null)
 
-  const [queryParams, setQueryParams] = useTransactionsQueryParams()
+  // const [queryParams, setQueryParams] = useTransactionsQueryParams()
 
   // useDynamicPageSize(ref, (limit) => setQueryParams({ limit, offset: queryParams.offset }))
 

@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect } from "react"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 import { useUserData } from "@/shared/data/user"
-import { performSignOut } from "@/shared/utils/sign-out"
+// import { performSignOut } from "@/shared/utils/sign-out"
 
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
+  // const router = useRouter()
   const { error, status, isLoading } = useUserData()
 
   useEffect(() => {

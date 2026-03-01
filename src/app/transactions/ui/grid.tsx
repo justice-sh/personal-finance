@@ -134,45 +134,45 @@ function MobileView({ list, className }: { list: TransactionResponse["transactio
  * @param ref - Reference to the container element.
  * @param onPageSizeChange - Callback function to be called when the page size changes.
  */
-function useDynamicPageSize(ref: React.RefObject<HTMLDivElement | null>, onPageSizeChange?: (pageSize: number) => void) {
-  React.useEffect(() => {
-    const controller = new AbortController()
+// function useDynamicPageSize(ref: React.RefObject<HTMLDivElement | null>, onPageSizeChange?: (pageSize: number) => void) {
+//   React.useEffect(() => {
+//     const controller = new AbortController()
 
-    let timeoutID: number = 0
+//     let timeoutID: number = 0
 
-    const handleResize = () => {
-      window.clearTimeout(timeoutID)
+//     const handleResize = () => {
+//       window.clearTimeout(timeoutID)
 
-      const container = ref.current
-      if (!container) return
+//       const container = ref.current
+//       if (!container) return
 
-      timeoutID = window.setTimeout(() => {
-        const table = Array.from(container.querySelectorAll(`.${classes.table}`)).filter((child) => {
-          const display = getComputedStyle(child).display
-          return display !== "none"
-        })[0]
+//       timeoutID = window.setTimeout(() => {
+//         const table = Array.from(container.querySelectorAll(`.${classes.table}`)).filter((child) => {
+//           const display = getComputedStyle(child).display
+//           return display !== "none"
+//         })[0]
 
-        const item = table.querySelector(`.${classes.row}`)
-        if (!item) return
+//         const item = table.querySelector(`.${classes.row}`)
+//         if (!item) return
 
-        const windowHeight = window.innerHeight - 330
-        const itemHeight = item.clientHeight
+//         const windowHeight = window.innerHeight - 330
+//         const itemHeight = item.clientHeight
 
-        const newPageSize = Math.max(3, Math.floor(windowHeight / itemHeight))
+//         const newPageSize = Math.max(3, Math.floor(windowHeight / itemHeight))
 
-        onPageSizeChange?.(newPageSize)
-      }, 400)
-    }
+//         onPageSizeChange?.(newPageSize)
+//       }, 400)
+//     }
 
-    window.addEventListener("resize", handleResize, { signal: controller.signal })
+//     window.addEventListener("resize", handleResize, { signal: controller.signal })
 
-    handleResize()
+//     handleResize()
 
-    return () => {
-      controller.abort()
-      window.clearTimeout(timeoutID)
-    }
+//     return () => {
+//       controller.abort()
+//       window.clearTimeout(timeoutID)
+//     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref])
-}
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [ref])
+// }
